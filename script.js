@@ -12,6 +12,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//Variable setup
 const txtEmail = document.querySelector("#txtEmail");
 const txtPassword = document.querySelector("#txtPassword");
 const btnLogin = document.querySelector("#btnLogin");
@@ -21,6 +22,7 @@ const inputDonationAmount = document.querySelector("#donation_input");
 let firebasesAuthDatabaseID = false;
 let DBRefDonation;
 
+//Login button
 btnLogin.addEventListener("click", e => {
   //get info
   const email = txtEmail.value;
@@ -31,6 +33,7 @@ btnLogin.addEventListener("click", e => {
   promise.catch(e => console.log(e.message));
 });
 
+//Sign up button
 btnSignup.addEventListener("click", e => {
   //get info
   const email = txtEmail.value;
@@ -40,31 +43,35 @@ btnSignup.addEventListener("click", e => {
   // const promise = auth.createUserWithEmailAndPassword(email, password);
   // promise.catch(e => console.log(e.message));
 
+  //Authentication of user
   auth
     .createUserWithEmailAndPassword(email, password)
     .then(authData => {
       console.log("User created successfully with payload-", authData);
       //Write code to use authData to add to Users
-      firebase.database().ref("userinfo/").push({
-        email: email,
-        uid: authData.user.uid,
-        donations: {
-          amount: 0
-        }
-      });
+      firebase
+        .database()
+        .ref("userinfo/")
+        .push({
+          email: email,
+          uid: authData.user.uid,
+          donations: {
+            amount: 0
+          }
+        });
     })
     .catch(_error => {
       console.log("Login Failed!", _error);
     });
 });
 
+//Logout button
 btnLogout.addEventListener("click", e => {
   firebase.auth().signOut();
   firebasesAuthDatabaseID = false;
 });
 
 // Real time auth listener
-
 firebase.auth().onAuthStateChanged(firebaseUser => {
   if (firebaseUser) {
     console.log(firebaseUser);
@@ -75,10 +82,12 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
   } else {
     console.log("not logged in");
     document.querySelector("#donation_container").classList.add("hide");
+    document.querySelector("#btn_to_dashboard").classList.add("hide");
     btnLogout.classList.add("hide");
   }
 });
 
+//Find user
 function findFirebaseUser(email) {
   firebase
     .database()
@@ -88,9 +97,21 @@ function findFirebaseUser(email) {
     .on("value", function(snap) {
       //snapshot would have list of NODES that satisfies the condition
       const object = snap.val();
+      console.log(object);
       firebasesAuthDatabaseID = Object.keys(object)[0];
       console.log(firebasesAuthDatabaseID, "-----------");
       console.log(email);
+      console.log(object[firebasesAuthDatabaseID].admin);
+      if (
+        object[firebasesAuthDatabaseID].admin !== "undefined" &&
+        object[firebasesAuthDatabaseID].admin
+      ) {
+        console.log("is admin: " + object[firebasesAuthDatabaseID].admin);
+        document.querySelector("#btn_to_dashboard").classList.remove("hide");
+      } else {
+        console.log("is not admin");
+        document.querySelector("#btn_to_dashboard").classList.add("hide");
+      }
     });
 }
 
@@ -98,7 +119,10 @@ function findFirebaseUser(email) {
 const userList = document.querySelector("#user_list");
 
 // Create ref
-const DBRefObject = firebase.database().ref().child("userinfo");
+const DBRefObject = firebase
+  .database()
+  .ref()
+  .child("userinfo");
 
 document.querySelector("#donate").addEventListener("click", () => {
   console.log("donere");
@@ -122,7 +146,8 @@ document.querySelector("#donate").addEventListener("click", () => {
   });
 });
 
-// DATABASE SETUP -- https://www.youtube.com/watch?v=noB98K6A0TY part 1 -- https://youtu.be/dBscwaqNPuk part 2
+// DATABASE SETUP -- https://www.youtube.com/watch?v=noB98K6A0TY part 1 --
+//https://youtu.be/dBscwaqNPuk part 2
 
 // Sync object changes
 // DBRefObject.on("value", snap => {

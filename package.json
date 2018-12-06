@@ -1,0 +1,17 @@
+{
+  "name": "site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.10.0",
+    "onchange": "^5.1.3"
+  },
+  "scripts": {
+    "scssToCss": "node-sass sass/main.scss css/style.css",
+    "watcher": "onchange '/node_modules/**' -e 'sass/*.scss' -- npm run scssToCss"
+  },
+  "author": "Elias, Emil, Rasmus & Magnus",
+  "license": "ISC"
+}
