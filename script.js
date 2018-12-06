@@ -18,8 +18,15 @@ const btnLogin = document.querySelector("#btnLogin");
 const btnSignup = document.querySelector("#btnSignup");
 const btnLogout = document.querySelector("#btnLogout");
 const inputDonationAmount = document.querySelector("#donation_input");
+
 let firebasesAuthDatabaseID = false;
 let DBRefDonation;
+
+let wood = 0;
+let cement = 0;
+let tools = 0;
+let misc = 0;
+let clothes = 0;
 
 btnLogin.addEventListener("click", e => {
   //get info
@@ -49,7 +56,17 @@ btnSignup.addEventListener("click", e => {
         email: email,
         uid: authData.user.uid,
         donations: {
-          amount: 0
+          amount: 0,
+          materials: {
+            wood: 0,
+            cement: 0,
+            miscellaneous: 0,
+            clothes: 0
+          },
+          food: {
+            water: 0,
+            MRE: 0
+          }
         }
       });
     })
@@ -98,17 +115,16 @@ function findFirebaseUser(email) {
 const userList = document.querySelector("#user_list");
 
 // Create ref
-const DBRefObject = firebase.database().ref().child("userinfo");
+const DBRefUserInfo = firebase.database().ref().child("userinfo");
 
 document.querySelector("#donate").addEventListener("click", () => {
-  console.log("donere");
   let userDonationAmount;
   DBRefDonation = firebase
     .database()
     .ref()
     .child("userinfo/" + firebasesAuthDatabaseID + "/donations");
 
-  DBRefDonation.once(
+  DBRefDonation.on(
     "value",
     snap => {
       snap.val(); // value
@@ -122,6 +138,120 @@ document.querySelector("#donate").addEventListener("click", () => {
   });
 });
 
+// skal bruges til materialsdonation
+// document.querySelector("#donate").addEventListener("click", () => {
+//   let userDonationAmount;
+//   DBRefDonation = firebase
+//     .database()
+//     .ref()
+//     .child("userinfo/" + firebasesAuthDatabaseID + "/donations");
+
+//   DBRefDonation.on(
+//     "value",
+//     snap => {
+//       snap.val(); // value
+//       userDonationAmount = snap.val().amount;
+//     },
+//     err => {}
+//   );
+
+//   DBRefDonation.update({
+//     amount: +userDonationAmount + +inputDonationAmount.value
+//   });
+// });
+
+// const plusbtns = document.querySelectorAll(".btnplus");
+// const minusbtns = document.querySelectorAll(".btnminus");
+
+// let elementplus = 0;
+
+// plusbtns.forEach(button => {
+//   button.addEventListener("click", () => {
+//     const txtContent = .nextSibling.nextSibling.textContent;
+//     console.log(txtContent);
+//     //button.nextSibling.nextSibling.textContent = txtContent++;
+//   });
+// });
+
+document.querySelector("#woodplus").addEventListener("click", () => {
+  wood++;
+  document.querySelector("#wood p").textContent = wood;
+  if (wood > 0) {
+    document.querySelector("#woodminus").disabled = false;
+  }
+});
+
+document.querySelector("#woodminus").addEventListener("click", () => {
+  wood--;
+  document.querySelector("#wood p").textContent = wood;
+  if (wood == 0) {
+    document.querySelector("#woodminus").disabled = true;
+  }
+});
+
+document.querySelector("#cementplus").addEventListener("click", () => {
+  cement++;
+  document.querySelector("#cement p").textContent = cement;
+  if (cement > 0) {
+    document.querySelector("#cementminus").disabled = false;
+  }
+});
+
+document.querySelector("#cementminus").addEventListener("click", () => {
+  cement--;
+  document.querySelector("#cement p").textContent = cement;
+  if (cement == 0) {
+    document.querySelector("#cementminus").disabled = true;
+  }
+});
+
+document.querySelector("#toolsplus").addEventListener("click", () => {
+  tools++;
+  document.querySelector("#tools p").textContent = tools;
+  if (tools > 0) {
+    document.querySelector("#toolsminus").disabled = false;
+  }
+});
+
+document.querySelector("#toolsminus").addEventListener("click", () => {
+  tools--;
+  document.querySelector("#tools p").textContent = tools;
+  if (tools == 0) {
+    document.querySelector("#toolsminus").disabled = true;
+  }
+});
+
+document.querySelector("#miscplus").addEventListener("click", () => {
+  misc++;
+  document.querySelector("#misc p").textContent = misc;
+  if (misc > 0) {
+    document.querySelector("#miscminus").disabled = false;
+  }
+});
+
+document.querySelector("#miscminus").addEventListener("click", () => {
+  misc--;
+  document.querySelector("#misc p").textContent = misc;
+  if (misc == 0) {
+    document.querySelector("#miscminus").disabled = true;
+  }
+});
+
+document.querySelector("#clothesplus").addEventListener("click", () => {
+  clothes++;
+  document.querySelector("#clothes p").textContent = clothes;
+  if (clothes > 0) {
+    document.querySelector("#clothesminus").disabled = false;
+  }
+});
+
+document.querySelector("#clothesminus").addEventListener("click", () => {
+  clothes--;
+  document.querySelector("#clothes p").textContent = clothes;
+  if (clothes == 0) {
+    document.querySelector("#clothesminus").disabled = true;
+  }
+});
 // DATABASE SETUP -- https://www.youtube.com/watch?v=noB98K6A0TY part 1 -- https://youtu.be/dBscwaqNPuk part 2
 
 // Sync object changes
@@ -130,7 +260,7 @@ document.querySelector("#donate").addEventListener("click", () => {
 // });
 
 // Sync list changes
-DBRefObject.on("child_added", snap => {
+DBRefUserInfo.on("child_added", snap => {
   const li = document.createElement("li");
   const userinfo = snap.val();
 
@@ -140,11 +270,32 @@ DBRefObject.on("child_added", snap => {
     `
     ` +
     "Donations: " +
-    +userinfo.donations.amount;
-  console.log(snap.val());
+    +userinfo.donations.amount +
+    `
+    ` +
+    "Wood: " +
+    +userinfo.donations.materials.wood;
+
   li.id = snap.key; // key name for each item
 
   userList.appendChild(li);
+});
+
+DBRefUserInfo.on("child_changed", snap => {
+  const liChanged = document.querySelector("#" + snap.key);
+  const userinfo = snap.val();
+
+  liChanged.innerText =
+    "Username: " +
+    userinfo.email +
+    `
+    ` +
+    "Donations: " +
+    +userinfo.donations.amount +
+    `
+    ` +
+    "Wood: " +
+    +userinfo.donations.materials.wood;
 });
 
 // DBRefList.on("child_changed", snap => {
