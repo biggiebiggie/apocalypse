@@ -5,42 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <title>Dashboard | Supertes</title>
   </head>
 
   <body>
-    <header>
-      <nav>
-        <button>Forside</button> <button>Info</button>
-        <button>Hændelser</button> <button>Dashboard</button>
-
-        <div id="login_container">
-          <input id="txtEmail" type="email" placeholder="E-mail" />
-          <input id="txtPassword" type="password" placeholder="Password" />
-          <button id="btnLogin">Login</button>
-          <button id="btnSignup">Sign Up</button>
-          <button id="btnLogout" class="hide">Logout</button>
-        </div>
-      </nav>
-    </header>
-
-    <button id="btn_to_dashboard" class="hide">Admin power</button>
-
-    <div id="donation_container">
-      <input
-        id="donation_input"
-        type="number"
-        placeholder="Amount"
-        value="100"
-        min="10"
-      />
-      <button id="donate">Donate</button>
-      <div id="user_donation"></div>
+    <div id="login_container">
+      <input id="txtEmail" type="email" placeholder="E-mail" />
+      <input id="txtPassword" type="password" placeholder="Password" />
+      <button id="btnLogin">Login</button>
+      <button id="btnSignup">Sign Up</button>
+      <button id="btnLogout" class="hide">Logout</button>
     </div>
+
+    <div id="goal_container">
+      <div class="goal_numbers">
+        <div class="goal_start">0</div>
+        <div class="goal_middle"></div>
+        <div class="goal_end">20.000</div>
+      </div>
+      <div class="goal_bar"><div class="goal_fill"></div></div>
+    </div>
+
+    <section id="charts_container">
+      <div class="chart">
+        <canvas id="materials_chart" width="400" height="400"></canvas>
+      </div>
+      <div class="chart">
+        <canvas id="food_chart" width="400" height="400"></canvas>
+      </div>
+    </section>
 
     <ul id="user_list"></ul>
 
-    <script src="script.js"></script>
+    <script src="database.js"></script>
+    <script src="dash.js"></script>
   </body>
 </html>
