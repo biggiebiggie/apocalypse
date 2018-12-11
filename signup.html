@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Nosifer"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
+  </head>
+  <body id="signup">
+    <a id="back_to_index" href="index.html">Tilbage</a>
+    <form id="signup_form">
+      <input type="text" placeholder="Username" />
+      <input type="email" placeholder="E-mail" />
+      <input type="password" minlength="6" placeholder="Kodeord" />
+      <label id="label_not_a_zombie" for="not_a_zombie"
+        >Jeg er ikke en zombie
+        <input type="checkbox" name="not_a_zombie" id="not_a_zombie" />
+        <div class="fake_checkbox"><div></div></div>
+      </label>
+      <input type="submit" value="Opret bruger" id="btn_signup" />
+    </form>
+    <div class="transparent_bg"></div>
+  </body>
+</html>

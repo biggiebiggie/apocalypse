@@ -13,11 +13,11 @@ var config = {
 firebase.initializeApp(config);
 
 //Variable setup
-const txtEmail = document.querySelector("#txtEmail");
-const txtPassword = document.querySelector("#txtPassword");
-const btnLogin = document.querySelector("#btnLogin");
-const btnSignup = document.querySelector("#btnSignup");
-const btnLogout = document.querySelector("#btnLogout");
+const txtEmail = document.querySelector("#txt_email");
+const txtPassword = document.querySelector("#txt_password");
+const btnLogin = document.querySelector("#btn_login");
+//const btnSignup = document.querySelector("#btn_signup");
+const btnLogout = document.querySelector("#btn_logout");
 const inputDonationAmount = document.querySelector("#donation_input");
 
 let firebasesAuthDatabaseID = false;
@@ -41,46 +41,46 @@ btnLogin.addEventListener("click", e => {
 });
 
 //Sign up button
-btnSignup.addEventListener("click", e => {
-  //get info
-  const email = txtEmail.value;
-  const password = txtPassword.value;
-  const auth = firebase.auth();
-  //createuser
-  // const promise = auth.createUserWithEmailAndPassword(email, password);
-  // promise.catch(e => console.log(e.message));
+// btnSignup.addEventListener("click", e => {
+//   //get info
+//   const email = txtEmail.value;
+//   const password = txtPassword.value;
+//   const auth = firebase.auth();
+//   //createuser
+//   // const promise = auth.createUserWithEmailAndPassword(email, password);
+//   // promise.catch(e => console.log(e.message));
 
-  //Authentication of user
-  auth
-    .createUserWithEmailAndPassword(email, password)
-    .then(authData => {
-      console.log("User created successfully with payload-", authData);
-      //Write code to use authData to add to Users
-      firebase
-        .database()
-        .ref("userinfo/")
-        .push({
-          email: email,
-          uid: authData.user.uid,
-          donations: {
-            amount: 0,
-            materials: {
-              wood: 0,
-              cement: 0,
-              miscellaneous: 0,
-              clothes: 0
-            },
-            food: {
-              water: 0,
-              MRE: 0
-            }
-          }
-        });
-    })
-    .catch(_error => {
-      console.log("Login Failed!", _error);
-    });
-});
+//   //Authentication of user
+//   auth
+//     .createUserWithEmailAndPassword(email, password)
+//     .then(authData => {
+//       console.log("User created successfully with payload-", authData);
+//       //Write code to use authData to add to Users
+//       firebase
+//         .database()
+//         .ref("userinfo/")
+//         .push({
+//           email: email,
+//           uid: authData.user.uid,
+//           donations: {
+//             amount: 0,
+//             materials: {
+//               wood: 0,
+//               cement: 0,
+//               miscellaneous: 0,
+//               clothes: 0
+//             },
+//             food: {
+//               water: 0,
+//               MRE: 0
+//             }
+//           }
+//         });
+//     })
+//     .catch(_error => {
+//       console.log("Login Failed!", _error);
+//     });
+// });
 
 //Logout button
 btnLogout.addEventListener("click", e => {
@@ -90,17 +90,18 @@ btnLogout.addEventListener("click", e => {
 
 // Real time auth listener
 firebase.auth().onAuthStateChanged(firebaseUser => {
+  const header = document.querySelector("header");
   if (firebaseUser) {
     console.log(firebaseUser);
-    btnLogout.classList.remove("hide");
-    document.querySelector("#donation_container").classList.remove("hide");
+    document.querySelector("header").classList.add("logged_in");
+    document.querySelector("#p_email").textContent = firebaseUser.email;
 
     findFirebaseUser(firebaseUser.email);
   } else {
     console.log("not logged in");
-    document.querySelector("#donation_container").classList.add("hide");
     document.querySelector("#btn_to_dashboard").classList.add("hide");
-    btnLogout.classList.add("hide");
+    document.querySelector("#p_email").textContent = "";
+    document.querySelector("header").classList.remove("logged_in");
   }
 });
 
@@ -141,26 +142,26 @@ const DBRefObject = firebase
   .ref()
   .child("userinfo");
 
-document.querySelector("#donate").addEventListener("click", () => {
-  let userDonationAmount;
-  DBRefDonation = firebase
-    .database()
-    .ref()
-    .child("userinfo/" + firebasesAuthDatabaseID + "/donations");
+// document.querySelector("#donate").addEventListener("click", () => {
+//   let userDonationAmount;
+//   DBRefDonation = firebase
+//     .database()
+//     .ref()
+//     .child("userinfo/" + firebasesAuthDatabaseID + "/donations");
 
-  DBRefDonation.on(
-    "value",
-    snap => {
-      snap.val(); // value
-      userDonationAmount = snap.val().amount;
-    },
-    err => {}
-  );
+//   DBRefDonation.on(
+//     "value",
+//     snap => {
+//       snap.val(); // value
+//       userDonationAmount = snap.val().amount;
+//     },
+//     err => {}
+//   );
 
-  DBRefDonation.update({
-    amount: +userDonationAmount + +inputDonationAmount.value
-  });
-});
+//   DBRefDonation.update({
+//     amount: +userDonationAmount + +inputDonationAmount.value
+//   });
+// });
 
 // skal bruges til materialsdonation
 // document.querySelector("#donate").addEventListener("click", () => {
@@ -196,7 +197,7 @@ document.querySelector("#donate").addEventListener("click", () => {
 //     //button.nextSibling.nextSibling.textContent = txtContent++;
 //   });
 // });
-
+/*
 document.querySelector("#woodplus").addEventListener("click", () => {
   wood++;
   document.querySelector("#wood p").textContent = wood;
@@ -274,7 +275,7 @@ document.querySelector("#clothesminus").addEventListener("click", () => {
   document.querySelector("#clothes p").textContent = clothes;
   if (clothes == 0) {
     document.querySelector("#clothesminus").disabled = true;
-  }
+  } 
 });
 // DATABASE SETUP -- https://www.youtube.com/watch?v=noB98K6A0TY part 1 -- https://youtu.be/dBscwaqNPuk part 2
 
@@ -320,7 +321,7 @@ DBRefUserInfo.on("child_changed", snap => {
     ` +
     "Wood: " +
     +userinfo.donations.materials.wood;
-});
+});*/
 
 // DBRefList.on("child_changed", snap => {
 //   const liChanged = document.querySelector("#" + snap.key);

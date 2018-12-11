@@ -1,2 +1,243 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: "Muli", sans-serif; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+section {
+  width: 100vw; }
+
+.section_bg {
+  position: relative;
+  display: block;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 0; }
+
+h2 {
+  font-size: 2rem; }
+
+.hide {
+  display: none; }
+
+header {
+  width: 100vw;
+  height: 60px;
+  background-color: #333; }
+  header a,
+  header p.current {
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 15px 20px;
+    font-family: "Nosifer", cursive; }
+  header a {
+    color: #eee;
+    text-decoration: none; }
+    header a:hover {
+      color: #bbbbbb; }
+  header p.current {
+    color: #bbbbbb; }
+  header #login_container {
+    position: absolute;
+    right: 20px;
+    top: 10px; }
+    header #login_container a {
+      font-family: inherit;
+      font-size: 1rem;
+      margin: 0; }
+    header #login_container a,
+    header #login_container button {
+      width: 100px;
+      text-align: center; }
+    header #login_container a,
+    header #login_container button,
+    header #login_container input {
+      padding: 5px;
+      background-color: #eee;
+      color: #222;
+      font-size: 0.8rem;
+      border: 1px solid #222; }
+  header #btn_logout {
+    display: none; }
+  header #p_email {
+    display: none;
+    color: #eee;
+    margin: 0; }
+  header.logged_in #btn_login,
+  header.logged_in #btn_signup,
+  header.logged_in #txt_email,
+  header.logged_in #txt_password {
+    display: none; }
+  header.logged_in #p_email,
+  header.logged_in #btn_logout {
+    display: inline-block; }
+
+#splash {
+  position: relative;
+  background-image: url(../img/placeholder.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 70vh; }
+  #splash .name_and_donate {
+    position: absolute;
+    top: 20vh;
+    left: 60vw; }
+    #splash .name_and_donate h1 {
+      margin: 0;
+      font-size: 4rem; }
+      #splash .name_and_donate h1 span {
+        font-size: 1.3rem;
+        font-style: italic;
+        margin-left: 20px;
+        font-weight: 200; }
+    #splash .name_and_donate p {
+      font-size: 2rem;
+      margin: 5px 0; }
+    #splash .name_and_donate a[href="donate.html"] {
+      text-decoration: none;
+      color: #222; }
+      #splash .name_and_donate a[href="donate.html"] div {
+        height: 60px;
+        width: 200px;
+        background: #eee;
+        border: 1px solid #222;
+        text-align: center; }
+        #splash .name_and_donate a[href="donate.html"] div h2 {
+          font-size: 2rem;
+          margin: 0; }
+        #splash .name_and_donate a[href="donate.html"] div p {
+          font-size: 0.9rem;
+          margin: 0; }
+
+#about_us {
+  background-color: #ff0; }
+  #about_us .section_bg {
+    height: 300px; }
+    #about_us .section_bg p {
+      max-width: 40%; }
+    #about_us .section_bg iframe {
+      position: absolute;
+      height: 100%;
+      right: 0;
+      top: 0; }
+
+#donate_section {
+  background-color: #000;
+  padding: 0 10vw 0 10vw;
+  color: #eee; }
+  #donate_section .section_bg h2 {
+    text-align: center; }
+  #donate_section .section_bg p {
+    padding: 0 200px; }
+  #donate_section .section_bg .donate_container {
+    display: flex;
+    justify-content: center;
+    background: #000;
+    width: 100%; }
+    #donate_section .section_bg .donate_container div {
+      width: 33.33%;
+      padding-top: 33.33%;
+      background-size: 80%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #000; }
+  #donate_section .section_bg .money {
+    background: url(../img/donate_money.svg); }
+  #donate_section .section_bg .material {
+    background: url(../img/donate_materials.svg); }
+  #donate_section .section_bg .food {
+    background: url(../img/donate_food.svg); }
+
+footer {
+  background-color: #ddd; }
+  footer .section_bg {
+    display: grid;
+    grid-template-columns: 300px 1fr 200px; }
+    footer .section_bg #footer_links a {
+      display: block;
+      margin: 20px 0; }
+    footer .section_bg #footer_contact {
+      display: grid;
+      grid-template-columns: 1fr 3fr; }
+
+#material_container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; }
+
+.materials {
+  width: 20vw;
+  height: 20vw;
+  background-color: red; }
+
+.materials:nth-child(odd) {
+  background-color: blue; }
+
+#signup_form {
+  position: absolute;
+  left: 15vw;
+  top: 20vh; }
+  #signup_form input {
+    display: block; }
+    #signup_form input[type="text"], #signup_form input[type="email"], #signup_form input[type="password"], #signup_form input[type="submit"] {
+      width: 400px;
+      height: 50px;
+      margin: 20px 0;
+      font-size: 1.5rem;
+      border: 1px solid #222;
+      color: #222;
+      background-color: rgba(158, 158, 158, 0.5);
+      padding: 10px; }
+      #signup_form input[type="text"]::placeholder, #signup_form input[type="email"]::placeholder, #signup_form input[type="password"]::placeholder, #signup_form input[type="submit"]::placeholder {
+        color: #444; }
+    #signup_form input[type="checkbox"] {
+      position: absolute;
+      display: inline-block;
+      margin: 0 15px; }
+    #signup_form input[type="submit"] {
+      cursor: pointer;
+      background-color: rgba(106, 148, 102, 0.8); }
+  #signup_form label[for="not_a_zombie"] {
+    font-size: 1.5rem;
+    cursor: pointer; }
+  #signup_form .fake_checkbox {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    transform: translateY(7px);
+    background-color: rgba(210, 210, 210, 0.8);
+    transition: 0.3s; }
+  #signup_form #not_a_zombie {
+    opacity: 0;
+    display: inline-block; }
+  #signup_form #label_not_a_zombie:hover .fake_checkbox {
+    background: #bbb; }
+  #signup_form #not_a_zombie:checked ~ .fake_checkbox {
+    background: #3ca033; }
+    #signup_form #not_a_zombie:checked ~ .fake_checkbox div {
+      position: absolute;
+      height: 25px;
+      width: 15px;
+      transform: rotate(45deg) translate(7px, -5px);
+      border: solid black;
+      border-width: 0 5px 5px 0; }
+
+body#signup {
+  background-image: url(../img/placeholder.jpg); }
+  body#signup .transparent_bg {
+    position: absolute;
+    width: 45vw;
+    height: 100vh;
+    background-color: rgba(200, 200, 200, 0.7);
+    z-index: -1; }
+  body#signup #back_to_index {
+    font-size: 2rem;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    text-decoration: none;
+    color: #222; }
+    body#signup #back_to_index:hover {
+      color: #555; }
