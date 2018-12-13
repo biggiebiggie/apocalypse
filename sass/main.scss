@@ -1,6 +1,11 @@
 $text_color_white: #eee;
 $text_color_black: #222;
 
+$dark_blue: #161b26;
+$light_blue: #7b8aa6;
+$dark_green: #0f140d;
+$light_green: #37402b;
+
 * {
   box-sizing: border-box;
   font-family: "Muli", sans-serif;
@@ -13,6 +18,10 @@ body {
 
 section {
   width: 100vw;
+}
+
+button {
+  cursor: pointer;
 }
 
 .section_bg {
@@ -33,20 +42,24 @@ h2 {
 
 //########## header ##########
 
+//skal være i "px"
+$header_height: 60px;
 header {
   width: 100vw;
-  height: 60px;
+  height: $header_height;
   background-color: #333;
 
   a,
-  p.current {
+  p.current,
+  p.reactivated {
     display: inline-block;
     font-size: 1.4rem;
     margin: 15px 20px;
     font-family: "Nosifer", cursive;
   }
 
-  a {
+  a,
+  p.reactivated {
     color: $text_color_white;
     text-decoration: none;
     &:hover {
@@ -56,12 +69,13 @@ header {
 
   p.current {
     color: darken($text_color_white, 20%);
+    cursor: default;
   }
 
   #login_container {
     position: absolute;
     right: 20px;
-    top: 10px;
+    top: 15px;
 
     a {
       font-family: inherit;
@@ -86,7 +100,7 @@ header {
     }
   }
 
-  #btn_logout {
+  #btnLogout {
     display: none;
   }
 
@@ -97,14 +111,14 @@ header {
   }
 
   &.logged_in {
-    #btn_login,
-    #btn_signup,
-    #txt_email,
-    #txt_password {
+    #btnLogin,
+    #btnSignup,
+    #txtEmail,
+    #txtPassword {
       display: none;
     }
     #p_email,
-    #btn_logout {
+    #btnLogout {
       display: inline-block;
     }
   }
@@ -139,7 +153,7 @@ header {
       font-size: 2rem;
       margin: 5px 0;
     }
-    a[href="donate.html"] {
+    a[href="donation.html"] {
       text-decoration: none;
       color: $text_color_black;
       div {
@@ -197,7 +211,7 @@ header {
       justify-content: center;
       background: #000;
       width: 100%;
-      div {
+      a {
         width: 33.33%;
         padding-top: 33.33%;
 
@@ -210,7 +224,7 @@ header {
     .money {
       background: url(../img/donate_money.svg);
     }
-    .material {
+    .materials {
       background: url(../img/donate_materials.svg);
     }
     .food {
@@ -238,24 +252,6 @@ footer {
       grid-template-columns: 1fr 3fr;
     }
   }
-}
-
-//### ETC ###
-
-#material_container {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-
-.materials {
-  width: 20vw;
-  height: 20vw;
-  background-color: red;
-}
-
-.materials:nth-child(odd) {
-  background-color: blue;
 }
 
 //########## signup.html ##########
@@ -359,3 +355,178 @@ body#signup {
 }
 
 //########## donate.html ##########
+
+#donations {
+  height: 100vh;
+  overflow: hidden;
+
+  .section_wrapper {
+    //change "$spacing" instead of "grid-gap" & "padding"
+    $spacing: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: $spacing;
+    height: 100%;
+    padding: $spacing $spacing ($header_height + $spacing) $spacing;
+    transition: 0.3s;
+    section {
+      width: 100%;
+      height: 100%;
+      transition: 0.3s;
+      .section_bg {
+        display: none;
+        transition: none;
+      }
+      .section_overlay {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 50%;
+        cursor: pointer;
+      }
+    }
+    //Setup for sections
+    #money {
+      background: lighten($light_green, 20%);
+      grid-area: 1/1/2/2;
+      .section_overlay {
+        background-image: url(../img/donate_money.svg);
+      }
+      #donation_container {
+        margin: 0 auto;
+        width: 400px;
+
+        p {
+          font-size: 1.3rem;
+          color: $text_color_white;
+        }
+      }
+      #donation_input {
+        font-size: 4rem;
+        text-align: center;
+        display: block;
+        width: 100%;
+        height: 100px;
+        border: 1px solid $text_color_black;
+      }
+      button#donate_money {
+        width: 100%;
+        height: 50px;
+        margin: 20px 0;
+        font-size: 2rem;
+        border: 1px solid $text_color_black;
+      }
+    }
+    #materials {
+      background: lighten($dark_blue, 20%);
+      grid-area: 1/2/2/3;
+      .section_overlay {
+        background-image: url(../img/donate_materials.svg);
+      }
+    }
+    #material_container,
+    #food_container {
+      $box_height: 40px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      h3,
+      p {
+        color: $text_color_white;
+        margin: 10px 0;
+      }
+      input {
+        height: $box_height;
+        width: 100px;
+        border: 1px solid $text_color_black;
+        font-size: 1rem;
+        transform: translateY(-3px);
+        padding: 0 10px;
+      }
+      button.btnminus,
+      button.btnplus {
+        height: $box_height;
+        width: $box_height;
+        border: 1px solid $text_color_black;
+        font-size: 1.5rem;
+      }
+      button.donate_material {
+        width: 189px;
+        height: $box_height;
+        display: block;
+        border: 1px solid $text_color_black;
+        margin-bottom: 20px;
+      }
+    }
+    #food {
+      background: lighten(#402b2b, 20%);
+      grid-area: 1/3/2/4;
+      .section_overlay {
+        background-image: url(../img/donate_food.svg);
+      }
+    }
+
+    //Sections when selected
+    &.money,
+    &.materials,
+    &.food {
+      grid-gap: 0;
+      padding: 0 0 $header_height 0;
+      transition: none;
+    }
+    &.money #money,
+    &.materials #materials,
+    &.food #food {
+      grid-area: 1/1/2/4;
+      z-index: 2;
+      transition: none;
+      .section_overlay {
+        display: none;
+      }
+      .section_bg {
+        display: block;
+
+        .return {
+          height: 30px;
+          width: 80px;
+          border: 1px solid $text_color_black;
+          font-size: 1rem;
+          margin: 30px 0;
+        }
+      }
+    }
+
+    //Sections when animating
+    &.money_animating,
+    &.materials_animating,
+    &.food_animating {
+      grid-gap: 0;
+      padding: 0;
+    }
+
+    &.money_animating #money {
+      .section_overlay {
+        display: none;
+      }
+      width: 300%;
+      z-index: 2;
+    }
+    &.materials_animating #materials {
+      .section_overlay {
+        display: none;
+      }
+      width: 300%;
+      z-index: 2;
+      transform: translateX(-33.3%);
+    }
+    &.food_animating #food {
+      .section_overlay {
+        display: none;
+      }
+      width: 300%;
+      z-index: 2;
+      transform: translateX(-66.7%);
+    }
+  }
+}

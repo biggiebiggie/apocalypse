@@ -19,16 +19,16 @@
       <nav>
         <p class="current">Forside</p>
         <a href="info.html">Info</a> <a href="events.html">Kurser & events</a>
-        <a href="donate.html">Donér</a>
+        <a href="donation.html">Donér</a>
         <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
 
         <div id="login_container">
           <p id="p_email">Email</p>
-          <input id="txt_email" type="email" placeholder="E-mail" />
-          <input id="txt_password" type="password" placeholder="Password" />
-          <button id="btn_login">Log ind</button>
+          <input id="txtEmail" type="email" placeholder="E-mail" />
+          <input id="txtPassword" type="password" placeholder="Password" />
+          <button id="btnLogin">Log ind</button>
           <a href="signup.html">Bliv medlem</a>
-          <button id="btn_logout">Log ud</button>
+          <button id="btnLogout">Log ud</button>
         </div>
       </nav>
     </header>
@@ -38,7 +38,7 @@
       <div class="name_and_donate">
         <h1>Superstes<span>"En som overlever"</span></h1>
         <p>En fondraiser, et fællesskab og en fremtid</p>
-        <a href="donate.html"
+        <a href="donation.html"
           ><div>
             <h2>Donér</h2>
             <p>Og overlev!</p>
@@ -97,9 +97,11 @@
           vi brug for din hjælp!
         </p>
         <div class="donate_container">
-          <div class="money"></div>
-          <div class="material"></div>
-          <div class="food"></div>
+          <a href="donation.html?category=money" class="money"></a>
+
+          <a href="donation.html?category=materials" class="materials"></a>
+
+          <a href="donation.html?category=food" class="food"></a>
         </div>
         <p>
           Selvom vi ville ønske at vi kunne redde alle, er dette ikke muligt.
@@ -154,6 +156,6 @@
     </footer>
 
     <div id="food_container"></div>
-    <script src="script.js"></script>
+    <script src="database.js"></script>
   </body>
 </html>
