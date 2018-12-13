@@ -22,6 +22,8 @@ const btnLogout = document.querySelector("#btnLogout");
 
 let firebasesAuthDatabaseID = false;
 
+let numberOfUsers = 0;
+
 btnLogin.addEventListener("click", e => {
   //get info
   const email = txtEmail.value;
@@ -143,7 +145,8 @@ DBRefUserInfo.on("child_added", snap => {
     // +userinfo.donations.materials.wood;
 
     li.id = snap.key; // key name for each item
-
+    numberOfUsers++;
+    document.querySelector("#number_of_users p").textContent = numberOfUsers;
     userList.appendChild(li);
   }
 });
@@ -153,16 +156,14 @@ DBRefUserInfo.on("child_changed", snap => {
     const liChanged = document.querySelector("#" + snap.key);
     const userinfo = snap.val();
 
-    liChanged.innerText =
-      "Username: " +
-      userinfo.email +
-      `
-      ` +
-      "Donations: " +
-      +userinfo.donations.amount +
-      `
-      ` +
-      "Wood: " +
-      +userinfo.donations.materials.wood;
+    liChanged.innerText = "Username: " + userinfo.email;
+    // `
+    // ` +
+    // "Donations: " +
+    // +userinfo.donations.amount +
+    // `
+    // ` +
+    // "Wood: " +
+    // +userinfo.donations.materials.wood;
   }
 });

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -8,38 +9,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Dashboard | Supertes</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="login_container">
-      <input id="txtEmail" type="email" placeholder="E-mail" />
-      <input id="txtPassword" type="password" placeholder="Password" />
-      <button id="btnLogin">Login</button>
-      <button id="btnSignup">Sign Up</button>
-      <button id="btnLogout" class="hide">Logout</button>
+        <input id="txtEmail" type="email" placeholder="E-mail" />
+        <input id="txtPassword" type="password" placeholder="Password" />
+        <button id="btnLogin">Login</button>
+        <button id="btnSignup">Sign Up</button>
+        <button id="btnLogout" class="hide">Logout</button>
     </div>
 
     <div id="goal_container">
-      <div class="goal_numbers">
-        <div class="goal_start">0</div>
-        <div class="goal_middle"></div>
-        <div class="goal_end">20.000</div>
-      </div>
-      <div class="goal_bar"><div class="goal_fill"></div></div>
+        <div class="goal_numbers">
+            <div class="goal_start">0</div>
+            <div class="goal_middle"></div>
+            <div class="goal_end">20.000</div>
+        </div>
+        <div class="goal_bar">
+            <div class="goal_fill"></div>
+        </div>
     </div>
 
     <section id="charts_container">
-      <div class="chart">
-        <canvas id="materials_chart" width="400" height="400"></canvas>
-      </div>
-      <div class="chart">
-        <canvas id="food_chart" width="400" height="400"></canvas>
-      </div>
+        <div class="chart">
+            <canvas id="materials_chart" width="400" height="400"></canvas>
+        </div>
+        <div class="chart">
+            <canvas id="food_chart" width="400" height="400"></canvas>
+        </div>
     </section>
+
+    <div id="number_of_users">
+        <p></p>
+    </div>
 
     <ul id="user_list"></ul>
 
     <script src="database.js"></script>
     <script src="dash.js"></script>
-  </body>
+</body>
+
 </html>

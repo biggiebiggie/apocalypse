@@ -7,6 +7,10 @@ const DBRefMaterials = firebase
 
 const DBRefFood = firebase.database().ref().child("totaldonations/food");
 
+const DBRefTotalDonation = firebase.database().ref().child("totaldonations");
+
+let donationTotalAmount;
+
 var ctx1 = document.getElementById("materials_chart").getContext("2d");
 var materialsChart = new Chart(ctx1, {
   type: "doughnut",
@@ -88,7 +92,10 @@ DBRefFood.on("child_added", snap => {
   foodChart.update();
 });
 
-function createMaterialChart(item) {
-  materialsChart.data.labels.push(item);
-  materialsChart.update();
-}
+DBRefTotalDonation.on("value", snap => {
+  donationTotalAmount = snap.val().money;
+  let goalBar = document.querySelector(".goal_fill");
+  let barFill = donationTotalAmount / 20000 * 100;
+  goalBar.style.width = barFill + "%";
+  console.log(snap.val().money);
+});

@@ -30,7 +30,7 @@ document.querySelector("#donate").addEventListener("click", () => {
     amount: +userDonationAmount + +inputDonationAmount.value
   });
 
-  DBRefTotalDonation = firebase.database().ref().child("totaldonations");
+  const DBRefTotalDonation = firebase.database().ref().child("totaldonations");
 
   DBRefTotalDonation.on(
     "value",
