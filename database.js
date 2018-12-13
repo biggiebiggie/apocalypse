@@ -14,8 +14,8 @@ var config = {
 firebase.initializeApp(config);
 
 //Variable setup
-const txtEmail = document.querySelector("#txtEmail");
-const txtPassword = document.querySelector("#txtPassword");
+const txtEmail = document.querySelector("#signup_email");
+const txtPassword = document.querySelector("#signup_password");
 const btnLogin = document.querySelector("#btnLogin");
 const btnSignup = document.querySelector("#btnSignup");
 const btnLogout = document.querySelector("#btnLogout");
