@@ -17,61 +17,63 @@
     <!-- header -->
     <header>
       <nav>
-        <p class="current">Forside</p>
-        <a href="info.html">Info</a> <a href="events.html">Kurser & events</a>
-        <a href="donation.html">Donér</a>
-        <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
-
-        <div id="login_container">
-          <p id="p_email">Email</p>
-          <input id="txtEmail" type="email" placeholder="E-mail" />
-          <input id="txtPassword" type="password" placeholder="Password" />
-          <button id="btnLogin">Log ind</button>
-          <a href="signup.html">Bliv medlem</a>
-          <button id="btnLogout">Log ud</button>
+        <div class="nav_content">
+          <p class="current">Forside</p>
+          <a href="info.html">Info</a>
+          <a href="courses.html?course=1">Kurser</a>
+          <a href="donation.html">Donér</a>
+          <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
         </div>
       </nav>
+
+      <div id="login_container">
+        <p id="p_email">Email</p>
+        <input id="txtEmail" type="email" placeholder="E-mail" />
+        <input id="txtPassword" type="password" placeholder="Password" />
+        <button id="btnLogin">Log ind</button>
+        <a href="signup.html">Bliv medlem</a>
+        <button id="btnLogout">Log ud</button>
+      </div>
     </header>
 
     <!-- Splash -->
     <section id="splash">
       <div class="name_and_donate">
         <h1>Superstes<span>"En som overlever"</span></h1>
-        <p>En fondraiser, et fællesskab og en fremtid</p>
+        <p class="message">En fondraiser, et fællesskab og en fremtid</p>
         <a href="donation.html"
           ><div>
             <h2>Donér</h2>
             <p>Og overlev!</p>
           </div>
         </a>
+        <div class="tilted_square"></div>
       </div>
     </section>
 
     <!-- About us -->
     <section id="about_us">
       <div class="section_bg">
-        <h2>Hvem er vi?</h2>
+        <h2>Om os</h2>
         <p>
-          Supertes samler penge ind til den dag en infection vil udslette vores
-          samfund som vi kender det.
+          Supertes er en yderst seriøs Non profit organisation. (NPO) Vores
+          fokus er at hjælpe folk med at overleve, når Danmark en dag vil blive
+          udsat for et zombieudbrud.
         </p>
         <p>
-          Vi samler ressourcer og penge, som vi bruger til at bygge et sted hvor
-          folk er sikre.
+          Vi samler og beskytter folk, så Danmark vil have det bedst mulige
+          grundlag for at genskabe et nyt samfund. Vi er et team på 8 mennesker,
+          som frivilligt bruger alle vores kræfter på at skabe det bedst mulige
+          fundament for din overlevelse. Vi mener at et robust fællesskab er en
+          af de vigtigste faktorer for, for at skabe det bedst mulige
+          overlevelsessamfund. Derfor har vi brug for dig!
         </p>
         <p>
-          Dem som har støttet denne vitale sag er lovet en plads når det hele
-          går galt.
+          Vores base ligger på det nordligste Bornholm ved Hammerodde Fyr, hvor
+          vi hele tiden arbejder på at udbygge og forbedre vores tilværelse.
+          Sikre din fremtid og bliv en del af familien allerede i dag - Vi har
+          altid plads til flere.
         </p>
-        <a href="info.html">Læs mere...</a>
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/_3_WgAMXAv4"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
       </div>
     </section>
 
@@ -114,17 +116,53 @@
       </div>
     </section>
 
-    <!-- Maybe courses? -->
-    <section>
+    <!-- Courses on YouTube -->
+    <section id="courses">
       <div class="section_bg">
-        <div>Kursus</div>
-        <div>Opskrift</div>
-        <div>Vi ved ikke</div>
-        <div>Hvad der skal</div>
-        <div>Være her</div>
+        <div class="courses_container">
+          <a href="courses.html?course=1">
+            <div class="course_image"></div>
+            <h3>Bueskydning</h3>
+            <p>Text</p>
+          </a>
+          <a href="courses.html?course=2">
+            <div class="course_image"></div>
+            <h3>Lav din egen økse</h3>
+            <p>Text</p>
+          </a>
+          <a href="courses.html?course=3">
+            <div class="course_image"></div>
+            <h3>Lav en mur</h3>
+            <p>Text</p>
+          </a>
+          <a href="courses.html?course=4">
+            <div class="course_image"></div>
+            <h3>Lav pile</h3>
+            <p>Text</p>
+          </a>
+          <a href="courses.html?course=5">
+            <div class="course_image"></div>
+            <h3>Spiselige svampe</h3>
+            <p>Text</p>
+          </a>
+          <a href="courses.html?course=6">
+            <div class="course_image"></div>
+            <h3>Tilberedning af rotter</h3>
+            <p>Text</p>
+          </a>
+          <a href="courses.html?course=7">
+            <div class="course_image"></div>
+            <h3>Lav et bål</h3>
+            <p>Text</p>
+          </a>
+          <a href="courses.html?course=8">
+            <div class="course_image"></div>
+            <h3>Selvforsvar</h3>
+            <p>Text</p>
+          </a>
+        </div>
       </div>
     </section>
-    <ul id="user_list"></ul>
 
     <!-- Footer -->
     <footer>
@@ -148,9 +186,8 @@
         </div>
 
         <div id="footer_SoMe">
-          <p>Facebook</p>
-          <p>Instagram</p>
-          <div id="arrow_up">Arrow up</div>
+          <div class="facebook logo"></div>
+          <div class="instagram logo"></div>
         </div>
       </div>
     </footer>
