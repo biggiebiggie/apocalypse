@@ -14,83 +14,83 @@ var config = {
 firebase.initializeApp(config);
 
 //Variable setup
-const txtEmail = document.querySelector("#signup_email");
-const txtPassword = document.querySelector("#signup_password");
+
 const btnLogin = document.querySelector("#btnLogin");
-const btnSignup = document.querySelector("#btnSignup");
 const btnLogout = document.querySelector("#btnLogout");
 
 let firebasesAuthDatabaseID = false;
 
 let numberOfUsers = 0;
 
-btnLogin.addEventListener("click", e => {
-  //get info
-  const email = txtEmail.value;
-  const password = txtPassword.value;
-  const auth = firebase.auth();
-  //signin
-  const promise = auth.signInWithEmailAndPassword(email, password);
-  promise.catch(e => console.log(e.message));
-});
+if (btnLogin) {
+  btnLogin.addEventListener("click", e => {
+    //get info
+    const email = txtEmail.value;
+    const password = txtPassword.value;
+    const auth = firebase.auth();
+    //signin
+    const promise = auth.signInWithEmailAndPassword(email, password);
+    promise.catch(e => console.log(e.message));
+  });
 
-//Sign up button
-btnSignup.addEventListener("click", e => {
-  //get info
-  const email = txtEmail.value;
-  const password = txtPassword.value;
-  const auth = firebase.auth();
-  //createuser
-  // const promise = auth.createUserWithEmailAndPassword(email, password);
-  // promise.catch(e => console.log(e.message));
+  // //Sign up button
+  // btnSignup.addEventListener("click", e => {
+  //   //get info
+  //   const email = txtEmail.value;
+  //   const password = txtPassword.value;
+  //   const auth = firebase.auth();
+  //   //createuser
+  //   // const promise = auth.createUserWithEmailAndPassword(email, password);
+  //   // promise.catch(e => console.log(e.message));
 
-  //Authentication of user
-  auth
-    .createUserWithEmailAndPassword(email, password)
-    .then(authData => {
-      console.log("User created successfully with payload-", authData);
-      //Write code to use authData to add to Users
-      firebase.database().ref("userinfo/").push({
-        email: email,
-        uid: authData.user.uid,
-        donations: {
-          amount: 0,
-          materials: {
-            wood: 0,
-            cement: 0,
-            miscellaneous: 0,
-            clothes: 0
-          },
-          food: {
-            water: 0,
-            MRE: 0
-          }
-        }
-      });
-    })
-    .catch(_error => {
-      console.log("Login Failed!", _error);
-    });
-});
+  //   //Authentication of user
+  //   auth
+  //     .createUserWithEmailAndPassword(email, password)
+  //     .then(authData => {
+  //       console.log("User created successfully with payload-", authData);
+  //       //Write code to use authData to add to Users
+  //       firebase.database().ref("userinfo/").push({
+  //         email: email,
+  //         uid: authData.user.uid,
+  //         donations: {
+  //           amount: 0,
+  //           materials: {
+  //             wood: 0,
+  //             cement: 0,
+  //             miscellaneous: 0,
+  //             clothes: 0
+  //           },
+  //           food: {
+  //             water: 0,
+  //             MRE: 0
+  //           }
+  //         }
+  //       });
+  //     })
+  //     .catch(_error => {
+  //       console.log("Login Failed!", _error);
+  //     });
+  // });
 
-//Logout button
-btnLogout.addEventListener("click", e => {
-  firebase.auth().signOut();
-  firebasesAuthDatabaseID = false;
-});
+  //Logout button
+  btnLogout.addEventListener("click", e => {
+    firebase.auth().signOut();
+    firebasesAuthDatabaseID = false;
+  });
+}
 
 // Real time auth listener
 firebase.auth().onAuthStateChanged(firebaseUser => {
   if (firebaseUser) {
     console.log(firebaseUser);
-    btnLogout.classList.remove("hide");
-
+    if (document.querySelector("header")) {
+      document.querySelector("header").classList.add("logged_in");
+    }
     findFirebaseUser(firebaseUser.email);
   } else {
     console.log("not logged in");
-    if (document.querySelector("#btn_to_dashboard")) {
-      document.querySelector("#btn_to_dashboard").classList.add("hide");
-      btnLogout.classList.add("hide");
+    if (document.querySelector("header")) {
+      document.querySelector("header").classList.remove("logged_in");
     }
   }
 });
@@ -134,7 +134,7 @@ DBRefUserInfo.on("child_added", snap => {
     const li = document.createElement("li");
     const userinfo = snap.val();
 
-    li.innerText = "Username: " + userinfo.email;
+    li.innerText = userinfo.email;
     // `
     //   ` +
     // "Donations: " +
@@ -146,7 +146,10 @@ DBRefUserInfo.on("child_added", snap => {
 
     li.id = snap.key; // key name for each item
     numberOfUsers++;
-    document.querySelector("#number_of_users p").textContent = numberOfUsers;
+    if (document.querySelector("#number_of_users p")) {
+      document.querySelector("#number_of_users p").textContent =
+        "Antal brugere: " + numberOfUsers;
+    }
     userList.appendChild(li);
   }
 });

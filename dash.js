@@ -40,7 +40,13 @@ var materialsChart = new Chart(ctx1, {
       }
     ]
   },
-  options: {}
+  options: {
+    responsive: true,
+
+    // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+
+    maintainAspectRatio: false
+  }
 });
 var ctx2 = document.getElementById("food_chart").getContext("2d");
 var foodChart = new Chart(ctx2, {
@@ -71,7 +77,10 @@ var foodChart = new Chart(ctx2, {
       }
     ]
   },
-  options: {}
+  options: {
+    responsive: true,
+    maintainAspectRatio: false
+  }
 });
 
 DBRefMaterials.on("child_added", snap => {

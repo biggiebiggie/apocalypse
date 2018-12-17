@@ -1,159 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Nosifer"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Superstes</title>
-  </head>
 
-  <body>
-    <!-- header -->
-    <header>
-      <nav>
-        <p class="current">Forside</p>
-        <a href="info.html">Info</a> <a href="events.html">Kurser & events</a>
-        <a href="donate.html">Donér</a>
-        <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Superstes</title>
+</head>
 
-        <div id="login_container">
-          <p id="p_email">Email</p>
-          <input id="txt_email" type="email" placeholder="E-mail" />
-          <input id="txt_password" type="password" placeholder="Password" />
-          <button id="btn_login">Log ind</button>
-          <a href="signup.html">Bliv medlem</a>
-          <button id="btn_logout">Log ud</button>
+<body>
+  <!-- header -->
+  <header>
+    <nav>
+      <p class="current">Forside</p>
+      <a href="info.html">Info</a> <a href="events.html">Kurser & events</a>
+      <a href="donation.html">Donér</a>
+      <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
+
+      <form id="login_container">
+        <p id="p_email">Email</p>
+        <input id="txtEmail" type="email" placeholder="E-mail" />
+        <input id="txtPassword" type="password" placeholder="Password" />
+        <input id="btnLogin" type="submit" value="Login">
+        <a id="signup_ref" href="signup.html">Bliv medlem</a>
+        <button id="btnLogout">Log ud</button>
+      </form>
+    </nav>
+  </header>
+
+  <!-- Splash -->
+  <section id="splash">
+    <div class="name_and_donate">
+      <h1>Superstes<span>"En som overlever"</span></h1>
+      <p>En fondraiser, et fællesskab og en fremtid</p>
+      <a href="donation.html">
+        <div>
+          <h2>Donér</h2>
+          <p>Og overlev!</p>
         </div>
-      </nav>
-    </header>
+      </a>
+    </div>
+  </section>
 
-    <!-- Splash -->
-    <section id="splash">
-      <div class="name_and_donate">
-        <h1>Superstes<span>"En som overlever"</span></h1>
-        <p>En fondraiser, et fællesskab og en fremtid</p>
-        <a href="donate.html"
-          ><div>
-            <h2>Donér</h2>
-            <p>Og overlev!</p>
-          </div>
-        </a>
+  <!-- About us -->
+  <section id="about_us">
+    <div class="section_bg">
+      <h2>Hvem er vi?</h2>
+      <p>
+        Supertes samler penge ind til den dag en infection vil udslette vores
+        samfund som vi kender det.
+      </p>
+      <p>
+        Vi samler ressourcer og penge, som vi bruger til at bygge et sted hvor
+        folk er sikre.
+      </p>
+      <p>
+        Dem som har støttet denne vitale sag er lovet en plads når det hele
+        går galt.
+      </p>
+      <a href="info.html">Læs mere...</a>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/_3_WgAMXAv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Your profile -->
+  <section id="profile_section" class="hide">
+    <div class="section_bg">
+      <h2>Din profil</h2>
+      <p>Chart over dine ting</p>
+    </div>
+  </section>
+
+  <!-- Donate -->
+  <section id="donate_section">
+    <div class="section_bg">
+      <h2>Donér, vi har brug for din støtte</h2>
+      <p>
+        Som none profit organisation er vi afhængige af din hjælp. Vores
+        samfund lever og står af de donationer vi modtager.
+      </p>
+      <p>
+        Vi gør alt hvad vi kan for at optimere og styrke dine chancer for at
+        overleve, men alt lige fra mad, tøj til mure har sin pris. Derfor har
+        vi brug for din hjælp!
+      </p>
+      <div class="donate_container">
+        <a href="donation.html?category=money" class="money"></a>
+
+        <a href="donation.html?category=materials" class="materials"></a>
+
+        <a href="donation.html?category=food" class="food"></a>
       </div>
-    </section>
+      <p>
+        Selvom vi ville ønske at vi kunne redde alle, er dette ikke muligt.
+        Porten til vores samfund er kun åben for donerende medlemmer.
+      </p>
+      <p>
+        Så hjælp os og red dig selv – Giv din støtte i dag og bliv en del af
+        familien.
+      </p>
+    </div>
+  </section>
 
-    <!-- About us -->
-    <section id="about_us">
-      <div class="section_bg">
-        <h2>Hvem er vi?</h2>
-        <p>
-          Supertes samler penge ind til den dag en infection vil udslette vores
-          samfund som vi kender det.
-        </p>
-        <p>
-          Vi samler ressourcer og penge, som vi bruger til at bygge et sted hvor
-          folk er sikre.
-        </p>
-        <p>
-          Dem som har støttet denne vitale sag er lovet en plads når det hele
-          går galt.
-        </p>
-        <a href="info.html">Læs mere...</a>
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/_3_WgAMXAv4"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+  <!-- Maybe courses? -->
+  <section>
+    <div class="section_bg">
+      <div>Kursus</div>
+      <div>Opskrift</div>
+      <div>Vi ved ikke</div>
+      <div>Hvad der skal</div>
+      <div>Være her</div>
+    </div>
+  </section>
+  <ul id="user_list"></ul>
+
+  <!-- Footer -->
+  <footer>
+    <div class="section_bg">
+      <div id="footer_links">
+        <a href="#splash">Forside</a> <a href="info.html">Info</a>
+        <a href="events.html">Hændelser</a>
       </div>
-    </section>
 
-    <!-- Your profile -->
-    <section id="profile_section" class="hide">
-      <div class="section_bg">
-        <h2>Din profil</h2>
-        <p>Chart over dine ting</p>
-      </div>
-    </section>
-
-    <!-- Donate -->
-    <section id="donate_section">
-      <div class="section_bg">
-        <h2>Donér, vi har brug for din støtte</h2>
+      <div id="footer_contact">
+        <p>Telefon:</p>
+        <p>+45 12 34 56 78</p>
+        <p>Email:</p>
+        <p>info@supertes.dk</p>
+        <p>Adresse:</p>
         <p>
-          Som none profit organisation er vi afhængige af din hjælp. Vores
-          samfund lever og står af de donationer vi modtager.
-        </p>
-        <p>
-          Vi gør alt hvad vi kan for at optimere og styrke dine chancer for at
-          overleve, men alt lige fra mad, tøj til mure har sin pris. Derfor har
-          vi brug for din hjælp!
-        </p>
-        <div class="donate_container">
-          <div class="money"></div>
-          <div class="material"></div>
-          <div class="food"></div>
-        </div>
-        <p>
-          Selvom vi ville ønske at vi kunne redde alle, er dette ikke muligt.
-          Porten til vores samfund er kun åben for donerende medlemmer.
-        </p>
-        <p>
-          Så hjælp os og red dig selv – Giv din støtte i dag og bliv en del af
-          familien.
+          Hammer Odde Fyr 6<br />
+          3770 Allinge<br />
+          Danmark
         </p>
       </div>
-    </section>
 
-    <!-- Maybe courses? -->
-    <section>
-      <div class="section_bg">
-        <div>Kursus</div>
-        <div>Opskrift</div>
-        <div>Vi ved ikke</div>
-        <div>Hvad der skal</div>
-        <div>Være her</div>
+      <div id="footer_SoMe">
+        <p>Facebook</p>
+        <p>Instagram</p>
+        <div id="arrow_up">Arrow up</div>
       </div>
-    </section>
-    <ul id="user_list"></ul>
+    </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-      <div class="section_bg">
-        <div id="footer_links">
-          <a href="#splash">Forside</a> <a href="info.html">Info</a>
-          <a href="events.html">Hændelser</a>
-        </div>
+  <div id="food_container"></div>
+  <script src="database.js"></script>
+</body>
 
-        <div id="footer_contact">
-          <p>Telefon:</p>
-          <p>+45 12 34 56 78</p>
-          <p>Email:</p>
-          <p>info@supertes.dk</p>
-          <p>Adresse:</p>
-          <p>
-            Hammer Odde Fyr 6<br />
-            3770 Allinge<br />
-            Danmark
-          </p>
-        </div>
-
-        <div id="footer_SoMe">
-          <p>Facebook</p>
-          <p>Instagram</p>
-          <div id="arrow_up">Arrow up</div>
-        </div>
-      </div>
-    </footer>
-
-    <div id="food_container"></div>
-    <script src="script.js"></script>
-  </body>
 </html>
