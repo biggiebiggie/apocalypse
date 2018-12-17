@@ -4,7 +4,8 @@
 
 body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  background-color: #0f140d; }
 
 section {
   width: 100vw; }
@@ -17,7 +18,7 @@ button {
   display: block;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 20px 0; }
+  padding: 20px; }
 
 h2 {
   font-size: 2rem; }
@@ -28,12 +29,26 @@ h2 {
 header {
   width: 100vw;
   height: 60px;
-  background-color: #333; }
+  background-color: #0f140d; }
+  header nav {
+    position: fixed;
+    transition: 0.3s;
+    width: 100%;
+    background-color: #0f140d;
+    z-index: 50; }
+    header nav .nav_content {
+      display: block;
+      width: 840px;
+      z-index: 100;
+      margin: 0 0;
+      transition: 0.3s; }
+    header nav.scrolled .nav_content {
+      margin: 0 auto; }
   header a,
   header p.current,
   header p.reactivated {
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     margin: 15px 20px;
     font-family: "Nosifer", cursive; }
   header a,
@@ -49,7 +64,8 @@ header {
   header #login_container {
     position: absolute;
     right: 20px;
-    top: 15px; }
+    top: 15px;
+    z-index: 60; }
     header #login_container a {
       font-family: inherit;
       font-size: 1rem;
@@ -81,16 +97,58 @@ header {
   header.logged_in #login_container #btnLogout {
     display: inline-block; }
 
+footer {
+  background-color: #161b26; }
+  footer .section_bg {
+    display: grid;
+    color: #eee;
+    grid-template-columns: 300px 1fr 200px; }
+    footer .section_bg #footer_links a {
+      display: block;
+      margin: 20px 0;
+      color: #7b8aa6;
+      text-decoration: none; }
+    footer .section_bg #footer_contact {
+      display: grid;
+      grid-template-columns: 1fr 3fr; }
+    footer .section_bg #footer_SoMe {
+      padding: 0 20px; }
+      footer .section_bg #footer_SoMe .facebook {
+        background-image: url(../img/facebook_logo.svg); }
+      footer .section_bg #footer_SoMe .instagram {
+        background-image: url(../img/instagram_logo.svg); }
+      footer .section_bg #footer_SoMe .logo {
+        height: 35px;
+        width: 35px;
+        margin: 20px 0; }
+
 #splash {
   position: relative;
   background-image: url(../img/placeholder.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 70vh; }
+  height: 70vh;
+  overflow: hidden; }
   #splash .name_and_donate {
     position: absolute;
-    top: 20vh;
-    left: 60vw; }
+    top: 0;
+    right: 0;
+    width: 40vw;
+    height: 100%;
+    padding: 120px 0 0 0;
+    background-color: #161b26;
+    z-index: 2;
+    color: #eee; }
+    #splash .name_and_donate .tilted_square {
+      width: 100%;
+      height: 150%;
+      background-color: #161b26;
+      transform: rotate(30deg);
+      transform-origin: 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -5; }
     #splash .name_and_donate h1 {
       margin: 0;
       font-size: 4rem; }
@@ -99,9 +157,10 @@ header {
         font-style: italic;
         margin-left: 20px;
         font-weight: 200; }
-    #splash .name_and_donate p {
+    #splash .name_and_donate .message {
       font-size: 2rem;
-      margin: 5px 0; }
+      margin: 20px 0;
+      transform: translateX(-40px); }
     #splash .name_and_donate a[href="donation.html"] {
       text-decoration: none;
       color: #222; }
@@ -110,7 +169,9 @@ header {
         width: 200px;
         background: #eee;
         border: 1px solid #222;
-        text-align: center; }
+        text-align: center;
+        margin: 30px 0;
+        transform: translateX(-80px); }
         #splash .name_and_donate a[href="donation.html"] div h2 {
           font-size: 2rem;
           margin: 0; }
@@ -119,16 +180,9 @@ header {
           margin: 0; }
 
 #about_us {
-  background-color: #ff0; }
+  background-color: #37402b; }
   #about_us .section_bg {
-    height: 300px; }
-    #about_us .section_bg p {
-      max-width: 40%; }
-    #about_us .section_bg iframe {
-      position: absolute;
-      height: 100%;
-      right: 0;
-      top: 0; }
+    color: #eee; }
 
 #donate_section {
   background-color: #000;
@@ -157,17 +211,24 @@ header {
   #donate_section .section_bg .food {
     background: url(../img/donate_food.svg); }
 
-footer {
-  background-color: #ddd; }
-  footer .section_bg {
+#courses {
+  background-color: #7b8aa6; }
+  #courses .section_bg .courses_container {
     display: grid;
-    grid-template-columns: 300px 1fr 200px; }
-    footer .section_bg #footer_links a {
-      display: block;
-      margin: 20px 0; }
-    footer .section_bg #footer_contact {
-      display: grid;
-      grid-template-columns: 1fr 3fr; }
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px; }
+    #courses .section_bg .courses_container a {
+      width: 100%;
+      height: 230px;
+      background-color: #161b26;
+      color: #eee;
+      text-decoration: none; }
+      #courses .section_bg .courses_container a div {
+        background: black;
+        height: 140px; }
+      #courses .section_bg .courses_container a h3,
+      #courses .section_bg .courses_container a p {
+        margin: 10px 15px; }
 
 #signup_form {
   position: absolute;
@@ -374,9 +435,6 @@ body#signup {
       #donations .section_wrapper.food_animating #food .section_overlay {
         display: none; }
 
-.hide {
-  display: none; }
-
 #goal_container {
   width: 70vw;
   margin: 0 auto;
@@ -396,6 +454,44 @@ body#signup {
     transition: 1s;
     max-width: 100%;
     border-radius: 10px; }
+    #goal_container .goal_fill #current_course {
+      background: #161b26;
+      color: #eee; }
+      #goal_container .goal_fill #current_course #current_course_container {
+        margin: 80px 0 40px 0; }
+        #goal_container .goal_fill #current_course #current_course_container iframe {
+          display: block;
+          margin: 0 auto; }
+        #goal_container .goal_fill #current_course #current_course_container h2,
+        #goal_container .goal_fill #current_course #current_course_container p {
+          text-align: center; }
+    #goal_container .goal_fill #courses_container {
+      background: #7b8aa6; }
+      #goal_container .goal_fill #courses_container .section_bg {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px; }
+        #goal_container .goal_fill #courses_container .section_bg .course {
+          position: relative;
+          height: 235px; }
+          #goal_container .goal_fill #courses_container .section_bg .course.current {
+            filter: grayscale(1); }
+          #goal_container .goal_fill #courses_container .section_bg .course .course_image {
+            height: 150px;
+            width: 100%;
+            background-color: #009; }
+          #goal_container .goal_fill #courses_container .section_bg .course h3,
+          #goal_container .goal_fill #courses_container .section_bg .course p {
+            margin: 5px 20px; }
+          #goal_container .goal_fill #courses_container .section_bg .course .course_overlay {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); }
+    #goal_container .goal_fill .hide {
+      display: none; }
   #goal_container .goal_numbers {
     display: flex;
     flex-wrap: wrap;

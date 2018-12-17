@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Nosifer"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Superstes | Kurser</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <nav>
+        <div class="nav_content">
+          <a href="index.html">Forside</a> <a href="info.html">Info</a>
+          <p class="current">Kurser</p>
+          <a href="donation.html">Donér</a>
+          <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
+        </div>
+      </nav>
+
+      <div id="login_container">
+        <p id="p_email">Email</p>
+        <input id="txtEmail" type="email" placeholder="E-mail" />
+        <input id="txtPassword" type="password" placeholder="Password" />
+        <button id="btnLogin">Log ind</button>
+        <a href="signup.html">Bliv medlem</a>
+        <button id="btnLogout">Log ud</button>
+      </div>
+    </header>
+    <section id="current_course">
+      <div class="section_bg">
+        <h1>Kurser</h1>
+        <p>
+          Det er vigtig at du også selv er forberedt når dagen kommer. Vi har
+          samlet nogle gode videoer til at få dig startet.
+        </p>
+        <p>
+          Vi forslår at du lærer alle disse færdigheder, fortsæt gerne på egen
+          hånd efterfølgende.
+        </p>
+        <div id="current_course_container">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/_mWtWz_aGyk"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <h2>HEADER</h2>
+          <p>DESC</p>
+        </div>
+      </div>
+    </section>
+    <section id="courses_container">
+      <div class="section_bg">
+        <div class="course course1">
+          <div class="course_image"></div>
+          <h3>1</h3>
+          <p>desc here</p>
+          <input
+            type="hidden"
+            value="https://www.youtube.com/embed/_mWtWz_aGyk"
+          />
+          <div class="course_overlay"></div>
+        </div>
+        <div class="course course2">
+          <div class="course_image"></div>
+          <h3>2</h3>
+          <p>desc</p>
+          <input
+            type="hidden"
+            value="https://www.youtube.com/embed/y9FBhlL3NZE"
+          />
+          <div class="course_overlay"></div>
+        </div>
+        <div class="course course3">
+          <div class="course_image"></div>
+          <h3>3</h3>
+          <p>enough taxt so that it fills two lines</p>
+          <input
+            type="hidden"
+            value="https://www.youtube.com/embed/y9FBhlL3NZE"
+          />
+          <div class="course_overlay"></div>
+        </div>
+        <div class="course course4">
+          <div class="course_image"></div>
+          <h3>4</h3>
+          <p>desc</p>
+          <input
+            type="hidden"
+            value="https://www.youtube.com/embed/y9FBhlL3NZE"
+          />
+          <div class="course_overlay"></div>
+        </div>
+        <div class="course course5">
+          <div class="course_image"></div>
+          <h3>5</h3>
+          <p>desc</p>
+          <input
+            type="hidden"
+            value="https://www.youtube.com/embed/y9FBhlL3NZE"
+          />
+          <div class="course_overlay"></div>
+        </div>
+        <div class="course course6">
+          <div class="course_image"></div>
+          <h3>6</h3>
+          <p>desc</p>
+          <input
+            type="hidden"
+            value="https://www.youtube.com/embed/y9FBhlL3NZE"
+          />
+          <div class="course_overlay"></div>
+        </div>
+        <div class="course course7">
+          <div class="course_image"></div>
+          <h3>7</h3>
+          <p>desc</p>
+          <input
+            type="hidden"
+            value="https://www.youtube.com/embed/y9FBhlL3NZE"
+          />
+          <div class="course_overlay"></div>
+        </div>
+        <div class="course course8">
+          <div class="course_image"></div>
+          <h3>8</h3>
+          <p>desc</p>
+          <input
+            type="hidden"
+            value="https://www.youtube.com/embed/y9FBhlL3NZE"
+          />
+          <div class="course_overlay"></div>
+        </div>
+      </div>
+    </section>
+    <script src="database.js"></script>
+    <script src="courses.js"></script>
+  </body>
+</html>

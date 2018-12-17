@@ -170,3 +170,14 @@ DBRefUserInfo.on("child_changed", snap => {
     // +userinfo.donations.materials.wood;
   }
 });
+
+window.addEventListener("scroll", () => {
+  if (
+    pageYOffset > document.querySelector("header").clientHeight &&
+    !document.querySelector("header nav").classList.contains("scrolled")
+  ) {
+    document.querySelector("header nav").classList.add("scrolled");
+  } else if (pageYOffset < document.querySelector("header").clientHeight) {
+    document.querySelector("header nav").classList.remove("scrolled");
+  }
+});

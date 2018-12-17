@@ -32,7 +32,7 @@ if (
   document
     .querySelector("#" + urlCategory + " .return")
     .addEventListener("click", () => {
-      window.location.replace("index.html");
+      window.location.replace("index.html#donate_section");
     });
 
   //Re-activate donate btn in nav
