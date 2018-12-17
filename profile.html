@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Nosifer"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Superstes - Profil</title>
+  </head>
+
+  <body>
+    <!-- header -->
+    <header>
+      <nav>
+        <div class="nav_content">
+          <a href="index.html">Forside</a> <a href="info.html">Info</a>
+          <a href="courses.html?course=1">Kurser</a>
+          <a href="donation.html">Donér</a>
+          <p class="current">Profil</p>
+          <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
+        </div>
+      </nav>
+
+      <div id="login_container">
+        <p id="p_email">Email</p>
+        <input id="txtEmail" type="email" placeholder="E-mail" />
+        <input id="txtPassword" type="password" placeholder="Password" />
+        <button id="btnLogin">Log ind</button>
+        <a href="signup.html">Bliv medlem</a>
+        <button id="btnLogout">Log ud</button>
+      </div>
+    </header>
+
+    <!-- Profil Sektion -->
+    <section id="your_profile">
+      <div class="section_bg">
+        <h2>Velkommen XXXX</h2>
+        <div class="profile_picture"></div>
+        <div class="profile_username">Tim "Terminator" Larsen</div>
+        <div class="profile_email">Terminator_1337@gmail.com</div>
+        <div class="profile_goalbar">Næste rank --></div>
+      </div>
+    </section>
+
+    <!-- Sektion med kurser -->
+    <section id="courses">
+      <div class="section_bg">
+        <h1>Dine Kurser</h1>
+        <div class="courses_container">
+          <a href="courses.html?course=1">
+            <div class="course_image"></div>
+            <h3>Bueskydning</h3>
+            <p>Text</p>
+          </a>
+          <a href="courses.html?course=2">
+            <div class="course_image"></div>
+            <h3>Lav din egen økse</h3>
+            <p>Text</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      <section id="your_courses">
+      </section>
+    -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="section_bg">
+        <div id="footer_links">
+          <a href="#splash">Forside</a> <a href="info.html">Info</a>
+          <a href="events.html">Hændelser</a>
+        </div>
+
+        <div id="footer_contact">
+          <p>Telefon:</p>
+          <p>+45 12 34 56 78</p>
+          <p>Email:</p>
+          <p>info@supertes.dk</p>
+          <p>Adresse:</p>
+          <p>
+            Hammer Odde Fyr 6<br />
+            3770 Allinge<br />
+            Danmark
+          </p>
+        </div>
+
+        <div id="footer_SoMe">
+          <div class="facebook logo"></div>
+          <div class="instagram logo"></div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="food_container"></div>
+    <script src="database.js"></script>
+  </body>
+</html>

@@ -455,10 +455,22 @@ body#signup {
     grid-gap: 20px; }
     #courses_container .section_bg .course {
       position: relative;
-      height: 235px; }
-      #courses_container .section_bg .course.current {
-        filter: grayscale(1); }
+      height: 235px;
+      overflow: hidden;
+      background-color: #161b26;
+      color: #eee; }
+      #courses_container .section_bg .course .text_fade {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 50px;
+        width: 100%;
+        background: linear-gradient(transparent, #333); }
+      #courses_container .section_bg .course.current .course_overlay {
+        background-color: rgba(0, 0, 0, 0.7); }
       #courses_container .section_bg .course .course_image {
+        background-size: cover;
+        background-position: center;
         height: 150px;
         width: 100%;
         background-color: #009; }
@@ -471,7 +483,23 @@ body#signup {
         width: 100%;
         top: 0;
         left: 0;
-        background: rgba(0, 0, 0, 0.5); }
+        z-index: 2; }
+    #courses_container .section_bg .course:first-child .course_image {
+      background-image: url(../img/thumb1.png); }
+    #courses_container .section_bg .course:nth-child(2) .course_image {
+      background-image: url(../img/thumb2.png); }
+    #courses_container .section_bg .course:nth-child(3) .course_image {
+      background-image: url(../img/thumb3.png); }
+    #courses_container .section_bg .course:nth-child(4) .course_image {
+      background-image: url(../img/thumb4.png); }
+    #courses_container .section_bg .course:nth-child(5) .course_image {
+      background-image: url(../img/thumb5.png); }
+    #courses_container .section_bg .course:nth-child(6) .course_image {
+      background-image: url(../img/thumb6.png); }
+    #courses_container .section_bg .course:nth-child(7) .course_image {
+      background-image: url(../img/thumb7.png); }
+    #courses_container .section_bg .course:nth-child(8) .course_image {
+      background-image: url(../img/thumb8.png); }
 
 .hide {
   display: none; }
@@ -498,3 +526,30 @@ body#signup {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; }
+
+#your_profile {
+  background-color: #7b8aa6; }
+  #your_profile .section_bg {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px; }
+  #your_profile h2 {
+    grid-column: 1/2; }
+  #your_profile .profile_picture {
+    grid-column: 1/2;
+    height: 25vw;
+    width: 25vw;
+    background-color: #bbb;
+    border-radius: 50%; }
+  #your_profile .profile_username {
+    grid-column: 3/4; }
+  #your_profile .profile_email {
+    grid-column: 3/4; }
+  #your_profile .profile_goalbar {
+    grid-column: 3/4;
+    width: 350px;
+    height: 20px;
+    background-color: red; }
+
+#your_courses {
+  background-color: #37402b; }
