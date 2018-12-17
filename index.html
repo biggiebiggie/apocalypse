@@ -24,16 +24,16 @@
           <a href="donation.html">Donér</a>
           <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
         </div>
-      </nav>
 
-      <div id="login_container">
-        <p id="p_email">Email</p>
-        <input id="txtEmail" type="email" placeholder="E-mail" />
-        <input id="txtPassword" type="password" placeholder="Password" />
-        <button id="btnLogin">Log ind</button>
-        <a href="signup.html">Bliv medlem</a>
-        <button id="btnLogout">Log ud</button>
-      </div>
+        <form id="login_container">
+          <p id="p_email">Email</p>
+          <input id="txtEmail" type="email" placeholder="E-mail" />
+          <input id="txtPassword" type="password" placeholder="Password" />
+          <input id="btnLogin" type="submit" value="Login" />
+          <a id="signup_ref" href="signup.html">Bliv medlem</a>
+          <button id="btnLogout">Log ud</button>
+        </form>
+      </nav>
     </header>
 
     <!-- Splash -->
@@ -184,15 +184,13 @@
             Danmark
           </p>
         </div>
-
         <div id="footer_SoMe">
-          <div class="facebook logo"></div>
-          <div class="instagram logo"></div>
+          <p>Facebook</p>
+          <p>Instagram</p>
+          <div id="arrow_up">Arrow up</div>
         </div>
       </div>
     </footer>
-
-    <div id="food_container"></div>
     <script src="database.js"></script>
   </body>
 </html>

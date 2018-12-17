@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Dashboard | Supertes</title>
-  </head>
 
-  <body>
-    <div id="login_container">
-      <input id="txtEmail" type="email" placeholder="E-mail" />
-      <input id="txtPassword" type="password" placeholder="Password" />
-      <button id="btnLogin">Login</button>
-      <button id="btnSignup">Sign Up</button>
-      <button id="btnLogout" class="hide">Logout</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Dashboard | Supertes</title>
+</head>
+
+<body id="dashboard_body" class="darkmode">
+  <div id="login_container">
+    <input id="txtEmail" type="email" placeholder="E-mail" />
+    <input id="txtPassword" type="password" placeholder="Password" />
+    <button id="btnLogin">Login</button>
+    <button id="btnSignup">Sign Up</button>
+    <button id="btnLogout" class="hide">Logout</button>
+  </div>
+
+  <div id="goal_container">
+    <div class="goal_numbers">
+      <div class="goal_start">0</div>
+      <div class="goal_middle"></div>
+      <div class="goal_end">20.000</div>
+    </div>
+    <div class="goal_bar">
+      <div class="goal_fill"></div>
+    </div>
+  </div>
+
+  <section id="charts_container">
+    <div class="chart">
+      <h2>Materials</h2>
+      <canvas id="materials_chart" width="200" height="200"></canvas>
+    </div>
+    <div class="chart">
+      <h2>Supplies</h2>
+      <canvas id="food_chart" width="200" height="200"></canvas>
+    </div>
+  </section>
+
+  <section id="user_container">
+    <div id="number_of_users">
+      <h2>Bruger info</h2>
+      <p></p>
+      <ul id="user_list"></ul>
     </div>
 
-    <div id="goal_container">
-      <div class="goal_numbers">
-        <div class="goal_start">0</div>
-        <div class="goal_middle"></div>
-        <div class="goal_end">20.000</div>
-      </div>
-      <div class="goal_bar"><div class="goal_fill"></div></div>
+    <div id="top_donator">
+      <h2>Top doner</h2>
     </div>
+  </section>
 
-    <section id="charts_container">
-      <div class="chart">
-        <canvas id="materials_chart" width="400" height="400"></canvas>
-      </div>
-      <div class="chart">
-        <canvas id="food_chart" width="400" height="400"></canvas>
-      </div>
-    </section>
+  <script src="database.js"></script>
+  <script src="dash.js"></script>
+</body>
 
-    <div id="number_of_users"><p></p></div>
-
-    <ul id="user_list"></ul>
-
-    <script src="database.js"></script>
-    <script src="dash.js"></script>
-  </body>
 </html>

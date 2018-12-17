@@ -114,12 +114,10 @@ document
 //Donate money
 document.querySelector("#donate_money").addEventListener("click", () => {
   let userDonationAmount;
-  let donationTotalAmount;
   DBRefUserDonation = firebase
     .database()
     .ref()
     .child("userinfo/" + firebasesAuthDatabaseID + "/donations");
-
   DBRefUserDonation.on(
     "value",
     snap => {
@@ -133,12 +131,55 @@ document.querySelector("#donate_money").addEventListener("click", () => {
     amount: +userDonationAmount + +inputDonationAmount.value
   });
 
-  //Total donation amount
+  updateTotalDonation();
+});
 
-  DBRefTotalDonation = firebase
+document.querySelector("#donate_food").addEventListener("click", () => {
+  donateItems("MRE", "food");
+  donateItems("water", "food");
+});
+
+document.querySelector("#donate_materials").addEventListener("click", () => {
+  donateItems("wood", "materials");
+  donateItems("cement", "materials");
+  donateItems("clothes", "materials");
+  donateItems("miscellaneous", "materials");
+});
+
+function donateItems(kind, where) {
+  let userWoodAmount;
+
+  DBRefUserDonation = firebase
     .database()
     .ref()
-    .child("totaldonations");
+    .child("userinfo/" + firebasesAuthDatabaseID + "/donations/" + where);
+
+  document
+    .querySelectorAll("#" + where + " input[type=number]")
+    .forEach(material => {
+      console.log(Number(material.value));
+      console.log(material.nextElementSibling.value);
+      if (material.nextElementSibling.value == kind) {
+        DBRefUserDonation.on(
+          "value",
+          snap => {
+            snap.val(); // value
+            amount = snap.val()[kind];
+          },
+          err => {}
+        );
+        DBRefUserDonation.update({
+          [kind]: Number(amount) + Number(material.value)
+        });
+      }
+    });
+}
+
+function updateTotalDonation() {
+  //Total donation amount
+  let donationTotalAmount;
+
+  DBRefTotalDonation = firebase.database().ref().child("totaldonations");
 
   DBRefTotalDonation.on(
     "value",
@@ -154,10 +195,10 @@ document.querySelector("#donate_money").addEventListener("click", () => {
     money: +donationTotalAmount + inputDonationAmount.value
   });
   console.log(donationTotalAmount);
-});
+}
 
 //Material donation
-function createItemDonation(suffix, asAString, where) {
+function createItemDonation(suffix, asAString, where, db) {
   const template = document.querySelector("#itemTemplate").content;
   const clone = template.cloneNode(true);
 
@@ -165,6 +206,7 @@ function createItemDonation(suffix, asAString, where) {
   clone.querySelector(".materials").dataset.type = asAString;
   clone.querySelector("h3").textContent = asAString;
   clone.querySelector("p").textContent = "Antal af " + suffix;
+  clone.querySelector("input[type=hidden]").value = db;
 
   //Make clone child of "where"
   document.querySelector(where).appendChild(clone);
@@ -191,9 +233,10 @@ function createItemDonation(suffix, asAString, where) {
   });
 }
 
-//Create material donations (suffix, name of donating item, destination)
-createItemDonation("planker", "træ", "#material_container");
-createItemDonation("kg", "Cement", "#material_container");
-createItemDonation("stk", "Tøj", "#material_container");
-createItemDonation("stk", "MRE", "#food_container");
-createItemDonation("10L dunke", "Vand", "#food_container");
+//Create material donations (suffix, name of donating item, destination, place in database)
+createItemDonation("planker", "Træ", "#material_container", "wood");
+createItemDonation("kg", "Cement", "#material_container", "cement");
+createItemDonation("stk", "Tøj", "#material_container", "clothes");
+createItemDonation("stk", "Diverse", "#material_container", "clothes");
+createItemDonation("stk", "MRE", "#food_container", "MRE");
+createItemDonation("10L dunke", "Vand", "#food_container", "water");

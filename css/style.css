@@ -88,13 +88,13 @@ header {
     display: none;
     color: #eee;
     margin: 0; }
-  header.logged_in #btnLogin,
-  header.logged_in #btnSignup,
-  header.logged_in #txtEmail,
-  header.logged_in #txtPassword {
+  header.logged_in #login_container #btnLogin,
+  header.logged_in #login_container #signup_ref,
+  header.logged_in #login_container #txtEmail,
+  header.logged_in #login_container #txtPassword {
     display: none; }
-  header.logged_in #p_email,
-  header.logged_in #btnLogout {
+  header.logged_in #login_container #p_email,
+  header.logged_in #login_container #btnLogout {
     display: inline-block; }
 
 footer {
@@ -474,16 +474,19 @@ body#signup {
         height: 150px;
         width: 100%;
         background-color: #009; }
-      #courses_container .section_bg .course h3,
-      #courses_container .section_bg .course p {
-        margin: 5px 20px; }
       #courses_container .section_bg .course .course_overlay {
         position: absolute;
+        z-index: 10;
         height: 100%;
         width: 100%;
         top: 0;
         left: 0;
-        z-index: 2; }
+        cursor: pointer; }
+      #courses_container .section_bg .course h3 {
+        font-size: 1rem;
+        margin: 10px; }
+      #courses_container .section_bg .course p {
+        margin: 10px; }
     #courses_container .section_bg .course:first-child .course_image {
       background-image: url(../img/thumb1.png); }
     #courses_container .section_bg .course:nth-child(2) .course_image {
@@ -501,12 +504,35 @@ body#signup {
     #courses_container .section_bg .course:nth-child(8) .course_image {
       background-image: url(../img/thumb8.png); }
 
-.hide {
-  display: none; }
+#goal_container {
+  width: 70vw;
+  margin: 0 auto;
+  padding: 2vw;
+  border-radius: 5px;
+  box-shadow: 0 0 10px lightgrey;
+  background-color: white; }
 
-.chart {
-  width: 40vw;
-  height: 40vw; }
+#dashboard_body {
+  background-color: #fafafa; }
+
+#charts_container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 1vw;
+  padding: 1vw;
+  width: 70vw;
+  border-radius: 5px;
+  box-shadow: 0 0 10px lightgrey;
+  background-color: white; }
+  #charts_container .chart {
+    width: 100%;
+    height: 100%; }
+  #charts_container h2 {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 1vw; }
 
 .goal_bar {
   width: 100%;
@@ -518,14 +544,27 @@ body#signup {
 .goal_fill {
   height: 100%;
   background-color: #eaae63;
-  transition: 1s;
-  max-width: 100%;
-  border-radius: 10px; }
+  transition: 1s; }
 
-.goal_numbers {
+#user_container {
+  width: 70vw;
+  height: 300px;
+  padding: 1vw;
+  margin: 1vw auto;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; }
+  border-radius: 5px;
+  box-shadow: 0 0 10px lightgrey;
+  background-color: white; }
+  #user_container h2 {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1vw;
+    margin: 0; }
+  #user_container #number_of_users {
+    width: 35vw;
+    overflow: scroll; }
+  #user_container #top_donator {
+    width: 35vw; }
 
 #your_profile {
   background-color: #7b8aa6; }

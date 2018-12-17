@@ -5,6 +5,7 @@ $dark_blue: #161b26;
 $light_blue: #7b8aa6;
 $dark_green: #0f140d;
 $light_green: #37402b;
+$light_grey: #fafafa;
 
 * {
   box-sizing: border-box;
@@ -131,9 +132,9 @@ header {
     margin: 0;
   }
 
-  &.logged_in {
+  &.logged_in #login_container {
     #btnLogin,
-    #btnSignup,
+    #signup_ref,
     #txtEmail,
     #txtPassword {
       display: none;
@@ -631,6 +632,7 @@ body#signup {
     }
   }
 }
+
 #courses_container {
   background: $light_blue;
   .section_bg {
@@ -666,19 +668,21 @@ body#signup {
         width: 100%;
         background-color: #009;
       }
-
-      h3,
-      p {
-        margin: 5px 20px;
-      }
-
       .course_overlay {
         position: absolute;
+        z-index: 10;
         height: 100%;
         width: 100%;
         top: 0;
         left: 0;
-        z-index: 2;
+        cursor: pointer;
+      }
+      h3 {
+        font-size: 1rem;
+        margin: 10px;
+      }
+      p {
+        margin: 10px;
       }
     }
     .course:first-child .course_image {
@@ -707,16 +711,58 @@ body#signup {
     }
   }
 }
+//     .hide {
+//       display: none;
+//     }
 
-// no idea yet
+//     max-width: 100%;
+//     border-radius: 10px;
+//   }
+//   .goal_numbers {
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: space-between;
+//   }
+// }
 
-.hide {
-  display: none;
+//########## dashboard.html ##########
+#goal_container {
+  width: 70vw;
+
+  margin: 0 auto;
+  padding: 2vw;
+
+  border-radius: 5px;
+  box-shadow: 0 0 10px lightgrey;
+  background-color: white;
+}
+#dashboard_body {
+  background-color: $light_grey;
 }
 
-.chart {
-  width: 40vw;
-  height: 40vw;
+#charts_container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 1vw;
+  padding: 1vw;
+  width: 70vw;
+
+  border-radius: 5px;
+  box-shadow: 0 0 10px lightgrey;
+  background-color: white;
+
+  .chart {
+    width: 100%;
+    height: 100%;
+  }
+
+  h2 {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 1vw;
+  }
 }
 
 .goal_bar {
@@ -731,14 +777,34 @@ body#signup {
   height: 100%;
   background-color: rgb(234, 174, 99);
   transition: 1s;
-
-  max-width: 100%;
-  border-radius: 10px;
 }
-.goal_numbers {
+
+#user_container {
+  width: 70vw;
+  height: 300px;
+  padding: 1vw;
+  margin: 1vw auto;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  border-radius: 5px;
+  box-shadow: 0 0 10px lightgrey;
+  background-color: white;
+
+  h2 {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1vw;
+    margin: 0;
+  }
+
+  #number_of_users {
+    width: 35vw;
+
+    overflow: scroll;
+  }
+
+  #top_donator {
+    width: 35vw;
+  }
 }
 
 //########## profile.html ##########
