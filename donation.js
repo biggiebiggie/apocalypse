@@ -179,7 +179,10 @@ function updateTotalDonation() {
   //Total donation amount
   let donationTotalAmount;
 
-  DBRefTotalDonation = firebase.database().ref().child("totaldonations");
+  DBRefTotalDonation = firebase
+    .database()
+    .ref()
+    .child("totaldonations");
 
   DBRefTotalDonation.on(
     "value",
@@ -238,5 +241,5 @@ createItemDonation("planker", "Træ", "#material_container", "wood");
 createItemDonation("kg", "Cement", "#material_container", "cement");
 createItemDonation("stk", "Tøj", "#material_container", "clothes");
 createItemDonation("stk", "Diverse", "#material_container", "clothes");
-createItemDonation("stk", "MRE", "#food_container", "MRE");
+createItemDonation("stk", "Feltrationer", "#food_container", "MRE");
 createItemDonation("10L dunke", "Vand", "#food_container", "water");

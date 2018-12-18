@@ -1,4 +1,4 @@
-$text_color_white: #eee;
+$text_color_white: #ddd;
 $text_color_black: #222;
 
 $dark_blue: #161b26;
@@ -12,9 +12,11 @@ $light_grey: #fafafa;
   font-family: "Muli", sans-serif;
 }
 
+//skal være i "px"
+$header_height: 60px;
 body {
   margin: 0;
-  padding: 0;
+  padding: $header_height 0 0 0;
   background-color: $dark_green;
 }
 
@@ -44,30 +46,26 @@ h2 {
 
 //########## header ##########
 
-//skal være i "px"
-$header_height: 60px;
 header {
   width: 100vw;
   height: $header_height;
   background-color: $dark_green;
+  position: fixed;
+  top: 0;
+  z-index: 200;
 
   nav {
-    position: fixed;
+    display: flex;
     transition: 0.3s;
     width: 100%;
     background-color: $dark_green;
     z-index: 50;
 
     .nav_content {
-      display: block;
-      width: 840px;
+      display: inline;
       z-index: 100;
       margin: 0 0;
       transition: 0.3s;
-    }
-
-    &.scrolled .nav_content {
-      margin: 0 auto;
     }
   }
   a,
@@ -83,13 +81,16 @@ header {
   p.reactivated {
     color: $text_color_white;
     text-decoration: none;
+    cursor: pointer;
+    transition: 0.15s;
     &:hover {
-      color: darken($text_color_white, 20%);
+      color: darken($text_color_white, 30%);
+      transform: scale(0.95);
     }
   }
 
   p.current {
-    color: darken($text_color_white, 20%);
+    color: darken($text_color_white, 45%);
     cursor: default;
   }
 
@@ -132,6 +133,14 @@ header {
     margin: 0;
   }
 
+  #btn_to_profile {
+    display: none;
+  }
+
+  &.logged_in nav #btn_to_profile {
+    display: inline-block;
+  }
+
   &.logged_in #login_container {
     #btnLogin,
     #signup_ref,
@@ -149,7 +158,7 @@ header {
 //########## footer ##########
 
 footer {
-  background-color: $dark_blue;
+  background-color: $dark_green;
   .section_bg {
     display: grid;
     color: $text_color_white;
@@ -159,8 +168,14 @@ footer {
       a {
         display: block;
         margin: 20px 0;
-        color: $light_blue;
+        color: #777;
         text-decoration: none;
+        &:hover {
+          color: $light_green;
+        }
+        &.current {
+          color: $light_green;
+        }
       }
     }
     #footer_contact {
@@ -190,12 +205,33 @@ footer {
 
 #splash {
   position: relative;
-  background-image: url(../img/placeholder.jpg);
-  background-size: cover;
   background-repeat: no-repeat;
   height: 70vh;
 
   overflow: hidden;
+
+  #background_on_splash {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background-image: url(../img/man_fog.jpg);
+    background-size: cover;
+  }
+
+  #logo_on_splash {
+    margin: 50px 20%;
+    $splash_logo_size: 330px;
+    width: $splash_logo_size;
+    height: $splash_logo_size;
+    background-image: url(../img/logo_white.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    z-index: 2;
+  }
 
   .name_and_donate {
     position: absolute;
@@ -207,7 +243,7 @@ footer {
 
     padding: 120px 0 0 0;
 
-    background-color: $dark_blue;
+    background-color: #000;
     z-index: 2;
 
     color: $text_color_white;
@@ -215,13 +251,17 @@ footer {
     .tilted_square {
       width: 100%;
       height: 150%;
-      background-color: $dark_blue;
+      background-color: #000;
       transform: rotate(30deg);
       transform-origin: 0 0;
       position: absolute;
       top: 0;
       left: 0;
       z-index: -5;
+    }
+    .we_are {
+      margin: 0 0 0 20px;
+      font-size: 2rem;
     }
     h1 {
       margin: 0;
@@ -256,6 +296,7 @@ footer {
         p {
           font-size: 0.9rem;
           margin: 0;
+          font-weight: 700;
         }
       }
     }
@@ -268,6 +309,10 @@ footer {
   background-color: $light_green;
   .section_bg {
     color: $text_color_white;
+
+    p {
+      font-size: 1.2rem;
+    }
   }
 }
 
@@ -282,6 +327,7 @@ footer {
     }
     p {
       padding: 0 200px;
+      font-size: 1.2rem;
     }
     .donate_container {
       display: flex;
@@ -295,7 +341,12 @@ footer {
         background-size: 80%;
         background-repeat: no-repeat;
         background-position: center;
-        background-color: #000;
+
+        transition: 0.3s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
     .money {
@@ -309,33 +360,6 @@ footer {
     }
   }
 }
-//### Courses ###
-#courses {
-  background-color: $light_blue;
-  .section_bg {
-    .courses_container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-gap: 20px;
-      a {
-        width: 100%;
-        height: 230px;
-        background-color: $dark_blue;
-        color: $text_color_white;
-        text-decoration: none;
-        div {
-          background: black;
-          height: 140px;
-        }
-        h3,
-        p {
-          margin: 10px 15px;
-        }
-      }
-    }
-  }
-}
-
 //########## signup.html ##########
 
 #signup_form {
@@ -442,6 +466,10 @@ body#signup {
   height: 100vh;
   overflow: hidden;
 
+  background-image: url(../img/woods_moonlight.jpg);
+  background-size: cover;
+  background-position: center;
+
   .section_wrapper {
     //change "$spacing" instead of "grid-gap" & "padding"
     $spacing: 80px;
@@ -466,11 +494,22 @@ body#signup {
         background-position: center;
         background-size: 50%;
         cursor: pointer;
+        position: relative;
+
+        h2 {
+          text-align: center;
+          line-height: 15vh;
+          font-size: 2.2vw;
+          position: absolute;
+          width: 100%;
+          color: $text_color_white;
+          font-family: "Nosifer", cursive;
+        }
       }
     }
     //Setup for sections
     #money {
-      background: lighten($light_green, 20%);
+      background: lighten($light_green, 0%);
       grid-area: 1/1/2/2;
       .section_overlay {
         background-image: url(../img/donate_money.svg);
@@ -501,7 +540,7 @@ body#signup {
       }
     }
     #materials {
-      background: lighten($dark_blue, 20%);
+      background: lighten($dark_blue, 0%);
       grid-area: 1/2/2/3;
       .section_overlay {
         background-image: url(../img/donate_materials.svg);
@@ -542,7 +581,7 @@ body#signup {
       }
     }
     #food {
-      background: lighten(#402b2b, 20%);
+      background: lighten(#402b2b, 0%);
       grid-area: 1/3/2/4;
       .section_overlay {
         background-image: url(../img/donate_food.svg);
@@ -616,7 +655,7 @@ body#signup {
 //########## courses.html ##########
 
 #current_course {
-  background: $dark_blue;
+  background: #000;
   color: $text_color_white;
 
   #current_course_container {
@@ -634,39 +673,52 @@ body#signup {
 }
 
 #courses_container {
-  background: $light_blue;
+  //background-image: url(../img/trees_fog.jpg);
+  background: $light_green;
   .section_bg {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
 
+    h2 {
+      grid-area: span 1 / span 4;
+      color: $text_color_white;
+    }
+
     .course {
       position: relative;
       height: 235px;
       overflow: hidden;
-      background-color: $dark_blue;
+      background-color: #000;
       color: $text_color_white;
+      padding: 2px;
 
       .text_fade {
         position: absolute;
         bottom: 0;
         left: 0;
-        height: 50px;
+        height: 70px;
         width: 100%;
-        background: linear-gradient(transparent, #333);
+        background: linear-gradient(transparent, #000);
       }
 
       &.current {
         .course_overlay {
           background-color: rgba(0, 0, 0, 0.7);
+          cursor: default;
+          &:hover ~ .course_image {
+            background-size: 100%;
+          }
         }
       }
       .course_image {
-        background-size: cover;
+        background-size: 100%;
         background-position: center;
-        height: 150px;
+        background-repeat: no-repeat;
+        height: 125px;
         width: 100%;
         background-color: #009;
+        transition: 0.3s;
       }
       .course_overlay {
         position: absolute;
@@ -677,6 +729,11 @@ body#signup {
         left: 0;
         cursor: pointer;
       }
+
+      .course_overlay:hover ~ .course_image {
+        background-size: 110%;
+      }
+
       h3 {
         font-size: 1rem;
         margin: 10px;
@@ -685,29 +742,29 @@ body#signup {
         margin: 10px;
       }
     }
-    .course:first-child .course_image {
-      background-image: url(../img/thumb1.png);
+    .course.course1 .course_image {
+      background-image: url(../img/thumb1.jpg);
     }
-    .course:nth-child(2) .course_image {
-      background-image: url(../img/thumb2.png);
+    .course.course2 .course_image {
+      background-image: url(../img/thumb2.jpg);
     }
-    .course:nth-child(3) .course_image {
-      background-image: url(../img/thumb3.png);
+    .course.course3 .course_image {
+      background-image: url(../img/thumb3.jpg);
     }
-    .course:nth-child(4) .course_image {
-      background-image: url(../img/thumb4.png);
+    .course.course4 .course_image {
+      background-image: url(../img/thumb4.jpg);
     }
-    .course:nth-child(5) .course_image {
-      background-image: url(../img/thumb5.png);
+    .course.course5 .course_image {
+      background-image: url(../img/thumb5.jpg);
     }
-    .course:nth-child(6) .course_image {
-      background-image: url(../img/thumb6.png);
+    .course.course6 .course_image {
+      background-image: url(../img/thumb6.jpg);
     }
-    .course:nth-child(7) .course_image {
-      background-image: url(../img/thumb7.png);
+    .course.course7 .course_image {
+      background-image: url(../img/thumb7.jpg);
     }
-    .course:nth-child(8) .course_image {
-      background-image: url(../img/thumb8.png);
+    .course.course8 .course_image {
+      background-image: url(../img/thumb8.jpg);
     }
   }
 }
@@ -718,14 +775,14 @@ body#signup {
 //     max-width: 100%;
 //     border-radius: 10px;
 //   }
-//   .goal_numbers {
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: space-between;
-//   }
 // }
 
 //########## dashboard.html ##########
+.goal_numbers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 #goal_container {
   width: 70vw;
 
@@ -810,42 +867,90 @@ body#signup {
 //########## profile.html ##########
 
 #your_profile {
-  background-color: $light_blue;
+  background-color: #000;
 
   .section_bg {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-gap: 20px 80px;
+    padding-bottom: 50px;
+    color: $text_color_white;
   }
 
-  h2 {
-    grid-column: 1/2;
+  #welcome_header {
+    grid-area: 1/1/2/3;
   }
 
-  .profile_picture {
-    grid-column: 1/2;
-    height: 25vw;
-    width: 25vw;
-    background-color: #bbb;
+  .profile_rank {
+    $rank_size: 15vw;
+    height: $rank_size;
+    width: $rank_size;
+    background-image: url(../img/trees_fog.jpg);
+    background-attachment: fixed;
     border-radius: 50%;
-  }
+    grid-area: 2 / 1 / 5 / 2;
 
-  .profile_username {
-    grid-column: 3/4;
-  }
+    div.rank {
+      text-align: center;
+      line-height: $rank_size;
+      font-size: $rank_size / 1.2;
 
-  .profile_email {
-    grid-column: 3/4;
+      width: 100%;
+    }
   }
 
   .profile_goalbar {
-    grid-column: 3/4;
-    width: 350px;
-    height: 20px;
-    background-color: red;
+    div {
+      width: 350px;
+      height: 20px;
+      background-color: red;
+
+      position: relative;
+      .progress {
+        transition: 0.5s ease-in-out;
+        background-color: green;
+        height: 100%;
+        width: 0%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      p {
+        position: absolute;
+        margin: 0;
+        top: 2px;
+        left: 10px;
+        line-height: 100%;
+      }
+    }
   }
 }
 
 #your_courses {
   background-color: $light_green;
 }
+/*
+#loading_screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: $header_height;
+  left: 0;
+  //background-color: #000;
+
+  transition: 0.5s;
+
+  color: $text_color_white;
+  text-align: center;
+  line-height: 90vh;
+  font-size: 5rem;
+  font-family: "Nosifer", cursive;
+
+  &.loaded {
+    pointer-events: none;
+    opacity: 0;
+  }
+}
+*/

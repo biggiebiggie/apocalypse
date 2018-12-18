@@ -1,90 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Nosifer"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Superstes | Donér</title>
+  </head>
 
-<<<<<<< HEAD
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <title>Document</title>
-</head>
-
-<body id="donations">
-  <!-- header -->
-  <header>
-    <nav>
-      <a href="index.html">Forside</p>
-        <a href="info.html">Info</a> <a href="events.html">Kurser & events</a>
-        <p class="current">Donér</p>
-        <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
-
-        <div id="login_container">
-          <p id="p_email">Email</p>
-          <input id="txtEmail" type="email" placeholder="E-mail" />
-          <input id="txtPassword" type="password" placeholder="Password" />
-          <button id="btnLogin">Log ind</button>
-          <a href="signup.html">Bliv medlem</a>
-          <button id="btnLogout">Log ud</button>
-        </div>
-    </nav>
-  </header>
-
-  <div class="section_wrapper">
-    <section class="donation_category" id="money">
-      <div class="section_overlay"></div>
-      <div class="section_bg">
-        <button class="return">Tilbage</button>
-        <div id="donation_container">
-          <p>Beløb i kr.</p>
-          <input id="donation_input" type="number" placeholder="Amount" value="100" min="10" />
-          <button id="donate_money">Donate</button>
-          <div id="user_donation"></div>
-        </div>
-      </div>
-    </section>
-    <section class="donation_category" id="materials">
-      <div class="section_overlay"></div>
-      <div class="section_bg">
-        <button class="return">Tilbage</button>
-        <div id="material_container">
-        </div>
-        <button id="donate_materials">Donate</button>
-      </div>
-    </section>
-    <section class="donation_category" id="food">
-      <div class="section_overlay"></div>
-      <div class="section_bg">
-        <button class="return">Tilbage</button>
-        <div id="food_container">
-=======
   <body id="donations">
     <!-- header -->
-    <header>
+    <header class="logged_in">
       <nav>
         <div class="nav_content">
-          <a href="index.html">Forside</a> <a href="info.html">Info</a>
+          <a href="index.html">Forside</a>
+          <a href="profile.html" id="btn_to_profile">Profil</a>
+          <a href="info.html">Info</a>
           <a href="courses.html?course=1">Kurser</a>
           <p class="current">Donér</p>
           <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
         </div>
       </nav>
 
-      <div id="login_container">
+      <form id="login_container">
         <p id="p_email">Email</p>
         <input id="txtEmail" type="email" placeholder="E-mail" />
         <input id="txtPassword" type="password" placeholder="Password" />
-        <button id="btnLogin">Log ind</button>
-        <a href="signup.html">Bliv medlem</a>
+        <input id="btnLogin" type="submit" value="Login" />
+        <a id="signup_ref" href="signup.html">Bliv medlem</a>
         <button id="btnLogout">Log ud</button>
-      </div>
+      </form>
     </header>
 
     <div class="section_wrapper">
       <section class="donation_category" id="money">
-        <div class="section_overlay"></div>
+        <div class="section_overlay"><h2>Penge</h2></div>
         <div class="section_bg">
           <button class="return">Tilbage</button>
           <div id="donation_container">
@@ -96,53 +51,38 @@
               value="100"
               min="10"
             />
-            <button id="donate_money">Donate</button>
+            <button id="donate_money">Donér</button>
             <div id="user_donation"></div>
           </div>
         </div>
       </section>
       <section class="donation_category" id="materials">
-        <div class="section_overlay"></div>
+        <div class="section_overlay"><h2>Materialer</h2></div>
         <div class="section_bg">
           <button class="return">Tilbage</button>
           <div id="material_container"></div>
+          <button id="donate_materials">Donate</button>
         </div>
       </section>
       <section class="donation_category" id="food">
-        <div class="section_overlay"></div>
+        <div class="section_overlay"><h2>Mad</h2></div>
         <div class="section_bg">
           <button class="return">Tilbage</button>
           <div id="food_container"></div>
->>>>>>> 3ffa9ed1e03f44b940de3219b60cd42e35aa05f3
+          <button id="donate_food">Donate</button>
         </div>
-        <button id="donate_food">Donate</button>
-      </div>
-    </section>
-  </div>
-  <template id="itemTemplate">
-    <div class="materials">
-      <h3></h3>
-      <p></p>
-      <button class="btnplus">+</button>
-      <input type="number" value="0">
-      <input type="hidden" value="">
-      <button class="btnminus" disabled>-</button>
+      </section>
     </div>
-<<<<<<< HEAD
-  </template>
-  <!--
-=======
     <template id="itemTemplate">
       <div class="materials">
         <h3></h3>
         <p></p>
         <button class="btnplus">+</button> <input type="number" value="0" />
+        <input type="hidden" value="" />
         <button class="btnminus" disabled>-</button>
-        <button class="donate_material">Donér</button>
       </div>
     </template>
     <!--
->>>>>>> 3ffa9ed1e03f44b940de3219b60cd42e35aa05f3
       <div id="donation_container">
         <input
           id="donation_input"
@@ -166,9 +106,8 @@
       </div>
     -->
 
-  <div id="food_container"></div>
-  <script src="database.js"></script>
-  <script src="donation.js"></script>
-</body>
-
+    <div id="food_container"></div>
+    <script src="database.js"></script>
+    <script src="donation.js"></script>
+  </body>
 </html>
