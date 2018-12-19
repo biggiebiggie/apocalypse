@@ -54,6 +54,15 @@ function clearClasslist() {
   sectionWrapper.classList.remove("money");
   sectionWrapper.classList.remove("materials");
   sectionWrapper.classList.remove("food");
+
+  document.querySelector("#donation_container").style.display = "block";
+  document.querySelector("#payment_money").style.display = "block";
+
+  document.querySelector("#material_container").style.display = "grid";
+  document.querySelector("#payment_materials").style.display = "block";
+
+  document.querySelector("#food_container").style.display = "grid";
+  document.querySelector("#payment_food").style.display = "block";
 }
 
 //Money
@@ -73,7 +82,11 @@ document
       }, 300);
     }
   });
-
+document.querySelector("#payment_money").addEventListener("click", () => {
+  document.querySelector("#donation_container").style.display = "none";
+  document.querySelector("#payment_money").style.display = "none";
+  document.querySelector("form").style.display = "block";
+});
 //Materials
 
 document
@@ -92,11 +105,18 @@ document
     }
   });
 
+document.querySelector("#payment_materials").addEventListener("click", () => {
+  document.querySelector("#material_container").style.display = "none";
+  document.querySelector("#payment_materials").style.display = "none";
+  document.querySelector("form").style.display = "block";
+});
+
 //Food
 
 document
   .querySelector("#food .section_overlay")
   .addEventListener("click", () => {
+    document.querySelector("#confirm").setAttribute("class", "food_confirm");
     if (!sectionWrapper.classList.contains("animating")) {
       sectionWrapper.classList.remove("money");
       sectionWrapper.classList.remove("materials");
@@ -109,42 +129,77 @@ document
       }, 300);
     }
   });
+
+document.querySelector("#payment_food").addEventListener("click", () => {
+  document.querySelector("#food_container").style.display = "none";
+  document.querySelector("#payment_food").style.display = "none";
+  document.querySelector("form").style.display = "block";
+});
 //#endregion
 
+document.querySelector("#confirm").addEventListener("click", confirmDonation);
+
+function confirmDonation(e) {
+  if (e.target.classList.contains(".payment_money")) {
+    let userDonationAmount;
+    DBRefUserDonation = firebase
+      .database()
+      .ref()
+      .child("userinfo/" + firebasesAuthDatabaseID + "/donations");
+    DBRefUserDonation.on(
+      "value",
+      snap => {
+        snap.val(); // value
+        userDonationAmount = snap.val().amount;
+      },
+      err => {}
+    );
+
+    DBRefUserDonation.update({
+      amount: +userDonationAmount + +inputDonationAmount.value
+    });
+
+    updateTotalDonation();
+  } else if (e.target.classList.contains(".payment_food")) {
+    donateItems("MRE", "food");
+    donateItems("water", "food");
+  } else if (e.target.classList.contains(".payment_materials")) {
+    donateItems("wood", "materials");
+    donateItems("cement", "materials");
+    donateItems("clothes", "materials");
+    donateItems("miscellaneous", "materials");
+  }
+}
+
 //Donate money
-document.querySelector("#donate_money").addEventListener("click", () => {
-  let userDonationAmount;
-  DBRefUserDonation = firebase
-    .database()
-    .ref()
-    .child("userinfo/" + firebasesAuthDatabaseID + "/donations");
-  DBRefUserDonation.on(
-    "value",
-    snap => {
-      snap.val(); // value
-      userDonationAmount = snap.val().amount;
-    },
-    err => {}
-  );
+// document.querySelector("#donate_money").addEventListener("click", () => {
+//   let userDonationAmount;
+//   DBRefUserDonation = firebase
+//     .database()
+//     .ref()
+//     .child("userinfo/" + firebasesAuthDatabaseID + "/donations");
+//   DBRefUserDonation.on(
+//     "value",
+//     snap => {
+//       snap.val(); // value
+//       userDonationAmount = snap.val().amount;
+//     },
+//     err => {}
+//   );
 
-  DBRefUserDonation.update({
-    amount: +userDonationAmount + +inputDonationAmount.value
-  });
+//   DBRefUserDonation.update({
+//     amount: +userDonationAmount + +inputDonationAmount.value
+//   });
 
-  updateTotalDonation();
-});
+//   updateTotalDonation();
+// });
 
-document.querySelector("#donate_food").addEventListener("click", () => {
-  donateItems("MRE", "food");
-  donateItems("water", "food");
-});
-
-document.querySelector("#donate_materials").addEventListener("click", () => {
-  donateItems("wood", "materials");
-  donateItems("cement", "materials");
-  donateItems("clothes", "materials");
-  donateItems("miscellaneous", "materials");
-});
+// document.querySelector("#donate_materials").addEventListener("click", () => {
+//   donateItems("wood", "materials");
+//   donateItems("cement", "materials");
+//   donateItems("clothes", "materials");
+//   donateItems("miscellaneous", "materials");
+// });
 
 function donateItems(kind, where) {
   let userWoodAmount;
@@ -179,10 +234,7 @@ function updateTotalDonation() {
   //Total donation amount
   let donationTotalAmount;
 
-  DBRefTotalDonation = firebase
-    .database()
-    .ref()
-    .child("totaldonations");
+  DBRefTotalDonation = firebase.database().ref().child("totaldonations");
 
   DBRefTotalDonation.on(
     "value",
@@ -192,12 +244,16 @@ function updateTotalDonation() {
     },
     err => {}
   );
-
   //Update total donation amount
-  DBRefTotalDonation.update({
-    money: +donationTotalAmount + +inputDonationAmount.value
-  });
-  console.log(donationTotalAmount);
+  if (donationTotalAmount !== undefined) {
+    DBRefTotalDonation.update({
+      money: +donationTotalAmount + +inputDonationAmount.value
+    });
+  } else {
+    DBRefTotalDonation.update({
+      money: 0 + +inputDonationAmount.value
+    });
+  }
 }
 
 //Material donation

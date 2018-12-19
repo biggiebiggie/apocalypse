@@ -121,7 +121,7 @@ DBRefFood.on("child_changed", snap => {
 DBRefTotalDonation.on("value", snap => {
   donationTotalAmount = snap.val().money;
   let goalBar = document.querySelector(".goal_fill");
-  let barFill = donationTotalAmount / 200000 * 100;
+  let barFill = donationTotalAmount / 20000 * 100;
   goalBar.style.width = barFill + "%";
   console.log(snap.val().money);
 });
