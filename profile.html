@@ -10,73 +10,90 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Superstes - Profil</title>
+    <title>Superstes | Profil</title>
   </head>
 
   <body>
     <!-- header -->
-    <header>
+    <header class="logged_in">
       <nav>
         <div class="nav_content">
-          <a href="index.html">Forside</a> <a href="info.html">Info</a>
+          <a href="index.html">Forside</a>
+          <p class="current" id="btn_to_profile">Profil</p>
+          <a href="info.html">Info</a>
           <a href="courses.html?course=1">Kurser</a>
           <a href="donation.html">Donér</a>
-          <p class="current">Profil</p>
           <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
         </div>
       </nav>
 
-      <div id="login_container">
+      <form id="login_container">
         <p id="p_email">Email</p>
         <input id="txtEmail" type="email" placeholder="E-mail" />
         <input id="txtPassword" type="password" placeholder="Password" />
-        <button id="btnLogin">Log ind</button>
-        <a href="signup.html">Bliv medlem</a>
+        <input id="btnLogin" type="submit" value="Login" />
+        <a id="signup_ref" href="signup.html">Bliv medlem</a>
         <button id="btnLogout">Log ud</button>
-      </div>
+      </form>
     </header>
 
-    <!-- Profil Sektion -->
+    <!-- Profile Section -->
     <section id="your_profile">
       <div class="section_bg">
-        <h2>Velkommen XXXX</h2>
-        <div class="profile_picture"></div>
-        <div class="profile_username">Tim "Terminator" Larsen</div>
-        <div class="profile_email">Terminator_1337@gmail.com</div>
-        <div class="profile_goalbar">Næste rank --></div>
-      </div>
-    </section>
-
-    <!-- Sektion med kurser -->
-    <section id="courses">
-      <div class="section_bg">
-        <h1>Dine Kurser</h1>
-        <div class="courses_container">
-          <a href="courses.html?course=1">
-            <div class="course_image"></div>
-            <h3>Bueskydning</h3>
-            <p>Text</p>
-          </a>
-          <a href="courses.html?course=2">
-            <div class="course_image"></div>
-            <h3>Lav din egen økse</h3>
-            <p>Text</p>
-          </a>
+        <h2 id="welcome_header">Velkommen <span></span></h2>
+        <div class="profile_rank"><div class="rank">0</div></div>
+        <div class="profile_email">
+          <h3>E-mail:</h3>
+          <p>...</p>
+        </div>
+        <div class="profile_donation">
+          <h3>SPT Point:</h3>
+          <p>0</p>
+        </div>
+        <div class="profile_goalbar">
+          <h3>Næste rang:</h3>
+          <div>
+            <div class="progress"></div>
+            <p><span>0</span> / 100XP</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!--
-      <section id="your_courses">
-      </section>
-    -->
+    <!-- Courses on YouTube -->
+    <section id="courses_container">
+      <div class="section_bg">
+        <h2>Kurser til dig</h2>
+        <div class="course course3">
+          <a href="courses.html?course=3" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Fisk uden fiskestang</h3>
+          <p>
+            Her fiskes der i naturen med et primitivt spyd, hold øje med deres
+            teknik. Øv gerne derhjemme.
+          </p>
+          <div class="text_fade"></div>
+        </div>
+        <div class="course course6">
+          <a href="courses.html?course=6" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Slagt en ko</h3>
+          <p>
+            Vi kommer selv til at slagte de dyr vi spiser, lær at patere en ko.
+          </p>
+          <div class="text_fade"></div>
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer>
       <div class="section_bg">
         <div id="footer_links">
-          <a href="#splash">Forside</a> <a href="info.html">Info</a>
-          <a href="events.html">Hændelser</a>
+          <a href="index.html">Forside</a>
+          <a href="profile.html" class="current">Profil</a>
+          <a href="info.html">Info</a> <a href="courses.html">Kurser</a>
+          <a href="donation.html">Donér</a>
         </div>
 
         <div id="footer_contact">
@@ -99,7 +116,7 @@
       </div>
     </footer>
 
-    <div id="food_container"></div>
     <script src="database.js"></script>
+    <script src="profile.js"></script>
   </body>
 </html>

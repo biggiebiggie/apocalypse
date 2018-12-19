@@ -18,12 +18,15 @@ firebase.initializeApp(config);
 const btnLogin = document.querySelector("#btnLogin");
 const btnLogout = document.querySelector("#btnLogout");
 
+let profileLoaded = false;
+
 let firebasesAuthDatabaseID = false;
 
 let numberOfUsers = 0;
 
 if (btnLogin) {
   btnLogin.addEventListener("click", e => {
+    e.preventDefault();
     //get info
     const email = txtEmail.value;
     const password = txtPassword.value;
@@ -85,6 +88,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     console.log(firebaseUser);
     if (document.querySelector("header")) {
       document.querySelector("header").classList.add("logged_in");
+      document.querySelector("header #p_email").textContent =
+        firebaseUser.email;
     }
     findFirebaseUser(firebaseUser.email);
   } else {
@@ -109,7 +114,8 @@ function findFirebaseUser(email) {
       firebasesAuthDatabaseID = Object.keys(object)[0];
       console.log(firebasesAuthDatabaseID, "-----------");
       console.log(email);
-      console.log(object[firebasesAuthDatabaseID].admin);
+      console.log("is admin: " + object[firebasesAuthDatabaseID].admin);
+      profileLoaded = true;
       if (
         object[firebasesAuthDatabaseID].admin !== "undefined" &&
         object[firebasesAuthDatabaseID].admin
@@ -118,7 +124,7 @@ function findFirebaseUser(email) {
         document.querySelector("#btn_to_dashboard").classList.remove("hide");
       } else {
         console.log("is not admin");
-        // document.querySelector("#btn_to_dashboard").classList.add("hide");
+        //document.querySelector("#btn_to_dashboard").classList.add("hide");
       }
     });
 }
@@ -127,7 +133,10 @@ function findFirebaseUser(email) {
 
 const userList = document.querySelector("#user_list");
 // Create ref
-const DBRefUserInfo = firebase.database().ref().child("userinfo");
+const DBRefUserInfo = firebase
+  .database()
+  .ref()
+  .child("userinfo");
 
 DBRefUserInfo.on("child_added", snap => {
   if (userList) {
@@ -168,16 +177,5 @@ DBRefUserInfo.on("child_changed", snap => {
     // ` +
     // "Wood: " +
     // +userinfo.donations.materials.wood;
-  }
-});
-
-window.addEventListener("scroll", () => {
-  if (
-    pageYOffset > document.querySelector("header").clientHeight &&
-    !document.querySelector("header nav").classList.contains("scrolled")
-  ) {
-    document.querySelector("header nav").classList.add("scrolled");
-  } else if (pageYOffset < document.querySelector("header").clientHeight) {
-    document.querySelector("header nav").classList.remove("scrolled");
   }
 });

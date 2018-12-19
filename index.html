@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css?family=Nosifer"
       rel="stylesheet"
@@ -15,30 +16,33 @@
 
   <body>
     <!-- header -->
-    <header>
+    <header class="logged_in">
       <nav>
         <div class="nav_content">
           <p class="current">Forside</p>
+          <a href="profile.html" id="btn_to_profile">Profil</a>
           <a href="info.html">Info</a>
           <a href="courses.html?course=1">Kurser</a>
           <a href="donation.html">Donér</a>
           <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
         </div>
-
-        <form id="login_container">
-          <p id="p_email">Email</p>
-          <input id="txtEmail" type="email" placeholder="E-mail" />
-          <input id="txtPassword" type="password" placeholder="Password" />
-          <input id="btnLogin" type="submit" value="Login" />
-          <a id="signup_ref" href="signup.html">Bliv medlem</a>
-          <button id="btnLogout">Log ud</button>
-        </form>
       </nav>
+
+      <form id="login_container">
+        <p id="p_email">Email</p>
+        <input id="txtEmail" type="email" placeholder="E-mail" />
+        <input id="txtPassword" type="password" placeholder="Password" />
+        <input id="btnLogin" type="submit" value="Login" />
+        <a id="signup_ref" href="signup.html">Bliv medlem</a>
+        <button id="btnLogout">Log ud</button>
+      </form>
     </header>
 
     <!-- Splash -->
     <section id="splash">
+      <div id="background_on_splash"><div id="logo_on_splash"></div></div>
       <div class="name_and_donate">
+        <p class="we_are">Vi er...</p>
         <h1>Superstes<span>"En som overlever"</span></h1>
         <p class="message">En fondraiser, et fællesskab og en fremtid</p>
         <a href="donation.html"
@@ -117,49 +121,83 @@
     </section>
 
     <!-- Courses on YouTube -->
-    <section id="courses">
+    <section id="courses_container">
       <div class="section_bg">
-        <div class="courses_container">
-          <a href="courses.html?course=1">
-            <div class="course_image"></div>
-            <h3>Bueskydning</h3>
-            <p>Text</p>
-          </a>
-          <a href="courses.html?course=2">
-            <div class="course_image"></div>
-            <h3>Lav din egen økse</h3>
-            <p>Text</p>
-          </a>
-          <a href="courses.html?course=3">
-            <div class="course_image"></div>
-            <h3>Lav en mur</h3>
-            <p>Text</p>
-          </a>
-          <a href="courses.html?course=4">
-            <div class="course_image"></div>
-            <h3>Lav pile</h3>
-            <p>Text</p>
-          </a>
-          <a href="courses.html?course=5">
-            <div class="course_image"></div>
-            <h3>Spiselige svampe</h3>
-            <p>Text</p>
-          </a>
-          <a href="courses.html?course=6">
-            <div class="course_image"></div>
-            <h3>Tilberedning af rotter</h3>
-            <p>Text</p>
-          </a>
-          <a href="courses.html?course=7">
-            <div class="course_image"></div>
-            <h3>Lav et bål</h3>
-            <p>Text</p>
-          </a>
-          <a href="courses.html?course=8">
-            <div class="course_image"></div>
-            <h3>Selvforsvar</h3>
-            <p>Text</p>
-          </a>
+        <h2>Lær at overleve! Se disse kurser på YouTube</h2>
+        <div class="course course1">
+          <a href="courses.html?course=1" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Lav et bål</h3>
+          <p>
+            God beskrivelse af hvordan du får dit bål til at holde hele natten.
+          </p>
+          <div class="text_fade"></div>
+        </div>
+        <div class="course course2">
+          <a href="courses.html?course=2" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Lav en lejr</h3>
+          <p>
+            Det kan blive nødvendigt at søge ly for natten. I denne video er
+            under hårde forhold og uden meget værktøj.
+          </p>
+          <div class="text_fade"></div>
+        </div>
+        <div class="course course3">
+          <a href="courses.html?course=3" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Fisk uden fiskestang</h3>
+          <p>
+            Her fiskes der i naturen med et primitivt spyd, hold øje med deres
+            teknik. Øv gerne derhjemme.
+          </p>
+          <div class="text_fade"></div>
+        </div>
+        <div class="course course4">
+          <a href="courses.html?course=4" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Lav en bue</h3>
+          <p>
+            Bue laves med primitive væktøjer, kan du lave en bue sådan her kan
+            du lav en bue med alt.
+          </p>
+          <div class="text_fade"></div>
+        </div>
+        <div class="course course5">
+          <a href="courses.html?course=5" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Byg et sværd</h3>
+          <p>
+            Hvis vi har skaffet nok værktøj får vi muligheden for at lave våben.
+            Her er en mulighed.
+          </p>
+          <div class="text_fade"></div>
+        </div>
+        <div class="course course6">
+          <a href="courses.html?course=6" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Slagt en ko</h3>
+          <p>
+            Vi kommer selv til at slagte de dyr vi spiser, lær at patere en ko.
+          </p>
+          <div class="text_fade"></div>
+        </div>
+        <div class="course course7">
+          <a href="courses.html?course=7" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Selvforsvar</h3>
+          <p>
+            Om det er en inficeret eller ej du står overfor så skal du kunne
+            forsvare dig selv.
+          </p>
+          <div class="text_fade"></div>
+        </div>
+        <div class="course course8">
+          <a href="courses.html?course=8" class="course_overlay"></a>
+          <div class="course_image"></div>
+          <h3>Rengør inficeret sår</h3>
+          <p>Vi skal kunne hjælpe hinanden, lær at rengøre et sår.</p>
+          <div class="text_fade"></div>
         </div>
       </div>
     </section>
@@ -168,8 +206,9 @@
     <footer>
       <div class="section_bg">
         <div id="footer_links">
-          <a href="#splash">Forside</a> <a href="info.html">Info</a>
-          <a href="events.html">Hændelser</a>
+          <a href="index.html" class="current">Forside</a>
+          <a href="profile.html">Profil</a> <a href="info.html">Info</a>
+          <a href="courses.html">Kurser</a> <a href="donation.html">Donér</a>
         </div>
 
         <div id="footer_contact">
@@ -184,10 +223,10 @@
             Danmark
           </p>
         </div>
+
         <div id="footer_SoMe">
-          <p>Facebook</p>
-          <p>Instagram</p>
-          <div id="arrow_up">Arrow up</div>
+          <div class="facebook logo"></div>
+          <div class="instagram logo"></div>
         </div>
       </div>
     </footer>

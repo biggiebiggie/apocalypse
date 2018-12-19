@@ -7,62 +7,73 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <title>Dashboard | Supertes</title>
 </head>
 
-<body id="dashboard_body">
-  <div id="login_container">
-    <input id="txtEmail" type="email" placeholder="E-mail" />
-    <input id="txtPassword" type="password" placeholder="Password" />
-    <button id="btnLogin">Login</button>
-    <button id="btnSignup">Sign Up</button>
-    <button id="btnLogout" class="hide">Logout</button>
-  </div>
-
-  <div id="goal_container">
-    <div class="goal_numbers">
-      <div class="goal_start">
-        <p>0</p>
+<body id="dashboard_body" class="darkmode">
+  <!-- header -->
+  <header class="logged_in">
+    <nav>
+      <div class="nav_content">
+        <a href="index.html">Forside</a>
+        <a href="profile.html" id="btn_to_profile">Profil</a>
+        <a href="info.html">Info</a>
+        <a href="courses.html?course=1">Kurser</a>
+        <a href="donation.html">Donér</a>
+        <p class="current" id="btn_to_dashboard">Dashboard</p>
       </div>
-      <div class="goal_middle">
-        <h2>Månedlige mål</h2>
-        <p></p>
+    </nav>
+
+    <body id="dashboard_body">
+      <div id="login_container">
+        <input id="txtEmail" type="email" placeholder="E-mail" />
+        <input id="txtPassword" type="password" placeholder="Password" />
+        <button id="btnLogin">Login</button>
+        <button id="btnSignup">Sign Up</button>
+        <button id="btnLogout" class="hide">Logout</button>
       </div>
-      <div class="goal_end">
-        <p>20.000</p>
-      </div>
-    </div>
-    <div class="goal_bar">
-      <div class="goal_fill"></div>
-    </div>
-  </div>
 
-  <section id="charts_container">
-    <div class="chart">
-      <h2>Materials</h2>
-      <canvas id="materials_chart" width="200" height="200"></canvas>
-    </div>
-    <div class="chart">
-      <h2>Supplies</h2>
-      <canvas id="food_chart" width="200" height="200"></canvas>
-    </div>
-  </section>
+      <div id="goal_container">
+        <div class="goal_numbers">
+          <div class="goal_start">
+            <p>0</p>
+          </div>
+          <div class="goal_middle">
+            <h2>Månedlige mål</h2>
+            <p></p>
+          </div>
+          <div class="goal_end">
+            <p>20.000</p>
+          </div>
+        </div>
 
-  <section id="user_container">
-    <div id="number_of_users">
-      <h2>Bruger info</h2>
-      <p></p>
-      <ul id="user_list"></ul>
-    </div>
+        <section id="charts_container">
+          <div class="chart">
+            <h2>Materials</h2>
+            <canvas id="materials_chart" width="200" height="200"></canvas>
+          </div>
+          <div class="chart">
+            <h2>Supplies</h2>
+            <canvas id="food_chart" width="200" height="200"></canvas>
+          </div>
+        </section>
 
-    <div id="top_donator">
-      <h2>Top doner</h2>
-    </div>
-  </section>
+        <section id="user_container">
+          <div id="number_of_users">
+            <h2>Bruger info</h2>
+            <p></p>
+            <ul id="user_list"></ul>
+          </div>
 
-  <script src="database.js"></script>
-  <script src="dash.js"></script>
-</body>
+          <div id="top_donator">
+            <h2>Top doner</h2>
+          </div>
+        </section>
+
+        <script src="database.js"></script>
+        <script src="dash.js"></script>
+    </body>
 
 </html>
