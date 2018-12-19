@@ -718,12 +718,6 @@ body#signup {
 //     max-width: 100%;
 //     border-radius: 10px;
 //   }
-//   .goal_numbers {
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: space-between;
-//   }
-// }
 
 //########## dashboard.html ##########
 #goal_container {
@@ -733,11 +727,28 @@ body#signup {
   padding: 2vw;
 
   border-radius: 5px;
-  box-shadow: 0 0 10px lightgrey;
-  background-color: white;
+  box-shadow: 0 0 20px $light_green;
+  background-color: $light_green;
+
+  h2 {
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  p {
+    color: white;
+    font-size: 1rem;
+  }
+
+  .goal_numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }
 #dashboard_body {
-  background-color: $light_grey;
+  background-color: $dark_green;
 }
 
 #charts_container {
@@ -749,8 +760,8 @@ body#signup {
   width: 70vw;
 
   border-radius: 5px;
-  box-shadow: 0 0 10px lightgrey;
-  background-color: white;
+  box-shadow: 0 0 20px $light_green;
+  background-color: $light_green;
 
   .chart {
     width: 100%;
@@ -762,6 +773,7 @@ body#signup {
     text-align: center;
     margin: 0;
     margin-bottom: 1vw;
+    color: white;
   }
 }
 
@@ -786,20 +798,21 @@ body#signup {
   margin: 1vw auto;
   display: flex;
   border-radius: 5px;
-  box-shadow: 0 0 10px lightgrey;
-  background-color: white;
+  box-shadow: 0 0 20px $light_green;
+  background-color: $light_green;
 
   h2 {
     font-size: 1rem;
     text-align: center;
     margin-bottom: 1vw;
     margin: 0;
+    color: white;
   }
 
   #number_of_users {
     width: 35vw;
-
     overflow: scroll;
+    color: white;
   }
 
   #top_donator {

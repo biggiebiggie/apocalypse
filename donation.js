@@ -192,7 +192,7 @@ function updateTotalDonation() {
 
   //Update total donation amount
   DBRefTotalDonation.update({
-    money: +donationTotalAmount + inputDonationAmount.value
+    money: +donationTotalAmount + +inputDonationAmount.value
   });
   console.log(donationTotalAmount);
 }

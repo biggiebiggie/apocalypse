@@ -11,6 +11,7 @@ const DBRefTotalDonation = firebase.database().ref().child("totaldonations");
 
 let donationTotalAmount;
 
+Chart.defaults.global.defaultFontColor = "#FFF";
 var ctx1 = document.getElementById("materials_chart").getContext("2d");
 var materialsChart = new Chart(ctx1, {
   type: "doughnut",
@@ -42,9 +43,6 @@ var materialsChart = new Chart(ctx1, {
   },
   options: {
     responsive: true,
-
-    // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-
     maintainAspectRatio: false
   }
 });
@@ -79,11 +77,21 @@ var foodChart = new Chart(ctx2, {
   },
   options: {
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    scaleFontColor: "#FFFFFF"
   }
 });
 
 DBRefMaterials.on("child_added", snap => {
+  const materialsInfo = snap.val();
+
+  materialsChart.data.datasets.forEach(dataset => {
+    dataset.data.push(materialsInfo);
+  });
+  materialsChart.update();
+});
+
+DBRefMaterials.on("child_changed", snap => {
   const materialsInfo = snap.val();
 
   materialsChart.data.datasets.forEach(dataset => {
@@ -101,10 +109,19 @@ DBRefFood.on("child_added", snap => {
   foodChart.update();
 });
 
+DBRefFood.on("child_changed", snap => {
+  const foodInfo = snap.val();
+
+  foodChart.data.datasets.forEach(dataset => {
+    dataset.data.push(foodInfo);
+  });
+  foodChart.update();
+});
+
 DBRefTotalDonation.on("value", snap => {
   donationTotalAmount = snap.val().money;
   let goalBar = document.querySelector(".goal_fill");
-  let barFill = donationTotalAmount / 20000 * 100;
+  let barFill = donationTotalAmount / 200000 * 100;
   goalBar.style.width = barFill + "%";
   console.log(snap.val().money);
 });
