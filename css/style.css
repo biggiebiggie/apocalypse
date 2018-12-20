@@ -324,6 +324,15 @@ body#signup {
     body#signup #back_to_index:hover {
       color: #555; }
 
+#info {
+  background-color: #37402b; }
+  #info .section_bg {
+    color: #ddd; }
+    #info .section_bg #info_infographic {
+      width: 60%;
+      margin: 40px auto;
+      display: block; }
+
 #donations {
   height: 100vh;
   overflow-x: hidden;

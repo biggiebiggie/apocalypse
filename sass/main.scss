@@ -470,8 +470,22 @@ body#signup {
   }
 }
 
-//########## donate.html ##########
+//########## info.html ##########
 
+#info {
+  background-color: $light_green;
+  .section_bg {
+    color: $text_color_white;
+
+    #info_infographic {
+      width: 60%;
+      margin: 40px auto;
+      display: block;
+    }
+  }
+}
+
+//########## donate.html ##########
 #donations {
   height: 100vh;
   overflow-x: hidden;
