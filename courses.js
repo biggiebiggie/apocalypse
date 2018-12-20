@@ -26,16 +26,16 @@ function selectCourse(courseOverlay) {
   const currentCourse = document.querySelector("#current_course_container");
 
   //Set src of iframe
-  currentCourse.querySelector("iframe").src =
-    courseOverlay.previousElementSibling.value;
+  currentCourse.querySelector("h2").textContent =
+    courseOverlay.nextElementSibling.nextElementSibling.textContent;
 
   //Set description
   currentCourse.querySelector("p").textContent =
-    courseOverlay.previousElementSibling.previousElementSibling.textContent;
+    courseOverlay.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
 
   //Set title of course
-  currentCourse.querySelector("h2").textContent =
-    courseOverlay.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+  currentCourse.querySelector("iframe").src =
+    courseOverlay.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.value;
 
   //Select all courses and remove .current
   const allCourses = document.querySelectorAll("#courses_container .course");
