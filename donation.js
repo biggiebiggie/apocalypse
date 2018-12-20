@@ -54,15 +54,6 @@ function clearClasslist() {
   sectionWrapper.classList.remove("money");
   sectionWrapper.classList.remove("materials");
   sectionWrapper.classList.remove("food");
-
-  document.querySelector("#donation_container").style.display = "block";
-  document.querySelector("#payment_money").style.display = "block";
-
-  document.querySelector("#material_container").style.display = "grid";
-  document.querySelector("#payment_materials").style.display = "block";
-
-  document.querySelector("#food_container").style.display = "grid";
-  document.querySelector("#payment_food").style.display = "block";
 }
 
 //Money
@@ -70,7 +61,6 @@ function clearClasslist() {
 document
   .querySelector("#money .section_overlay")
   .addEventListener("click", () => {
-    document.querySelector("#confirm").setAttribute("class", "payment_money");
     if (!sectionWrapper.classList.contains("animating")) {
       sectionWrapper.classList.remove("materials");
       sectionWrapper.classList.remove("food");
@@ -83,19 +73,19 @@ document
       }, 300);
     }
   });
+
 document.querySelector("#payment_money").addEventListener("click", () => {
-  document.querySelector("#donation_container").style.display = "none";
-  document.querySelector("#payment_money").style.display = "none";
-  document.querySelector("form").style.display = "block";
+  document.querySelector("#money").classList.add("payment");
+
+  document.querySelector("form").classList.add("payment");
+
+  document.querySelector("#confirm").setAttribute("class", "donate_money");
 });
 //Materials
 
 document
   .querySelector("#materials .section_overlay")
   .addEventListener("click", () => {
-    document
-      .querySelector("#confirm")
-      .setAttribute("class", "payment_materials");
     if (!sectionWrapper.classList.contains("animating")) {
       sectionWrapper.classList.remove("money");
       sectionWrapper.classList.remove("food");
@@ -110,9 +100,11 @@ document
   });
 
 document.querySelector("#payment_materials").addEventListener("click", () => {
-  document.querySelector("#material_container").style.display = "none";
-  document.querySelector("#payment_materials").style.display = "none";
-  document.querySelector("form").style.display = "block";
+  document.querySelector("#materials").classList.add("payment");
+
+  document.querySelector("form").classList.add("payment");
+
+  document.querySelector("#confirm").setAttribute("class", "donate_materials");
 });
 
 //Food
@@ -120,7 +112,6 @@ document.querySelector("#payment_materials").addEventListener("click", () => {
 document
   .querySelector("#food .section_overlay")
   .addEventListener("click", () => {
-    document.querySelector("#confirm").setAttribute("class", "payment_food");
     if (!sectionWrapper.classList.contains("animating")) {
       sectionWrapper.classList.remove("money");
       sectionWrapper.classList.remove("materials");
@@ -135,16 +126,17 @@ document
   });
 
 document.querySelector("#payment_food").addEventListener("click", () => {
-  document.querySelector("#food_container").style.display = "none";
-  document.querySelector("#payment_food").style.display = "none";
-  document.querySelector("form").style.display = "block";
+  document.querySelector("#food").classList.add("payment");
+  document.querySelector("form").classList.add("payment");
+  document.querySelector("#confirm").setAttribute("class", "donate_food");
 });
 //#endregion
 
 document.querySelector("#confirm").addEventListener("click", confirmDonation);
 
 function confirmDonation(e) {
-  if (e.target.classList.contains(".payment_money")) {
+  if (e.target.classList.contains("donate_money")) {
+    console.log("donate");
     let userDonationAmount;
     DBRefUserDonation = firebase
       .database()
@@ -164,10 +156,10 @@ function confirmDonation(e) {
     });
 
     updateTotalDonation();
-  } else if (e.target.classList.contains(".payment_food")) {
+  } else if (e.target.classList.contains("donate_food")) {
     donateItems("MRE", "food");
     donateItems("water", "food");
-  } else if (e.target.classList.contains(".payment_materials")) {
+  } else if (e.target.classList.contains("donate_materials")) {
     donateItems("wood", "materials");
     donateItems("cement", "materials");
     donateItems("clothes", "materials");
@@ -238,10 +230,7 @@ function updateTotalDonation() {
   //Total donation amount
   let donationTotalAmount;
 
-  DBRefTotalDonation = firebase
-    .database()
-    .ref()
-    .child("totaldonations");
+  DBRefTotalDonation = firebase.database().ref().child("totaldonations");
 
   DBRefTotalDonation.on(
     "value",
