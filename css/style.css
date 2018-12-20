@@ -10,6 +10,12 @@ body {
 section {
   width: 100vw; }
 
+h1,
+h2,
+h3,
+p {
+  cursor: default; }
+
 button,
 a,
 a div,
@@ -96,7 +102,20 @@ header {
       background-color: transparent;
       color: #ddd;
       font-size: 0.8rem;
-      border: 2px solid #ddd; }
+      border: 2px solid #ddd;
+      text-transform: uppercase; }
+    header #login_container input[type="submit"] {
+      width: 120px; }
+      header #login_container input[type="submit"]:hover {
+        background-color: #ddd;
+        color: #222; }
+    header #login_container a:hover,
+    header #login_container button:hover {
+      background-color: #ddd;
+      color: #222;
+      transform: scale(1); }
+    header #login_container #signup_ref {
+      width: 120px; }
   header #btnLogout {
     display: none;
     margin-left: 10px; }
@@ -148,6 +167,7 @@ footer {
         margin: 20px 0; }
 
 #splash {
+  min-height: 450px;
   position: relative;
   background-repeat: no-repeat;
   height: 70vh;
@@ -195,7 +215,8 @@ footer {
       font-size: 2rem; }
     #splash .name_and_donate h1 {
       margin: 0;
-      font-size: 4rem; }
+      font-size: 4rem;
+      cursor: default; }
       #splash .name_and_donate h1 span {
         font-size: 1.3rem;
         font-style: italic;
@@ -207,17 +228,21 @@ footer {
       transform: translateX(-40px); }
     #splash .name_and_donate a[href="donation.html"] {
       text-decoration: none;
-      color: #ddd; }
+      display: inline-block; }
       #splash .name_and_donate a[href="donation.html"] div {
         height: 60px;
         width: 200px;
         background-color: transparent;
         border: 2px solid #ddd;
+        color: #ddd;
         text-align: center;
         margin: 30px 0;
         transform: translateX(-80px);
         font-size: 2.4rem;
         line-height: 60px; }
+        #splash .name_and_donate a[href="donation.html"] div:hover {
+          background-color: #ddd;
+          color: #222; }
 
 #about_us {
   background-color: #37402b; }
@@ -389,14 +414,17 @@ body#signup {
         border: 2px solid #ddd;
         background-color: transparent;
         color: #ddd; }
-      #donations .section_wrapper #money button#donate_money {
+      #donations .section_wrapper #money #payment_money {
         width: 100%;
         height: 50px;
         margin: 20px 0;
-        font-size: 2rem;
+        font-size: 1.5rem;
         border: 2px solid #ddd;
         background-color: transparent;
         color: #ddd; }
+        #donations .section_wrapper #money #payment_money:hover {
+          background-color: #ddd;
+          color: #222; }
     #donations .section_wrapper #materials {
       background: #161b26;
       grid-area: 1/2/2/3; }
@@ -446,14 +474,22 @@ body#signup {
         color: #ddd;
         transform: translateY(-5px);
         font-size: 2rem; }
-      #donations .section_wrapper #material_container button.donate_material,
-      #donations .section_wrapper #food_container button.donate_material {
-        width: 189px;
-        height: 40px;
-        display: block;
-        border: 2px solid #ddd;
-        background-color: transparent;
-        margin-bottom: 20px; }
+        #donations .section_wrapper #material_container button.btnminus:hover,
+        #donations .section_wrapper #material_container button.btnplus:hover,
+        #donations .section_wrapper #food_container button.btnminus:hover,
+        #donations .section_wrapper #food_container button.btnplus:hover {
+          color: #aaaaaa; }
+    #donations .section_wrapper .donate_items {
+      background-color: transparent;
+      border: 2px solid #ddd;
+      color: #ddd;
+      height: 50px;
+      width: 300px;
+      margin: 20px 0;
+      font-size: 1.1rem; }
+      #donations .section_wrapper .donate_items:hover {
+        background-color: #ddd;
+        color: #222; }
     #donations .section_wrapper #food {
       background: #402b2b;
       grid-area: 1/3/2/4; }
@@ -468,7 +504,8 @@ body#signup {
     #donations .section_wrapper.food #food {
       grid-area: 1/1/2/4;
       z-index: 2;
-      transition: none; }
+      transition: none;
+      min-height: 700px; }
       #donations .section_wrapper.money #money .section_overlay,
       #donations .section_wrapper.materials #materials .section_overlay,
       #donations .section_wrapper.food #food .section_overlay {
@@ -487,6 +524,31 @@ body#signup {
           background-color: transparent;
           font-size: 0.8rem;
           margin: 30px 0; }
+          #donations .section_wrapper.money #money .section_bg .return:hover,
+          #donations .section_wrapper.materials #materials .section_bg .return:hover,
+          #donations .section_wrapper.food #food .section_bg .return:hover {
+            background-color: #ddd;
+            color: #222; }
+      #donations .section_wrapper.money #money.payment .return,
+      #donations .section_wrapper.materials #materials.payment .return,
+      #donations .section_wrapper.food #food.payment .return {
+        display: none; }
+      #donations .section_wrapper.money #money.payment #material_container,
+      #donations .section_wrapper.money #money.payment #food_container,
+      #donations .section_wrapper.money #money.payment #donation_container,
+      #donations .section_wrapper.money #money.payment #payment_materials,
+      #donations .section_wrapper.money #money.payment #payment_food,
+      #donations .section_wrapper.materials #materials.payment #material_container,
+      #donations .section_wrapper.materials #materials.payment #food_container,
+      #donations .section_wrapper.materials #materials.payment #donation_container,
+      #donations .section_wrapper.materials #materials.payment #payment_materials,
+      #donations .section_wrapper.materials #materials.payment #payment_food,
+      #donations .section_wrapper.food #food.payment #material_container,
+      #donations .section_wrapper.food #food.payment #food_container,
+      #donations .section_wrapper.food #food.payment #donation_container,
+      #donations .section_wrapper.food #food.payment #payment_materials,
+      #donations .section_wrapper.food #food.payment #payment_food {
+        display: none; }
     #donations .section_wrapper.money_animating, #donations .section_wrapper.materials_animating, #donations .section_wrapper.food_animating {
       grid-gap: 0;
       padding: 0; }
@@ -507,6 +569,81 @@ body#signup {
       transform: translateX(-66.7%); }
       #donations .section_wrapper.food_animating #food .section_overlay {
         display: none; }
+
+#donation_form {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  z-index: 80;
+  width: 100%;
+  pointer-events: none;
+  color: #ddd;
+  transition: 0.3s;
+  transform: translateX(40px);
+  pointer-events: none;
+  opacity: 0; }
+  #donation_form .section_bg .return {
+    border: 2px solid #ddd;
+    background-color: transparent;
+    color: #ddd;
+    text-align: center;
+    line-height: 30px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    height: 30px;
+    width: 80px; }
+    #donation_form .section_bg .return:hover {
+      background-color: #ddd;
+      color: #222; }
+  #donation_form .section_bg .pay_type_container {
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: 30px 150px 150px;
+    grid-gap: 20px; }
+    #donation_form .section_bg .pay_type_container input[type="radio"] {
+      transform: scale(1.5); }
+    #donation_form .section_bg .pay_type_container img {
+      max-height: 15px; }
+  #donation_form .section_bg .pay_info_container {
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-gap: 0px 20px; }
+    #donation_form .section_bg .pay_info_container input {
+      width: 100%;
+      height: 40px;
+      border: 2px solid #ddd;
+      background-color: transparent;
+      color: #ddd; }
+    #donation_form .section_bg .pay_info_container input[name="card_number"] {
+      grid-area: span 1 / span 2; }
+    #donation_form .section_bg .pay_info_container p {
+      margin: 10px 0; }
+    #donation_form .section_bg .pay_info_container .month_year {
+      display: grid;
+      grid-template-columns: 1fr 30px 1fr; }
+      #donation_form .section_bg .pay_info_container .month_year p {
+        text-align: center;
+        font-size: 40px;
+        line-height: 40px;
+        margin: 0; }
+  #donation_form .section_bg input[type="number"] {
+    padding: 3px;
+    font-size: 1rem; }
+  #donation_form .section_bg input[type="submit"] {
+    border: 2px solid #ddd;
+    background-color: transparent;
+    color: #ddd;
+    height: 40px;
+    width: 320px;
+    margin: 20px 0;
+    font-size: 1.2rem; }
+    #donation_form .section_bg input[type="submit"]:hover {
+      background-color: #ddd;
+      color: #222; }
+  #donation_form.payment {
+    transform: translateX(0);
+    pointer-events: all;
+    opacity: 1; }
 
 #current_course {
   background: #000;

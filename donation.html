@@ -66,7 +66,9 @@
         <div class="section_bg">
           <button class="return">Tilbage</button>
           <div id="material_container"></div>
-          <button id="payment_materials">Gå til betaling</button>
+          <button id="payment_materials" class="donate_items">
+            Gå til betaling
+          </button>
         </div>
       </section>
       <section class="donation_category" id="food">
@@ -74,13 +76,16 @@
         <div class="section_bg">
           <button class="return">Tilbage</button>
           <div id="food_container"></div>
-          <button id="payment_food">Gå til betaling</button>
+          <button id="payment_food" class="donate_items">
+            Gå til betaling
+          </button>
         </div>
       </section>
     </div>
 
-    <form>
-      <article id="payment">
+    <form id="donation_form">
+      <div class="section_bg">
+        <div class="return">Tilbage</div>
         <h2>Betalingsform</h2>
         <div class="pay_type_container">
           <input type="radio" name="pay_type" value="visa" checked />
@@ -98,13 +103,6 @@
             <img src="img/mastercard.png" />
             <img src="img/visa-electron.png" /> <img src="img/maestro.png" />
           </div>
-
-          <input type="radio" name="pay_type" value="mobile" />
-          <label for="mobile">Mobilepay</label>
-          <div><img src="img/mobile-pay.png" /></div>
-
-          <input type="radio" name="pay_type" value="giro" />
-          <label for="visa">Girokort (+10kr)</label> <img />
         </div>
         <h2>Visa / Dankort</h2>
         <div class="pay_info_container">
@@ -119,8 +117,8 @@
           </div>
           <input type="number" name="cvv" min="100" max="999" required />
         </div>
-      </article>
-      <input id="confirm" type="submit" value="N&aelig;ste" />
+        <input id="confirm" type="submit" value="Gennemf&oslash;r betaling" />
+      </div>
     </form>
 
     <template id="itemTemplate">

@@ -77,7 +77,7 @@ document
 document.querySelector("#payment_money").addEventListener("click", () => {
   document.querySelector("#money").classList.add("payment");
 
-  document.querySelector("form").classList.add("payment");
+  document.querySelector("#donation_form").classList.add("payment");
 
   document.querySelector("#confirm").setAttribute("class", "donate_money");
 });
@@ -102,7 +102,7 @@ document
 document.querySelector("#payment_materials").addEventListener("click", () => {
   document.querySelector("#materials").classList.add("payment");
 
-  document.querySelector("form").classList.add("payment");
+  document.querySelector("#donation_form").classList.add("payment");
 
   document.querySelector("#confirm").setAttribute("class", "donate_materials");
 });
@@ -127,9 +127,19 @@ document
 
 document.querySelector("#payment_food").addEventListener("click", () => {
   document.querySelector("#food").classList.add("payment");
-  document.querySelector("form").classList.add("payment");
+  document.querySelector("#donation_form").classList.add("payment");
   document.querySelector("#confirm").setAttribute("class", "donate_food");
 });
+
+document
+  .querySelector("#donation_form .return")
+  .addEventListener("click", () => {
+    document.querySelector("#money").classList.remove("payment");
+    document.querySelector("#materials").classList.remove("payment");
+    document.querySelector("#food").classList.remove("payment");
+    document.querySelector("#donation_form").classList.remove("payment");
+  });
+
 //#endregion
 
 document.querySelector("#confirm").addEventListener("click", confirmDonation);
@@ -230,7 +240,10 @@ function updateTotalDonation() {
   //Total donation amount
   let donationTotalAmount;
 
-  DBRefTotalDonation = firebase.database().ref().child("totaldonations");
+  DBRefTotalDonation = firebase
+    .database()
+    .ref()
+    .child("totaldonations");
 
   DBRefTotalDonation.on(
     "value",
