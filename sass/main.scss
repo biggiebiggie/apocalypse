@@ -140,6 +140,10 @@ header {
       color: $text_color_white;
       font-size: 0.8rem;
       border: 2px solid $text_color_white;
+    }
+    a,
+    button,
+    input[type="submit"] {
       text-transform: uppercase;
     }
     input[type="submit"] {
@@ -1419,12 +1423,13 @@ body#signup {
     #login_container {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      top: 4px;
+      grid-gap: 5px;
+      top: 2px;
       right: 4px;
       input,
       a {
         height: 25px;
-        width: 100px;
+        width: 120px;
       }
     }
     &.logged_in {
