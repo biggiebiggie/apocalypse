@@ -24,8 +24,21 @@ section {
   width: 100vw;
 }
 
-button {
+button,
+a,
+a div,
+h1,
+h2,
+h3 {
   cursor: pointer;
+  font-family: berlin-sans, sans-serif;
+  font-weight: 400;
+}
+
+button,
+a,
+a div {
+  text-transform: uppercase;
 }
 
 .section_bg {
@@ -116,21 +129,23 @@ header {
     button,
     input {
       padding: 5px;
-      background-color: #eee;
-      color: $text_color_black;
+      background-color: transparent;
+      color: $text_color_white;
       font-size: 0.8rem;
-      border: 1px solid #222;
+      border: 2px solid $text_color_white;
     }
   }
 
   #btnLogout {
     display: none;
+    margin-left: 10px;
   }
 
   #p_email {
     display: none;
     color: $text_color_white;
     margin: 0;
+    line-height: 2rem;
   }
 
   #btn_to_profile {
@@ -178,6 +193,7 @@ footer {
         }
       }
     }
+
     #footer_contact {
       display: grid;
       grid-template-columns: 1fr 3fr;
@@ -274,30 +290,23 @@ footer {
       }
     }
     .message {
-      font-size: 2rem;
+      font-size: 1.9rem;
       margin: 20px 0;
       transform: translateX(-40px);
     }
     a[href="donation.html"] {
       text-decoration: none;
-      color: $text_color_black;
+      color: $text_color_white;
       div {
         height: 60px;
         width: 200px;
-        background: #eee;
-        border: 1px solid $text_color_black;
+        background-color: transparent;
+        border: 2px solid $text_color_white;
         text-align: center;
         margin: 30px 0;
         transform: translateX(-80px);
-        h2 {
-          font-size: 2rem;
-          margin: 0;
-        }
-        p {
-          font-size: 0.9rem;
-          margin: 0;
-          font-weight: 700;
-        }
+        font-size: 2.4rem;
+        line-height: 60px;
       }
     }
   }
@@ -438,6 +447,7 @@ footer {
 
 body#signup {
   background-image: url(../img/placeholder.jpg);
+  padding: 0;
 
   .transparent_bg {
     position: absolute;
@@ -464,7 +474,7 @@ body#signup {
 
 #donations {
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
 
   background-image: url(../img/woods_moonlight.jpg);
   background-size: cover;
@@ -477,7 +487,7 @@ body#signup {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: $spacing;
     height: 100%;
-    padding: $spacing $spacing ($header_height + $spacing) $spacing;
+    padding: $spacing;
     transition: 0.3s;
     section {
       width: 100%;
@@ -529,14 +539,19 @@ body#signup {
         display: block;
         width: 100%;
         height: 100px;
-        border: 1px solid $text_color_black;
+        border: 2px solid $text_color_white;
+
+        background-color: transparent;
+        color: $text_color_white;
       }
       button#donate_money {
         width: 100%;
         height: 50px;
         margin: 20px 0;
         font-size: 2rem;
-        border: 1px solid $text_color_black;
+        border: 2px solid $text_color_white;
+        background-color: transparent;
+        color: $text_color_white;
       }
     }
     #materials {
@@ -551,32 +566,53 @@ body#signup {
       $box_height: 40px;
 
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+
+      .materials {
+        border: 2px solid $text_color_white;
+        width: 100%;
+        height: 200px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-gap: 10px;
+        padding: 20px 30px;
+      }
       h3,
       p {
         color: $text_color_white;
         margin: 10px 0;
+        width: 100%;
+        text-align: center;
+        grid-area: span 1 / span 3;
       }
+
       input {
-        height: $box_height;
-        width: 100px;
-        border: 1px solid $text_color_black;
+        width: 100%;
+        height: 50px;
+        border: 2px solid $text_color_white;
         font-size: 1rem;
         transform: translateY(-3px);
         padding: 0 10px;
+        background-color: transparent;
+        color: $text_color_white;
+        text-align: center;
       }
       button.btnminus,
       button.btnplus {
-        height: $box_height;
-        width: $box_height;
-        border: 1px solid $text_color_black;
-        font-size: 1.5rem;
+        height: 50px;
+        border: none;
+        background-color: transparent;
+        color: $text_color_white;
+        transform: translateY(-5px);
+        font-size: 2rem;
       }
       button.donate_material {
         width: 189px;
         height: $box_height;
         display: block;
-        border: 1px solid $text_color_black;
+        border: 2px solid $text_color_white;
+        background-color: transparent;
         margin-bottom: 20px;
       }
     }
@@ -593,7 +629,7 @@ body#signup {
     &.materials,
     &.food {
       grid-gap: 0;
-      padding: 0 0 $header_height 0;
+      padding: 0;
       transition: none;
     }
     &.money #money,
@@ -611,8 +647,10 @@ body#signup {
         .return {
           height: 30px;
           width: 80px;
-          border: 1px solid $text_color_black;
-          font-size: 1rem;
+          border: 2px solid $text_color_white;
+          color: $text_color_white;
+          background-color: transparent;
+          font-size: 0.8rem;
           margin: 30px 0;
         }
       }
@@ -717,7 +755,6 @@ body#signup {
         background-repeat: no-repeat;
         height: 125px;
         width: 100%;
-        background-color: #009;
         transition: 0.3s;
       }
       .course_overlay {
@@ -973,3 +1010,319 @@ body#signup {
   }
 }
 */
+
+//########## MEDIA QUERRIES ##########
+
+@media only screen and (max-width: 1405px) and (min-width: 901px) {
+  //### index.html ###
+  //# Splash #
+  #splash {
+    .name_and_donate {
+      padding-top: 70px;
+      .we_are {
+        font-size: 1.4rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+        span {
+          font-size: 1rem;
+        }
+      }
+      .message {
+        font-size: 1.2rem;
+      }
+      a[href="donation.html"] {
+        div {
+          width: 130px;
+          height: 60px;
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1150px) and (min-width: 901px) {
+  header {
+    nav .nav_content {
+      a,
+      .current {
+        font-size: 0.9rem;
+        margin: 20px 10px;
+      }
+    }
+  }
+  #donate_section {
+    padding: 0;
+    .section_bg {
+      p {
+        padding: 0 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #splash {
+    #background_on_splash {
+      width: 100%;
+      #logo_on_splash {
+        width: 50%;
+        margin: 10% 25%;
+      }
+    }
+    .name_and_donate {
+      padding-top: 40px;
+      right: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      .we_are {
+        font-size: 1.3rem;
+        width: 100%;
+        text-align: center;
+        transform: translateX(-80px);
+      }
+      h1 {
+        font-size: 3rem;
+        width: 100%;
+        text-align: center;
+        span {
+          display: block;
+          margin-left: 0;
+          font-size: 1.3rem;
+        }
+      }
+      .message {
+        font-size: 1.3rem;
+        width: 100%;
+        text-align: center;
+        transform: none;
+      }
+      a[href="donation.html"] {
+        display: block;
+        margin: 40px auto;
+        width: 250px;
+        height: 70px;
+        div {
+          padding-top: 5px;
+          width: 100%;
+          height: 100%;
+          transform: none;
+        }
+      }
+      .tilted_square {
+        display: none;
+      }
+    }
+  }
+  #about_us {
+    h2 {
+      text-align: center;
+    }
+  }
+  #donate_section {
+    padding: 0;
+    .section_bg {
+      p {
+        padding: 0 0;
+      }
+    }
+  }
+
+  //# Donation #
+
+  #donations {
+    .section_wrapper {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      padding: 20px;
+      grid-gap: 20px;
+
+      .donation_category {
+        .section_overlay {
+          background-position: -20%;
+          h2 {
+            width: 60%;
+            right: 0;
+            top: 4vh;
+            font-size: 3.9vw;
+          }
+        }
+      }
+
+      #money {
+        grid-area: 1/1/2/2;
+      }
+      #materials {
+        grid-area: 2/1/3/2;
+      }
+      #food {
+        grid-area: 3/1/4/2;
+      }
+      &.money #money,
+      &.materials #materials,
+      &.food #food {
+        grid-area: 1/1/4/2;
+      }
+      &.money_animating #money {
+        width: 100%;
+        height: 300%;
+      }
+      &.materials_animating #materials {
+        width: 100%;
+        height: 300%;
+        transform: translateX(0) translateY(-33.33%);
+      }
+      &.food_animating #food {
+        width: 100%;
+        height: 300%;
+        transform: translateX(0) translateY(-66.67%);
+      }
+      #donation_container {
+        #donation_input,
+        button#donate_money {
+          width: 70%;
+        }
+      }
+      #material_container,
+      #food_container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+
+  //# Courses #
+  #current_course .section_bg {
+    iframe {
+      width: 100%;
+      height: 60vw;
+    }
+  }
+  #courses_container .section_bg {
+    h2 {
+      grid-area: span 1 / span 2;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    grid-template-columns: 1fr 1fr;
+  }
+  //# header #
+
+  header {
+    #burger {
+      width: $header_height;
+      height: $header_height;
+      position: absolute;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      cursor: pointer;
+      div {
+        transition: 0.4s;
+        width: 100%;
+        height: 7px;
+        background-color: $text_color_white;
+      }
+    }
+    .nav_content {
+      position: absolute;
+      top: $header_height;
+      left: 0;
+      background-color: lighten($dark_green, 2%);
+      padding: 0 30px;
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.5s ease-in-out;
+
+      &.open {
+        max-height: 100vh;
+      }
+      a,
+      p {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin: 20px 0;
+      }
+    }
+    #login_container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      top: 4px;
+      right: 4px;
+      input,
+      a {
+        height: 25px;
+        width: 100px;
+      }
+    }
+    &.logged_in {
+      #login_container {
+        top: 18px;
+        right: 0px;
+      }
+    }
+
+    nav.open {
+      #burger {
+        div:first-child {
+          transform: rotate(45deg) translate(9.9px, 9.9px);
+        }
+        div:nth-child(2) {
+          transform: translateX(40px);
+          opacity: 0;
+        }
+        div:last-child {
+          transform: rotate(-45deg) translate(9.9px, -9.9px);
+        }
+      }
+      .nav_content {
+        max-height: 100vh;
+      }
+    }
+  }
+
+  //# Footer #
+  footer {
+    .section_bg {
+      grid-template-columns: 100px 1fr 70px;
+
+      #footer_contact {
+        padding-top: 20px;
+        grid-template-rows: repeat(3, 30px);
+        p {
+          font-size: 0.7rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  //# Profile #
+
+  #your_profile {
+    .section_bg {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+
+      #welcome_header {
+        grid-area: 1 / 1 / 2 / 2;
+        text-align: center;
+      }
+
+      .profile_rank {
+        grid-area: 2 / 1 / 3 / 2;
+        width: 60vw;
+        height: 60vw;
+        margin: 0 auto;
+        background-attachment: scroll;
+        background-size: cover;
+
+        .rank {
+          line-height: 60vw;
+        }
+      }
+    }
+  }
+}

@@ -179,3 +179,9 @@ DBRefUserInfo.on("child_changed", snap => {
     // +userinfo.donations.materials.wood;
   }
 });
+
+//Burger menu
+
+document.querySelector("#burger").addEventListener("click", () => {
+  document.querySelector("header nav").classList.toggle("open");
+});

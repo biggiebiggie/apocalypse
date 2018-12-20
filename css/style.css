@@ -10,8 +10,20 @@ body {
 section {
   width: 100vw; }
 
-button {
-  cursor: pointer; }
+button,
+a,
+a div,
+h1,
+h2,
+h3 {
+  cursor: pointer;
+  font-family: berlin-sans, sans-serif;
+  font-weight: 400; }
+
+button,
+a,
+a div {
+  text-transform: uppercase; }
 
 .section_bg {
   position: relative;
@@ -81,16 +93,18 @@ header {
     header #login_container button,
     header #login_container input {
       padding: 5px;
-      background-color: #eee;
-      color: #222;
+      background-color: transparent;
+      color: #ddd;
       font-size: 0.8rem;
-      border: 1px solid #222; }
+      border: 2px solid #ddd; }
   header #btnLogout {
-    display: none; }
+    display: none;
+    margin-left: 10px; }
   header #p_email {
     display: none;
     color: #ddd;
-    margin: 0; }
+    margin: 0;
+    line-height: 2rem; }
   header #btn_to_profile {
     display: none; }
   header.logged_in nav #btn_to_profile {
@@ -188,27 +202,22 @@ footer {
         margin-left: 20px;
         font-weight: 200; }
     #splash .name_and_donate .message {
-      font-size: 2rem;
+      font-size: 1.9rem;
       margin: 20px 0;
       transform: translateX(-40px); }
     #splash .name_and_donate a[href="donation.html"] {
       text-decoration: none;
-      color: #222; }
+      color: #ddd; }
       #splash .name_and_donate a[href="donation.html"] div {
         height: 60px;
         width: 200px;
-        background: #eee;
-        border: 1px solid #222;
+        background-color: transparent;
+        border: 2px solid #ddd;
         text-align: center;
         margin: 30px 0;
-        transform: translateX(-80px); }
-        #splash .name_and_donate a[href="donation.html"] div h2 {
-          font-size: 2rem;
-          margin: 0; }
-        #splash .name_and_donate a[href="donation.html"] div p {
-          font-size: 0.9rem;
-          margin: 0;
-          font-weight: 700; }
+        transform: translateX(-80px);
+        font-size: 2.4rem;
+        line-height: 60px; }
 
 #about_us {
   background-color: #37402b; }
@@ -297,7 +306,8 @@ footer {
       border-width: 0 5px 5px 0; }
 
 body#signup {
-  background-image: url(../img/placeholder.jpg); }
+  background-image: url(../img/placeholder.jpg);
+  padding: 0; }
   body#signup .transparent_bg {
     position: absolute;
     width: 45vw;
@@ -316,7 +326,7 @@ body#signup {
 
 #donations {
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   background-image: url(../img/woods_moonlight.jpg);
   background-size: cover;
   background-position: center; }
@@ -325,7 +335,7 @@ body#signup {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 80px;
     height: 100%;
-    padding: 80px 80px 140px 80px;
+    padding: 80px;
     transition: 0.3s; }
     #donations .section_wrapper section {
       width: 100%;
@@ -367,13 +377,17 @@ body#signup {
         display: block;
         width: 100%;
         height: 100px;
-        border: 1px solid #222; }
+        border: 2px solid #ddd;
+        background-color: transparent;
+        color: #ddd; }
       #donations .section_wrapper #money button#donate_money {
         width: 100%;
         height: 50px;
         margin: 20px 0;
         font-size: 2rem;
-        border: 1px solid #222; }
+        border: 2px solid #ddd;
+        background-color: transparent;
+        color: #ddd; }
     #donations .section_wrapper #materials {
       background: #161b26;
       grid-area: 1/2/2/3; }
@@ -382,35 +396,54 @@ body#signup {
     #donations .section_wrapper #material_container,
     #donations .section_wrapper #food_container {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr; }
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px; }
+      #donations .section_wrapper #material_container .materials,
+      #donations .section_wrapper #food_container .materials {
+        border: 2px solid #ddd;
+        width: 100%;
+        height: 200px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-gap: 10px;
+        padding: 20px 30px; }
       #donations .section_wrapper #material_container h3,
       #donations .section_wrapper #material_container p,
       #donations .section_wrapper #food_container h3,
       #donations .section_wrapper #food_container p {
         color: #ddd;
-        margin: 10px 0; }
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+        grid-area: span 1 / span 3; }
       #donations .section_wrapper #material_container input,
       #donations .section_wrapper #food_container input {
-        height: 40px;
-        width: 100px;
-        border: 1px solid #222;
+        width: 100%;
+        height: 50px;
+        border: 2px solid #ddd;
         font-size: 1rem;
         transform: translateY(-3px);
-        padding: 0 10px; }
+        padding: 0 10px;
+        background-color: transparent;
+        color: #ddd;
+        text-align: center; }
       #donations .section_wrapper #material_container button.btnminus,
       #donations .section_wrapper #material_container button.btnplus,
       #donations .section_wrapper #food_container button.btnminus,
       #donations .section_wrapper #food_container button.btnplus {
-        height: 40px;
-        width: 40px;
-        border: 1px solid #222;
-        font-size: 1.5rem; }
+        height: 50px;
+        border: none;
+        background-color: transparent;
+        color: #ddd;
+        transform: translateY(-5px);
+        font-size: 2rem; }
       #donations .section_wrapper #material_container button.donate_material,
       #donations .section_wrapper #food_container button.donate_material {
         width: 189px;
         height: 40px;
         display: block;
-        border: 1px solid #222;
+        border: 2px solid #ddd;
+        background-color: transparent;
         margin-bottom: 20px; }
     #donations .section_wrapper #food {
       background: #402b2b;
@@ -419,7 +452,7 @@ body#signup {
         background-image: url(../img/donate_food.svg); }
     #donations .section_wrapper.money, #donations .section_wrapper.materials, #donations .section_wrapper.food {
       grid-gap: 0;
-      padding: 0 0 60px 0;
+      padding: 0;
       transition: none; }
     #donations .section_wrapper.money #money,
     #donations .section_wrapper.materials #materials,
@@ -440,8 +473,10 @@ body#signup {
         #donations .section_wrapper.food #food .section_bg .return {
           height: 30px;
           width: 80px;
-          border: 1px solid #222;
-          font-size: 1rem;
+          border: 2px solid #ddd;
+          color: #ddd;
+          background-color: transparent;
+          font-size: 0.8rem;
           margin: 30px 0; }
     #donations .section_wrapper.money_animating, #donations .section_wrapper.materials_animating, #donations .section_wrapper.food_animating {
       grid-gap: 0;
@@ -510,7 +545,6 @@ body#signup {
         background-repeat: no-repeat;
         height: 125px;
         width: 100%;
-        background-color: #009;
         transition: 0.3s; }
       #courses_container .section_bg .course .course_overlay {
         position: absolute;
@@ -694,3 +728,199 @@ body#signup {
   }
 }
 */
+@media only screen and (max-width: 1405px) and (min-width: 901px) {
+  #splash .name_and_donate {
+    padding-top: 70px; }
+    #splash .name_and_donate .we_are {
+      font-size: 1.4rem; }
+    #splash .name_and_donate h1 {
+      font-size: 2.5rem; }
+      #splash .name_and_donate h1 span {
+        font-size: 1rem; }
+    #splash .name_and_donate .message {
+      font-size: 1.2rem; }
+    #splash .name_and_donate a[href="donation.html"] div {
+      width: 130px;
+      height: 60px;
+      font-size: 1.6rem; } }
+
+@media only screen and (max-width: 1150px) and (min-width: 901px) {
+  header nav .nav_content a,
+  header nav .nav_content .current {
+    font-size: 0.9rem;
+    margin: 20px 10px; }
+  #donate_section {
+    padding: 0; }
+    #donate_section .section_bg p {
+      padding: 0 0; } }
+
+@media only screen and (max-width: 900px) {
+  #splash #background_on_splash {
+    width: 100%; }
+    #splash #background_on_splash #logo_on_splash {
+      width: 50%;
+      margin: 10% 25%; }
+  #splash .name_and_donate {
+    padding-top: 40px;
+    right: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); }
+    #splash .name_and_donate .we_are {
+      font-size: 1.3rem;
+      width: 100%;
+      text-align: center;
+      transform: translateX(-80px); }
+    #splash .name_and_donate h1 {
+      font-size: 3rem;
+      width: 100%;
+      text-align: center; }
+      #splash .name_and_donate h1 span {
+        display: block;
+        margin-left: 0;
+        font-size: 1.3rem; }
+    #splash .name_and_donate .message {
+      font-size: 1.3rem;
+      width: 100%;
+      text-align: center;
+      transform: none; }
+    #splash .name_and_donate a[href="donation.html"] {
+      display: block;
+      margin: 40px auto;
+      width: 250px;
+      height: 70px; }
+      #splash .name_and_donate a[href="donation.html"] div {
+        padding-top: 5px;
+        width: 100%;
+        height: 100%;
+        transform: none; }
+    #splash .name_and_donate .tilted_square {
+      display: none; }
+  #about_us h2 {
+    text-align: center; }
+  #donate_section {
+    padding: 0; }
+    #donate_section .section_bg p {
+      padding: 0 0; }
+  #donations .section_wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 20px;
+    grid-gap: 20px; }
+    #donations .section_wrapper .donation_category .section_overlay {
+      background-position: -20%; }
+      #donations .section_wrapper .donation_category .section_overlay h2 {
+        width: 60%;
+        right: 0;
+        top: 4vh;
+        font-size: 3.9vw; }
+    #donations .section_wrapper #money {
+      grid-area: 1/1/2/2; }
+    #donations .section_wrapper #materials {
+      grid-area: 2/1/3/2; }
+    #donations .section_wrapper #food {
+      grid-area: 3/1/4/2; }
+    #donations .section_wrapper.money #money,
+    #donations .section_wrapper.materials #materials,
+    #donations .section_wrapper.food #food {
+      grid-area: 1/1/4/2; }
+    #donations .section_wrapper.money_animating #money {
+      width: 100%;
+      height: 300%; }
+    #donations .section_wrapper.materials_animating #materials {
+      width: 100%;
+      height: 300%;
+      transform: translateX(0) translateY(-33.33%); }
+    #donations .section_wrapper.food_animating #food {
+      width: 100%;
+      height: 300%;
+      transform: translateX(0) translateY(-66.67%); }
+    #donations .section_wrapper #donation_container #donation_input,
+    #donations .section_wrapper #donation_container button#donate_money {
+      width: 70%; }
+    #donations .section_wrapper #material_container,
+    #donations .section_wrapper #food_container {
+      grid-template-columns: 1fr 1fr; }
+  #current_course .section_bg iframe {
+    width: 100%;
+    height: 60vw; }
+  #courses_container .section_bg {
+    grid-template-columns: 1fr 1fr; }
+    #courses_container .section_bg h2 {
+      grid-area: span 1 / span 2;
+      font-size: 1.5rem;
+      text-align: center; }
+  header #burger {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer; }
+    header #burger div {
+      transition: 0.4s;
+      width: 100%;
+      height: 7px;
+      background-color: #ddd; }
+  header .nav_content {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #141a11;
+    padding: 0 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.5s ease-in-out; }
+    header .nav_content.open {
+      max-height: 100vh; }
+    header .nav_content a,
+    header .nav_content p {
+      display: block;
+      text-align: center;
+      width: 100%;
+      margin: 20px 0; }
+  header #login_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    top: 4px;
+    right: 4px; }
+    header #login_container input,
+    header #login_container a {
+      height: 25px;
+      width: 100px; }
+  header.logged_in #login_container {
+    top: 18px;
+    right: 0px; }
+  header nav.open #burger div:first-child {
+    transform: rotate(45deg) translate(9.9px, 9.9px); }
+  header nav.open #burger div:nth-child(2) {
+    transform: translateX(40px);
+    opacity: 0; }
+  header nav.open #burger div:last-child {
+    transform: rotate(-45deg) translate(9.9px, -9.9px); }
+  header nav.open .nav_content {
+    max-height: 100vh; }
+  footer .section_bg {
+    grid-template-columns: 100px 1fr 70px; }
+    footer .section_bg #footer_contact {
+      padding-top: 20px;
+      grid-template-rows: repeat(3, 30px); }
+      footer .section_bg #footer_contact p {
+        font-size: 0.7rem;
+        margin: 0; }
+  #your_profile .section_bg {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto; }
+    #your_profile .section_bg #welcome_header {
+      grid-area: 1 / 1 / 2 / 2;
+      text-align: center; }
+    #your_profile .section_bg .profile_rank {
+      grid-area: 2 / 1 / 3 / 2;
+      width: 60vw;
+      height: 60vw;
+      margin: 0 auto;
+      background-attachment: scroll;
+      background-size: cover; }
+      #your_profile .section_bg .profile_rank .rank {
+        line-height: 60vw; } }
