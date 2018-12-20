@@ -5,9 +5,15 @@ const DBRefMaterials = firebase
   .ref()
   .child("totaldonations/materials");
 
-const DBRefFood = firebase.database().ref().child("totaldonations/food");
+const DBRefFood = firebase
+  .database()
+  .ref()
+  .child("totaldonations/food");
 
-const DBRefTotalDonation = firebase.database().ref().child("totaldonations");
+const DBRefTotalDonation = firebase
+  .database()
+  .ref()
+  .child("totaldonations");
 
 let donationTotalAmount;
 
@@ -82,46 +88,58 @@ var foodChart = new Chart(ctx2, {
   }
 });
 
-DBRefMaterials.on("child_added", snap => {
+document.addEventListener("DOMContentLoaded", dashboardInit);
+
+function dashboardInit() {
+  DBRefMaterials.on("child_added", addedMaterial);
+  DBRefMaterials.on("child_changed", changedMaterial);
+  DBRefFood.on("child_added", addedFood);
+  DBRefFood.on("child_changed", changedFood);
+  DBRefTotalDonation.on("value", donationAmount);
+}
+
+function addedMaterial(snap) {
   const materialsInfo = snap.val();
 
   materialsChart.data.datasets.forEach(dataset => {
     dataset.data.push(materialsInfo);
   });
   materialsChart.update();
-});
+}
 
-DBRefMaterials.on("child_changed", snap => {
-  const materialsInfo = snap.val();
+function changedMaterial(snap) {
+  {
+    const materialsInfo = snap.val();
 
-  materialsChart.data.datasets.forEach(dataset => {
-    dataset.data.push(materialsInfo);
-  });
-  materialsChart.update();
-});
+    materialsChart.data.datasets.forEach(dataset => {
+      dataset.data.push(materialsInfo);
+    });
+    materialsChart.update();
+  }
+}
 
-DBRefFood.on("child_added", snap => {
+function addedFood(snap) {
   const foodInfo = snap.val();
 
   foodChart.data.datasets.forEach(dataset => {
     dataset.data.push(foodInfo);
   });
   foodChart.update();
-});
+}
 
-DBRefFood.on("child_changed", snap => {
+function changedFood(snap) {
   const foodInfo = snap.val();
 
   foodChart.data.datasets.forEach(dataset => {
     dataset.data.push(foodInfo);
   });
   foodChart.update();
-});
+}
 
-DBRefTotalDonation.on("value", snap => {
+function donationAmount(snap) {
   donationTotalAmount = snap.val().money;
   let goalBar = document.querySelector(".goal_fill");
-  let barFill = donationTotalAmount / 20000 * 100;
+  let barFill = (donationTotalAmount / 20000) * 100;
   goalBar.style.width = barFill + "%";
   console.log(snap.val().money);
-});
+}

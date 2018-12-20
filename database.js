@@ -24,66 +24,61 @@ let firebasesAuthDatabaseID = false;
 
 let numberOfUsers = 0;
 
-if (btnLogin) {
-  btnLogin.addEventListener("click", e => {
-    e.preventDefault();
-    //get info
-    const email = txtEmail.value;
-    const password = txtPassword.value;
-    const auth = firebase.auth();
-    //signin
-    const promise = auth.signInWithEmailAndPassword(email, password);
-    promise.catch(e => console.log(e.message));
+const userList = document.querySelector("#user_list");
+
+const DBRefUserInfo = firebase
+  .database()
+  .ref()
+  .child("userinfo");
+
+//DOM Content Loaded
+document.addEventListener("DOMContentLoaded", init);
+
+//Initial function
+function init() {
+  //Burger menu
+  document.querySelector("#burger").addEventListener("click", () => {
+    document.querySelector("header nav").classList.toggle("open");
   });
 
-  // //Sign up button
-  // btnSignup.addEventListener("click", e => {
-  //   //get info
-  //   const email = txtEmail.value;
-  //   const password = txtPassword.value;
-  //   const auth = firebase.auth();
-  //   //createuser
-  //   // const promise = auth.createUserWithEmailAndPassword(email, password);
-  //   // promise.catch(e => console.log(e.message));
+  if (btnLogin) {
+    btnLogin.addEventListener("click", userLogin);
+    btnLogout.addEventListener("click", userSignOut);
+  }
 
-  //   //Authentication of user
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then(authData => {
-  //       console.log("User created successfully with payload-", authData);
-  //       //Write code to use authData to add to Users
-  //       firebase.database().ref("userinfo/").push({
-  //         email: email,
-  //         uid: authData.user.uid,
-  //         donations: {
-  //           amount: 0,
-  //           materials: {
-  //             wood: 0,
-  //             cement: 0,
-  //             miscellaneous: 0,
-  //             clothes: 0
-  //           },
-  //           food: {
-  //             water: 0,
-  //             MRE: 0
-  //           }
-  //         }
-  //       });
-  //     })
-  //     .catch(_error => {
-  //       console.log("Login Failed!", _error);
-  //     });
-  // });
+  //Child added
+  DBRefUserInfo.on("child_added", createUserList);
 
-  //Logout button
-  btnLogout.addEventListener("click", e => {
-    firebase.auth().signOut();
-    firebasesAuthDatabaseID = false;
-  });
+  //Child changed
+  DBRefUserInfo.on("child_changed", updateUserList);
+
+  // Real time auth listener
+  firebase.auth().onAuthStateChanged(checkIfLogged);
 }
 
-// Real time auth listener
-firebase.auth().onAuthStateChanged(firebaseUser => {
+//#region login and signout
+
+//Sign out
+function userSignOut() {
+  firebase.auth().signOut();
+  firebasesAuthDatabaseID = false;
+}
+
+//Log in
+function userLogin(e) {
+  e.preventDefault();
+  //get info
+  const email = txtEmail.value;
+  const password = txtPassword.value;
+  const auth = firebase.auth();
+  //signin
+  const promise = auth.signInWithEmailAndPassword(email, password);
+  promise.catch(e => console.log(e.message));
+}
+
+//#endregion
+
+function checkIfLogged(firebaseUser) {
   if (firebaseUser) {
     console.log(firebaseUser);
     if (document.querySelector("header")) {
@@ -98,7 +93,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       document.querySelector("header").classList.remove("logged_in");
     }
   }
-});
+}
 
 //Find user
 function findFirebaseUser(email) {
@@ -118,7 +113,8 @@ function findFirebaseUser(email) {
       profileLoaded = true;
       if (
         object[firebasesAuthDatabaseID].admin !== "undefined" &&
-        object[firebasesAuthDatabaseID].admin
+        object[firebasesAuthDatabaseID].admin &&
+        document.querySelector("#btn_to_dashboard")
       ) {
         console.log("is admin: " + object[firebasesAuthDatabaseID].admin);
         document.querySelector("#btn_to_dashboard").classList.remove("hide");
@@ -129,29 +125,15 @@ function findFirebaseUser(email) {
     });
 }
 
-// DATABASE SETUP -- https://www.youtube.com/watch?v=noB98K6A0TY part 1 -- https://youtu.be/dBscwaqNPuk part 2
+// DATABASE SETUP -part 1- https://www.youtube.com/watch?v=noB98K6A0TY
+// DATABASE SETUP -part 2- https://youtu.be/dBscwaqNPuk
 
-const userList = document.querySelector("#user_list");
-// Create ref
-const DBRefUserInfo = firebase
-  .database()
-  .ref()
-  .child("userinfo");
-
-DBRefUserInfo.on("child_added", snap => {
+function createUserList(snap) {
   if (userList) {
     const li = document.createElement("li");
     const userinfo = snap.val();
 
     li.innerText = userinfo.email;
-    // `
-    //   ` +
-    // "Donations: " +
-    // +userinfo.donations.amount +
-    // `
-    //   ` +
-    // "Wood: " +
-    // +userinfo.donations.materials.wood;
 
     li.id = snap.key; // key name for each item
     numberOfUsers++;
@@ -161,27 +143,13 @@ DBRefUserInfo.on("child_added", snap => {
     }
     userList.appendChild(li);
   }
-});
+}
 
-DBRefUserInfo.on("child_changed", snap => {
+function updateUserList(snap) {
   if (userList) {
     const liChanged = document.querySelector("#" + snap.key);
     const userinfo = snap.val();
 
     liChanged.innerText = "Username: " + userinfo.email;
-    // `
-    // ` +
-    // "Donations: " +
-    // +userinfo.donations.amount +
-    // `
-    // ` +
-    // "Wood: " +
-    // +userinfo.donations.materials.wood;
   }
-});
-
-//Burger menu
-
-document.querySelector("#burger").addEventListener("click", () => {
-  document.querySelector("header nav").classList.toggle("open");
-});
+}

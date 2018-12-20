@@ -8,10 +8,16 @@ const courseFromUrl = document.querySelector(
 );
 selectCourse(courseFromUrl);
 
-//If .section_bg is clicked, run courseClicked() then look at the element clicked
-document
-  .querySelector("#courses_container .section_bg")
-  .addEventListener("click", courseClicked);
+//DOM Content Loaded
+document.addEventListener("DOMContentLoaded", coursesInit);
+
+//Initial function
+function coursesInit() {
+  //If .section_bg is clicked, run courseClicked() then look at the element clicked
+  document
+    .querySelector("#courses_container .section_bg")
+    .addEventListener("click", courseClicked);
+}
 
 function courseClicked(event) {
   const course = event.target;

@@ -5,7 +5,8 @@
 body {
   margin: 0;
   padding: 60px 0 0 0;
-  background-color: #0f140d; }
+  background-color: #0f140d;
+  overflow-x: hidden; }
 
 section {
   width: 100vw; }

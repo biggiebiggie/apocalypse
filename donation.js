@@ -17,15 +17,13 @@ const urlCategory = urlParams.get("category");
 const sectionWrapper = document.querySelector(".section_wrapper");
 const returnButtons = document.querySelectorAll(".return");
 
-//Set initial donation category
-
+//Set initial donation category if URL provides parameter
 if (
   urlCategory === "money" ||
   urlCategory === "materials" ||
   urlCategory === "food"
 ) {
   console.log(urlCategory);
-
   sectionWrapper.classList.add(urlCategory);
 
   //set return btn to go to index.html
@@ -44,105 +42,150 @@ if (
     .classList.replace("current", "reactivated");
 }
 
-//Return buttons
+//DOM Content Loaded
+document.addEventListener("DOMContentLoaded", initDonations);
 
-returnButtons.forEach(returnButton => {
-  returnButton.addEventListener("click", clearClasslist);
-});
+//Initial function
+function initDonations() {
+  //Create material donations (suffix, name of donating item, destination, place in database)
+  createItemDonation("planker", "Træ", "#material_container", "wood");
+  createItemDonation("kg", "Cement", "#material_container", "cement");
+  createItemDonation("stk", "Tøj", "#material_container", "clothes");
+  createItemDonation("stk", "Diverse", "#material_container", "clothes");
+  createItemDonation("stk", "Feltrationer", "#food_container", "MRE");
+  createItemDonation("10L dunke", "Vand", "#food_container", "water");
 
-function clearClasslist() {
-  sectionWrapper.classList.remove("money");
-  sectionWrapper.classList.remove("materials");
-  sectionWrapper.classList.remove("food");
+  //Return buttons
+  returnButtons.forEach(returnButton => {
+    returnButton.addEventListener("click", clearClasslist);
+  });
+
+  function clearClasslist() {
+    sectionWrapper.classList.remove("money");
+    sectionWrapper.classList.remove("materials");
+    sectionWrapper.classList.remove("food");
+  }
+
+  //Money
+  document
+    .querySelector("#money .section_overlay")
+    .addEventListener("click", animateToMoney);
+  document
+    .querySelector("#payment_money")
+    .addEventListener("click", paymentMoney);
+
+  //Materials
+  document
+    .querySelector("#materials .section_overlay")
+    .addEventListener("click", animateToMaterials);
+  document
+    .querySelector("#payment_materials")
+    .addEventListener("click", paymentMaterials);
+
+  //Food
+  document
+    .querySelector("#food .section_overlay")
+    .addEventListener("click", () => animateToFood);
+  document
+    .querySelector("#payment_food")
+    .addEventListener("click", paymentFood);
+
+  //Form return button
+  document
+    .querySelector("#donation_form .return")
+    .addEventListener("click", returnFromPayment);
+
+  //#endregion
+
+  document.querySelector("#confirm").addEventListener("click", confirmDonation);
 }
 
-//Money
+//#region Animate donations
 
-document
-  .querySelector("#money .section_overlay")
-  .addEventListener("click", () => {
-    if (!sectionWrapper.classList.contains("animating")) {
-      sectionWrapper.classList.remove("materials");
-      sectionWrapper.classList.remove("food");
-      sectionWrapper.classList.add("money_animating");
-      sectionWrapper.classList.add("animating");
-      setTimeout(() => {
-        sectionWrapper.classList.remove("money_animating");
-        sectionWrapper.classList.remove("animating");
-        sectionWrapper.classList.add("money");
-      }, 300);
-    }
-  });
+function animateToMoney() {
+  if (!sectionWrapper.classList.contains("animating")) {
+    sectionWrapper.classList.remove("materials");
+    sectionWrapper.classList.remove("food");
+    sectionWrapper.classList.add("money_animating");
+    sectionWrapper.classList.add("animating");
+    setTimeout(animationOverMoney, 300);
+  }
+}
 
-document.querySelector("#payment_money").addEventListener("click", () => {
+function animateToMaterials() {
+  if (!sectionWrapper.classList.contains("animating")) {
+    sectionWrapper.classList.remove("money");
+    sectionWrapper.classList.remove("food");
+    sectionWrapper.classList.add("materials_animating");
+    sectionWrapper.classList.add("animating");
+    setTimeout(animationOverMaterials, 300);
+  }
+}
+
+function animateToFood() {
+  if (!sectionWrapper.classList.contains("animating")) {
+    sectionWrapper.classList.remove("money");
+    sectionWrapper.classList.remove("materials");
+    sectionWrapper.classList.add("food_animating");
+    sectionWrapper.classList.add("animating");
+    setTimeout(animationOverFood, 300);
+  }
+}
+
+//#endregion
+
+//#region Animation over
+
+function animationOverMoney() {
+  sectionWrapper.classList.remove("money_animating");
+  sectionWrapper.classList.remove("animating");
+  sectionWrapper.classList.add("money");
+}
+
+function animationOverMaterials() {
+  sectionWrapper.classList.remove("materials_animating");
+  sectionWrapper.classList.remove("animating");
+  sectionWrapper.classList.add("materials");
+}
+
+function animationOverFood() {
+  sectionWrapper.classList.remove("food_animating");
+  sectionWrapper.classList.remove("animating");
+  sectionWrapper.classList.add("food");
+}
+
+//#endregion
+
+//#region Payment
+
+function paymentMoney() {
   document.querySelector("#money").classList.add("payment");
-
   document.querySelector("#donation_form").classList.add("payment");
-
   document.querySelector("#confirm").setAttribute("class", "donate_money");
-});
-//Materials
+}
 
-document
-  .querySelector("#materials .section_overlay")
-  .addEventListener("click", () => {
-    if (!sectionWrapper.classList.contains("animating")) {
-      sectionWrapper.classList.remove("money");
-      sectionWrapper.classList.remove("food");
-      sectionWrapper.classList.add("materials_animating");
-      sectionWrapper.classList.add("animating");
-      setTimeout(() => {
-        sectionWrapper.classList.remove("materials_animating");
-        sectionWrapper.classList.remove("animating");
-        sectionWrapper.classList.add("materials");
-      }, 300);
-    }
-  });
-
-document.querySelector("#payment_materials").addEventListener("click", () => {
+function paymentMaterials() {
   document.querySelector("#materials").classList.add("payment");
 
   document.querySelector("#donation_form").classList.add("payment");
 
   document.querySelector("#confirm").setAttribute("class", "donate_materials");
-});
+}
 
-//Food
-
-document
-  .querySelector("#food .section_overlay")
-  .addEventListener("click", () => {
-    if (!sectionWrapper.classList.contains("animating")) {
-      sectionWrapper.classList.remove("money");
-      sectionWrapper.classList.remove("materials");
-      sectionWrapper.classList.add("food_animating");
-      sectionWrapper.classList.add("animating");
-      setTimeout(() => {
-        sectionWrapper.classList.remove("food_animating");
-        sectionWrapper.classList.remove("animating");
-        sectionWrapper.classList.add("food");
-      }, 300);
-    }
-  });
-
-document.querySelector("#payment_food").addEventListener("click", () => {
+function paymentFood() {
   document.querySelector("#food").classList.add("payment");
   document.querySelector("#donation_form").classList.add("payment");
   document.querySelector("#confirm").setAttribute("class", "donate_food");
-});
+}
 
-document
-  .querySelector("#donation_form .return")
-  .addEventListener("click", () => {
-    document.querySelector("#money").classList.remove("payment");
-    document.querySelector("#materials").classList.remove("payment");
-    document.querySelector("#food").classList.remove("payment");
-    document.querySelector("#donation_form").classList.remove("payment");
-  });
+function returnFromPayment() {
+  document.querySelector("#money").classList.remove("payment");
+  document.querySelector("#materials").classList.remove("payment");
+  document.querySelector("#food").classList.remove("payment");
+  document.querySelector("#donation_form").classList.remove("payment");
+}
 
 //#endregion
-
-document.querySelector("#confirm").addEventListener("click", confirmDonation);
 
 function confirmDonation(e) {
   if (e.target.classList.contains("donate_money")) {
@@ -176,36 +219,6 @@ function confirmDonation(e) {
     donateItems("miscellaneous", "materials");
   }
 }
-
-//Donate money
-// document.querySelector("#donate_money").addEventListener("click", () => {
-//   let userDonationAmount;
-//   DBRefUserDonation = firebase
-//     .database()
-//     .ref()
-//     .child("userinfo/" + firebasesAuthDatabaseID + "/donations");
-//   DBRefUserDonation.on(
-//     "value",
-//     snap => {
-//       snap.val(); // value
-//       userDonationAmount = snap.val().amount;
-//     },
-//     err => {}
-//   );
-
-//   DBRefUserDonation.update({
-//     amount: +userDonationAmount + +inputDonationAmount.value
-//   });
-
-//   updateTotalDonation();
-// });
-
-// document.querySelector("#donate_materials").addEventListener("click", () => {
-//   donateItems("wood", "materials");
-//   donateItems("cement", "materials");
-//   donateItems("clothes", "materials");
-//   donateItems("miscellaneous", "materials");
-// });
 
 function donateItems(kind, where) {
   let userWoodAmount;
@@ -300,11 +313,3 @@ function createItemDonation(suffix, asAString, where, db) {
     }
   });
 }
-
-//Create material donations (suffix, name of donating item, destination, place in database)
-createItemDonation("planker", "Træ", "#material_container", "wood");
-createItemDonation("kg", "Cement", "#material_container", "cement");
-createItemDonation("stk", "Tøj", "#material_container", "clothes");
-createItemDonation("stk", "Diverse", "#material_container", "clothes");
-createItemDonation("stk", "Feltrationer", "#food_container", "MRE");
-createItemDonation("10L dunke", "Vand", "#food_container", "water");
