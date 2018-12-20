@@ -317,7 +317,7 @@ function createItemDonation(suffix, asAString, where, db, type) {
     `[data-type="${asAString}"] input[type="number"]`
   );
 
-  const materialCostContainer = document.querySelector(`.${type}_costs`);
+  const materialCostContainer = document.querySelector(`.${type}_costs p`);
 
   //Plus clicked
   element.querySelector(".btnplus").addEventListener("click", () => {

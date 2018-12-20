@@ -433,6 +433,9 @@ body#signup {
       grid-area: 1/2/2/3; }
       #donations .section_wrapper #materials .section_overlay {
         background-image: url(../img/donate_materials.svg); }
+      #donations .section_wrapper #materials .material_costs p {
+        font-size: 1.5rem;
+        color: #ddd; }
     #donations .section_wrapper #material_container,
     #donations .section_wrapper #food_container {
       display: grid;
@@ -498,6 +501,9 @@ body#signup {
       grid-area: 1/3/2/4; }
       #donations .section_wrapper #food .section_overlay {
         background-image: url(../img/donate_food.svg); }
+      #donations .section_wrapper #food .food_costs p {
+        font-size: 1.5rem;
+        color: #ddd; }
     #donations .section_wrapper.money, #donations .section_wrapper.materials, #donations .section_wrapper.food {
       grid-gap: 0;
       padding: 0;
