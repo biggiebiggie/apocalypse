@@ -352,14 +352,11 @@ function donateItems(kind, where) {
 }
 
 function updateTotalDonation(input) {
-  console.log("emer er gud");
   //Total donation amount
   let donationTotalAmount;
   DBRefTotalDonation = firebase.database().ref().child("totaldonations");
 
   console.log(DBRefTotalDonation);
-
-  console.log("emer er gud");
 
   DBRefTotalDonation.on(
     "value",
@@ -417,7 +414,7 @@ function createItemDonation(suffix, asAString, where, db, type) {
       materialCosts += 30;
     } else if (db == "clothes") {
       materialCosts += 10;
-    } else if (db == "misc") {
+    } else if (db == "miscellaneous") {
       materialCosts += 15;
     } else if (db == "MRE") {
       materialCosts += 10;
@@ -438,7 +435,7 @@ function createItemDonation(suffix, asAString, where, db, type) {
       materialCosts -= 30;
     } else if (db == "clothes") {
       materialCosts -= 10;
-    } else if (db == "misc") {
+    } else if (db == "miscellaneous") {
       materialCosts -= 15;
     } else if (db == "MRE") {
       materialCosts -= 10;

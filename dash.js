@@ -16,7 +16,7 @@ var ctx1 = document.getElementById("materials_chart").getContext("2d");
 var materialsChart = new Chart(ctx1, {
   type: "doughnut",
   data: {
-    labels: ["Cement", "Clothes", "Miscellaneous", "Tools", "Wood"],
+    labels: ["Cement", "Tøj", "Diverse", "Træ"],
     datasets: [
       {
         label: "# of Votes",
@@ -50,7 +50,7 @@ var ctx2 = document.getElementById("food_chart").getContext("2d");
 var foodChart = new Chart(ctx2, {
   type: "doughnut",
   data: {
-    labels: ["Cans", "MRE", "Water"],
+    labels: ["Feltrationer", "Vand"],
     datasets: [
       {
         label: "# of Votes",
