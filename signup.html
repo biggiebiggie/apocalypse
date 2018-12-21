@@ -1,34 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/lgo2eyf.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nosifer"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="img/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="img/favicon/safari-pinned-tab.svg"
+      color="#ffc40d"
+    />
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#ffc40d" />
+    <meta name="msapplication-config" content="img/favicon/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <title>Document</title>
-</head>
+  <body id="signup">
+    <a id="back_to_index" href="index.html">Tilbage</a>
+    <form id="signup_form">
+      <input id="signup_username" type="text" placeholder="Username" />
+      <input id="signup_email" type="email" placeholder="E-mail" />
+      <input
+        id="signup_password"
+        type="password"
+        type="password"
+        minlength="6"
+        placeholder="Kodeord"
+      />
+      <label id="label_not_a_zombie" for="not_a_zombie"
+        >Jeg er ikke en zombie
+        <input type="checkbox" name="not_a_zombie" id="not_a_zombie" />
+        <div class="fake_checkbox"><div></div></div>
+      </label>
+      <input type="submit" value="Opret bruger" id="btn_signup" />
+    </form>
+    <div class="transparent_bg"></div>
 
-<body id="signup">
-  <a id="back_to_index" href="index.html">Tilbage</a>
-  <form id="signup_form">
-    <input id="signup_username" type="text" placeholder="Username" />
-    <input id="signup_email" type="email" placeholder="E-mail" />
-    <input id="signup_password" type="password" type="password" minlength="6" placeholder="Kodeord" />
-    <label id="label_not_a_zombie" for="not_a_zombie">Jeg er ikke en zombie
-      <input type="checkbox" name="not_a_zombie" id="not_a_zombie" />
-      <div class="fake_checkbox">
-        <div></div>
-      </div>
-    </label>
-    <input type="submit" value="Opret bruger" id="btn_signup" />
-  </form>
-  <div class="transparent_bg"></div>
-
-  <script src="database.js"></script>
-  <script src="signup.js"></script>
-</body>
-
+    <script src="database.js"></script>
+    <script src="signup.js"></script>
+  </body>
 </html>

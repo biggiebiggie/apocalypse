@@ -1,142 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/lgo2eyf.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nosifer"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="img/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="img/favicon/safari-pinned-tab.svg"
+      color="#ffc40d"
+    />
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#ffc40d" />
+    <meta name="msapplication-config" content="img/favicon/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Superstes | Donér</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <title>Superstes | Donér</title>
-</head>
+  <body id="donations">
+    <!-- header -->
+    <header class="logged_in">
+      <nav>
+        <div id="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="nav_content">
+          <a href="index.html">Forside</a>
+          <a href="profile.html" id="btn_to_profile">Profil</a>
+          <a href="info.html">Info</a>
+          <a href="courses.html?course=1">Kurser</a>
+          <p class="current">Donér</p>
+          <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
+        </div>
+      </nav>
 
-<body id="donations">
-  <!-- header -->
-  <header class="logged_in">
-    <nav>
-      <div id="burger">
-        <div></div>
-        <div></div>
-        <div></div>
+      <form id="login_container">
+        <p id="p_email">Email</p>
+        <input id="txtEmail" type="email" placeholder="E-mail" />
+        <input id="txtPassword" type="password" placeholder="Password" />
+        <input id="btnLogin" type="submit" value="Login" />
+        <a id="signup_ref" href="signup.html">Bliv medlem</a>
+        <button id="btnLogout">Log ud</button>
+      </form>
+    </header>
+
+    <div class="section_wrapper">
+      <section class="donation_category" id="money">
+        <div class="section_overlay"><h2>Penge</h2></div>
+        <div class="section_bg">
+          <button class="return">Tilbage</button>
+          <div id="donation_container">
+            <p>Beløb i kr.</p>
+            <input
+              id="donation_input"
+              type="number"
+              placeholder="Amount"
+              value="100"
+              min="10"
+            />
+            <button id="payment_money">Gå til betaling</button>
+            <div id="user_donation"></div>
+          </div>
+        </div>
+      </section>
+      <section class="donation_category" id="materials">
+        <div class="section_overlay"><h2>Materialer</h2></div>
+        <div class="section_bg">
+          <button class="return">Tilbage</button>
+          <div id="material_container"></div>
+          <div class="material_costs"><p>0 kr.-</p></div>
+          <button id="payment_materials" class="donate_items">
+            Gå til betaling
+          </button>
+        </div>
+      </section>
+      <section class="donation_category" id="food">
+        <div class="section_overlay"><h2>Mad</h2></div>
+        <div class="section_bg">
+          <button class="return">Tilbage</button>
+          <div id="food_container"></div>
+          <div class="food_costs"><p>0 kr.-</p></div>
+          <button id="payment_food" class="donate_items">
+            Gå til betaling
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <form id="donation_form">
+      <div class="section_bg">
+        <div class="return">Tilbage</div>
+        <h2>Betalingsform</h2>
+        <div class="pay_type_container">
+          <input type="radio" name="pay_type" value="visa" checked />
+          <label for="visa">Visa / Dankort</label>
+          <div>
+            <img src="img/dankort.png" /><img
+              src="img/forbrugsforeningen.jpg"
+            />
+          </div>
+
+          <input type="radio" name="pay_type" value="credit" />
+          <label for="credit">Kreditkort</label>
+          <div>
+            <img src="img/visa.png" class="visa" />
+            <img src="img/mastercard.png" />
+            <img src="img/visa-electron.png" /> <img src="img/maestro.png" />
+          </div>
+        </div>
+        <h2>Visa / Dankort</h2>
+        <div class="pay_info_container">
+          <p>Kortnummer</p>
+          <input type="number" name="card_number" required />
+          <p>md / år</p>
+          <p>cvv</p>
+          <div class="month_year">
+            <input type="number" name="month" required />
+            <p>/</p>
+            <input type="number" name="year" required />
+          </div>
+          <input type="number" name="cvv" min="100" max="999" required />
+        </div>
+        <input id="confirm" type="submit" value="Gennemf&oslash;r betaling" />
       </div>
-      <div class="nav_content">
-        <a href="index.html">Forside</a>
-        <a href="profile.html" id="btn_to_profile">Profil</a>
-        <a href="info.html">Info</a>
-        <a href="courses.html?course=1">Kurser</a>
-        <p class="current">Donér</p>
-        <a href="dashboard.html" id="btn_to_dashboard">Dashboard</a>
-      </div>
-    </nav>
-
-    <form id="login_container">
-      <p id="p_email">Email</p>
-      <input id="txtEmail" type="email" placeholder="E-mail" />
-      <input id="txtPassword" type="password" placeholder="Password" />
-      <input id="btnLogin" type="submit" value="Login" />
-      <a id="signup_ref" href="signup.html">Bliv medlem</a>
-      <button id="btnLogout">Log ud</button>
     </form>
-  </header>
 
-  <div class="section_wrapper">
-    <section class="donation_category" id="money">
-      <div class="section_overlay">
-        <h2>Penge</h2>
+    <template id="itemTemplate">
+      <div class="materials">
+        <h3></h3>
+        <p></p>
+        <button class="btnminus" disabled>-</button>
+        <input type="number" value="0" /> <input type="hidden" value="" />
+        <button class="btnplus">+</button>
       </div>
-      <div class="section_bg">
-        <button class="return">Tilbage</button>
-        <div id="donation_container">
-          <p>Beløb i kr.</p>
-          <input id="donation_input" type="number" placeholder="Amount" value="100" min="10" />
-          <button id="payment_money">Gå til betaling</button>
-          <div id="user_donation"></div>
-        </div>
-      </div>
-    </section>
-    <section class="donation_category" id="materials">
-      <div class="section_overlay">
-        <h2>Materialer</h2>
-      </div>
-      <div class="section_bg">
-        <button class="return">Tilbage</button>
-        <div id="material_container"></div>
-        <div class="material_costs">
-          <p>0 kr.-</p>
-        </div>
-        <button id="payment_materials" class="donate_items">
-          Gå til betaling
-        </button>
-      </div>
-    </section>
-    <section class="donation_category" id="food">
-      <div class="section_overlay">
-        <h2>Mad</h2>
-      </div>
-      <div class="section_bg">
-        <button class="return">Tilbage</button>
-        <div id="food_container"></div>
-        <div class="food_costs">
-          <p>0 kr.-</p>
-        </div>
-        <button id="payment_food" class="donate_items">
-          Gå til betaling
-        </button>
-      </div>
-    </section>
-  </div>
+    </template>
 
-  <form id="donation_form">
-    <div class="section_bg">
-      <div class="return">Tilbage</div>
-      <h2>Betalingsform</h2>
-      <div class="pay_type_container">
-        <input type="radio" name="pay_type" value="visa" checked />
-        <label for="visa">Visa / Dankort</label>
-        <div>
-          <img src="img/dankort.png" /><img src="img/forbrugsforeningen.jpg" />
-        </div>
-
-        <input type="radio" name="pay_type" value="credit" />
-        <label for="credit">Kreditkort</label>
-        <div>
-          <img src="img/visa.png" class="visa" />
-          <img src="img/mastercard.png" />
-          <img src="img/visa-electron.png" /> <img src="img/maestro.png" />
-        </div>
-      </div>
-      <h2>Visa / Dankort</h2>
-      <div class="pay_info_container">
-        <p>Kortnummer</p>
-        <input type="number" name="card_number" required />
-        <p>md / år</p>
-        <p>cvv</p>
-        <div class="month_year">
-          <input type="number" name="month" required />
-          <p>/</p>
-          <input type="number" name="year" required />
-        </div>
-        <input type="number" name="cvv" min="100" max="999" required />
-      </div>
-      <input id="confirm" type="submit" value="Gennemf&oslash;r betaling" />
-    </div>
-  </form>
-
-  <template id="itemTemplate">
-    <div class="materials">
-      <h3></h3>
-      <p></p>
-      <button class="btnminus" disabled>-</button>
-      <input type="number" value="0" />
-      <input type="hidden" value="" />
-      <button class="btnplus">+</button>
-    </div>
-  </template>
-
-  <div id="food_container"></div>
-  <script src="database.js"></script>
-  <script src="donation.js"></script>
-</body>
-
+    <div id="food_container"></div>
+    <script src="database.js"></script>
+    <script src="donation.js"></script>
+  </body>
 </html>
