@@ -5,15 +5,9 @@ const DBRefMaterials = firebase
   .ref()
   .child("totaldonations/materials");
 
-const DBRefFood = firebase
-  .database()
-  .ref()
-  .child("totaldonations/food");
+const DBRefFood = firebase.database().ref().child("totaldonations/food");
 
-const DBRefTotalDonation = firebase
-  .database()
-  .ref()
-  .child("totaldonations");
+const DBRefTotalDonation = firebase.database().ref().child("totaldonations");
 
 let donationTotalAmount;
 
@@ -28,12 +22,12 @@ var materialsChart = new Chart(ctx1, {
         label: "# of Votes",
         data: [],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)"
+          "rgba(255, 99, 132)",
+          "rgba(54, 162, 235)",
+          "rgba(255, 206, 86)",
+          "rgba(75, 192, 192)",
+          "rgba(153, 102, 255)",
+          "rgba(255, 159, 64)"
         ],
         borderColor: [
           "rgba(255,99,132,1)",
@@ -62,12 +56,12 @@ var foodChart = new Chart(ctx2, {
         label: "# of Votes",
         data: [],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)"
+          "rgba(255, 99, 132)",
+          "rgba(54, 162, 235)",
+          "rgba(255, 206, 86)",
+          "rgba(75, 192, 192)",
+          "rgba(153, 102, 255)",
+          "rgba(255, 159, 64)"
         ],
         borderColor: [
           "rgba(255,99,132,1)",
@@ -139,7 +133,7 @@ function changedFood(snap) {
 function donationAmount(snap) {
   donationTotalAmount = snap.val().money;
   let goalBar = document.querySelector(".goal_fill");
-  let barFill = (donationTotalAmount / 20000) * 100;
+  let barFill = donationTotalAmount / 20000 * 100;
   goalBar.style.width = barFill + "%";
   console.log(snap.val().money);
 }

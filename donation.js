@@ -50,23 +50,48 @@ document.addEventListener("DOMContentLoaded", initDonations);
 //Initial function
 function initDonations() {
   //Create material donations (suffix, name of donating item, destination, place in database)
-  createItemDonation("planker", "Træ", "#material_container", "wood");
-  createItemDonation("kg", "Cement", "#material_container", "cement");
-  createItemDonation("stk", "Tøj", "#material_container", "clothes");
-  createItemDonation("stk", "Diverse", "#material_container", "clothes");
-  createItemDonation("stk", "Feltrationer", "#food_container", "MRE");
-  createItemDonation("10L dunke", "Vand", "#food_container", "water");
+  createItemDonation(
+    "planker",
+    "Træ",
+    "#material_container",
+    "wood",
+    "material"
+  );
+  createItemDonation(
+    "kg",
+    "Cement",
+    "#material_container",
+    "cement",
+    "material"
+  );
+  createItemDonation(
+    "stk",
+    "Tøj",
+    "#material_container",
+    "clothes",
+    "material"
+  );
+  createItemDonation(
+    "stk",
+    "Diverse",
+    "#material_container",
+    "miscellaneous",
+    "material"
+  );
+  createItemDonation("stk", "Feltrationer", "#food_container", "MRE", "food");
+  createItemDonation("10L dunke", "Vand", "#food_container", "water", "food");
 
   //Return buttons
   returnButtons.forEach(returnButton => {
     returnButton.addEventListener("click", clearClasslist);
-    materialCosts = 0;
   });
 
   function clearClasslist() {
     sectionWrapper.classList.remove("money");
     sectionWrapper.classList.remove("materials");
     sectionWrapper.classList.remove("food");
+
+    materialCosts = 0;
   }
 
   //Money
@@ -88,7 +113,7 @@ function initDonations() {
   //Food
   document
     .querySelector("#food .section_overlay")
-    .addEventListener("click", () => animateToFood);
+    .addEventListener("click", animateToFood);
   document
     .querySelector("#payment_food")
     .addEventListener("click", paymentFood);
@@ -191,6 +216,7 @@ function returnFromPayment() {
 //#endregion
 
 function confirmDonation(e) {
+  e.preventDefault();
   if (e.target.classList.contains("donate_money")) {
     console.log("donate");
     let userDonationAmount;
@@ -263,34 +289,77 @@ function donateItems(kind, where) {
     .ref()
     .child("userinfo/" + firebasesAuthDatabaseID + "/donations/" + where);
 
-  document
-    .querySelectorAll("#" + where + " input[type=number]")
-    .forEach(material => {
-      console.log(Number(material.value));
-      console.log(material.nextElementSibling.value);
-      if (material.nextElementSibling.value == kind) {
-        DBRefUserDonation.on(
-          "value",
-          snap => {
-            snap.val(); // value
-            amount = snap.val()[kind];
-          },
-          err => {}
-        );
-        DBRefUserDonation.update({
-          [kind]: Number(amount) + Number(material.value)
-        });
-      }
-    });
+  let amount;
+
+  DBRefUserDonation.on(
+    "value",
+    snap => {
+      console.log(snap.val());
+      snap.val(); // value
+      amount = snap.val()[kind];
+      console.log(amount);
+    },
+    err => {}
+  );
+
+  material = document.querySelector("#" + where + " .at_" + kind).value;
+
+  console.log(material);
+
+  DBRefUserDonation.update({
+    [kind]: Number(amount) + Number(material)
+  });
+
+  pushToMaterialDonation();
+
+  function pushToMaterialDonation() {
+    let donationTotalAmount;
+
+    DBRefTotalMaterials = firebase
+      .database()
+      .ref()
+      .child("totaldonations/" + where);
+
+    DBRefTotalDonation = firebase.database().ref().child("totaldonations");
+
+    DBRefTotalDonation.on(
+      "value",
+      snap => {
+        console.log(snap.val());
+        snap.val(); // value
+        donationTotalAmount = snap.val().money;
+      },
+      err => {}
+    );
+
+    if (
+      amount !== undefined &&
+      materialCosts !== undefined &&
+      donationTotalAmount !== undefined
+    ) {
+      DBRefTotalMaterials.update({
+        [kind]: Number(amount) + Number(material)
+      });
+      DBRefTotalDonation.update({
+        money: +donationTotalAmount + +materialCosts
+      });
+      window.location.href = "index.html";
+    } else {
+      setTimeout(pushToMaterialDonation, 200);
+      console.log("prøv igen");
+    }
+  }
 }
 
 function updateTotalDonation(input) {
+  console.log("emer er gud");
   //Total donation amount
   let donationTotalAmount;
-  DBRefTotalDonation = firebase
-    .database()
-    .ref()
-    .child("totaldonations");
+  DBRefTotalDonation = firebase.database().ref().child("totaldonations");
+
+  console.log(DBRefTotalDonation);
+
+  console.log("emer er gud");
 
   DBRefTotalDonation.on(
     "value",
@@ -302,14 +371,17 @@ function updateTotalDonation(input) {
     err => {}
   );
   //Update total donation amount
-  if (donationTotalAmount !== undefined) {
-    DBRefTotalDonation.update({
-      money: +donationTotalAmount + +input
-    });
-  } else {
-    DBRefTotalDonation.update({
-      money: input
-    });
+  pushToTotalDonation();
+
+  function pushToTotalDonation() {
+    if (donationTotalAmount !== undefined) {
+      DBRefTotalDonation.update({
+        money: donationTotalAmount + +input
+      });
+      window.location.href = "index.html";
+    } else {
+      setTimeout(pushToTotalDonation, 200);
+    }
   }
 }
 
@@ -323,6 +395,7 @@ function createItemDonation(suffix, asAString, where, db, type) {
   clone.querySelector("h3").textContent = asAString;
   clone.querySelector("p").textContent = "Antal af " + suffix;
   clone.querySelector("input[type=hidden]").value = db;
+  clone.querySelector("input[type=number]").classList.add("at_" + db);
 
   //Make clone child of "where"
   document.querySelector(where).appendChild(clone);
@@ -359,8 +432,22 @@ function createItemDonation(suffix, asAString, where, db, type) {
   //Minus clicked
   element.querySelector(".btnminus").addEventListener("click", () => {
     donationInput.value = Number(donationInput.value) - 1;
+    if (db == "wood") {
+      materialCosts -= 20;
+    } else if (db == "cement") {
+      materialCosts -= 30;
+    } else if (db == "clothes") {
+      materialCosts -= 10;
+    } else if (db == "misc") {
+      materialCosts -= 15;
+    } else if (db == "MRE") {
+      materialCosts -= 10;
+    } else if (db == "water") {
+      materialCosts -= 10;
+    }
     if (Number(donationInput.value) == 0) {
       element.querySelector(".btnminus").disabled = true;
     }
+    materialCostContainer.textContent = materialCosts + "kr.-";
   });
 }

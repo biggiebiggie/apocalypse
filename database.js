@@ -26,10 +26,7 @@ let numberOfUsers = 0;
 
 const userList = document.querySelector("#user_list");
 
-const DBRefUserInfo = firebase
-  .database()
-  .ref()
-  .child("userinfo");
+const DBRefUserInfo = firebase.database().ref().child("userinfo");
 
 //DOM Content Loaded
 document.addEventListener("DOMContentLoaded", init);
@@ -37,9 +34,11 @@ document.addEventListener("DOMContentLoaded", init);
 //Initial function
 function init() {
   //Burger menu
-  document.querySelector("#burger").addEventListener("click", () => {
-    document.querySelector("header nav").classList.toggle("open");
-  });
+  if (document.querySelector("#burger")) {
+    document.querySelector("#burger").addEventListener("click", () => {
+      document.querySelector("header nav").classList.toggle("open");
+    });
+  }
 
   if (btnLogin) {
     btnLogin.addEventListener("click", userLogin);
